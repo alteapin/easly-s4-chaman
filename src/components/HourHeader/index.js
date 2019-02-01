@@ -4,8 +4,8 @@ import './HourHeader.scss';
 class HourHeader extends Component {
     render() {
         return (
-            <div className="hour-header">
-            <p>16:40</p>
+            <div className="hour-header-container">
+            <p className="hour-header">16:40</p>
             </div>
         );
     }

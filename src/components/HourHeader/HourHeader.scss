@@ -1,6 +1,8 @@
-.hour-header {
+.hour-header-container {
         grid-row: 2 / 3;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+}
+
+.hour-header {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        color: white;
 }
