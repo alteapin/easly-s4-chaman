@@ -8,7 +8,7 @@ class Daily extends Component {
    
     render() { 
         return ( 
-        <div className="container__daily">
+        <div className='container__daily'>
         <MainInfo/>
         <PlusInfo/>
         <ButtonDetail/>

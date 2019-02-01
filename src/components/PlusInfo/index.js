@@ -5,7 +5,7 @@ class PlusInfo extends Component {
    
     render() { 
         return ( 
-        <div className="container__plusInfo-daily">
+        <div className='container__plusInfo-daily'>
 
         </div> );
     }

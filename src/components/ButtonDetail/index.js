@@ -6,8 +6,9 @@ class ButtonDetail extends Component {
    
     render() { 
         return ( 
-       <Link>
-       </Link>
+            <i className='fas fa-plus-circle btnPlus'/>
+    //    <Link>
+    //    </Link>
         );
     }
 }
