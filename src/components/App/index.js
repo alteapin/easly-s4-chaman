@@ -15,13 +15,16 @@ class App extends Component {
   }
   
   render() {
-  // const {ResponseApi}=this.state.Endpoint;
-           // {ResponseApi.base}
+    const BgImage = {
+      backgroundImage: `url(${sun})`
+    };
+ //   const {ResponseApi}=this.state;
     return (
       <div className="App">
-        <img className="bg-image" src={sun} alt="sun" />
+        <div style={BgImage} className="bg-image">
         <Header />
         <WeekDetail />
+        </div>
         </div>
     );
   }
