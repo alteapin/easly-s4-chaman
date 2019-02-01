@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Cloud from '../../icons/cloud.svg';
+
 
 class Weekday extends Component {
   render() {

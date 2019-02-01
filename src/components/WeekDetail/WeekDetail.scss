@@ -7,12 +7,14 @@
     width: 55px;
     height: 55px;
     background-size: cover;
+    color: white;
 }
 
 .week-detail {
     width: 65px;
     height: 215px;
-    background-color: aquamarine;
+    background-color: cyan;
+    color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
