@@ -1,0 +1,20 @@
+.location-finder {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.location-finder_input {
+    grid-row: 1 / 2;
+    border: 0;
+    outline: none;
+    border-bottom: solid 1px violet;
+    background-color:transparent;
+}
+
+.location-icon {
+    margin-right: 25px;
+    width: 25px;
+    height: 25px;
+}

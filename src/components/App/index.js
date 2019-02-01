@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import API from '../../weather'
 import './App.scss';
 import WeekDetail from '../WeekDetail';
+import Header from '../Header/index';
+import sun from '../../images/sundark.png';
 
 
 class App extends Component {
@@ -17,7 +19,8 @@ class App extends Component {
            // {ResponseApi.base}
     return (
       <div className="App">
-        Chamán
+        <img className="bg-image" src={sun} alt="sun" />
+        <Header />
         <WeekDetail />
         </div>
     );
