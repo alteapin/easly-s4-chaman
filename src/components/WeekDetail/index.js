@@ -9,12 +9,12 @@ class WeekDetail extends Component {
   render() {
     return (
         <div className='base'>
-        <Weekday day='TUE' icon={Cloud}/>
-        <Weekday day='WED' icon={Snow}/>
-        <Weekday day='THU' icon={Sun}/>
-        <Weekday day='FRI' icon={Sun}/>
-        <Weekday day='SAT' icon={Cloud}/>
-        <Weekday day='SUN' icon={Sun}/>
+        <Weekday day='Tue' icon={Cloud}/>
+        <Weekday day='Wed' icon={Snow}/>
+        <Weekday day='Thu' icon={Sun}/>
+        <Weekday day='Fri' icon={Sun}/>
+        <Weekday day='Sat' icon={Cloud}/>
+        <Weekday day='Sun' icon={Sun}/>
         </div>
     );
   }

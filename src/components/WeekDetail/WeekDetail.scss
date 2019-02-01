@@ -5,15 +5,16 @@
 }
 .icon-temp {
     width: 50px;
-    height: 50px;
-    background-size: cover;
+    height: 55px;
     color: white;
+    background-size: 50px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .week-detail {
-    width: 40px;
-    height: 215px;
-    background-color: cyan;
+    width: 55px;
+    height: 190px;
     color: white;
     display: flex;
     flex-direction: column;
@@ -22,9 +23,9 @@
 }
 
 .base {
-  width: 400px;
   height: 220px;
-  border: 1px solid black;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  background-color: rgb(4, 151, 151);
+  padding: 2px;
 }
