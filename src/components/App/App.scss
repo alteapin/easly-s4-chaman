@@ -1,4 +1,31 @@
 .App {
   text-align: center;
-  background-color: aqua;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  bottom: 0;
+  background: linear-gradient(-75deg, #fed8c1, #fed8c1, #eb8249,#ef4335, #ff9d48);
+  background-size: 800%;
+  animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite;
+    }
+
+  @keyframes gradred {
+        0% {
+        background-position: 0% 50%;
+        }
+        50% {
+        background-position: 100% 50%;
+        }
+        100% {
+        background-position: 0% 50%;
+        }
+    }
+
+.bg-image {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    width: 320px;
+    height: 320px;
 }
