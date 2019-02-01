@@ -4,14 +4,14 @@
     margin: 0;
 }
 .icon-temp {
-    width: 55px;
-    height: 55px;
+    width: 50px;
+    height: 50px;
     background-size: cover;
     color: white;
 }
 
 .week-detail {
-    width: 65px;
+    width: 40px;
     height: 215px;
     background-color: cyan;
     color: white;
@@ -19,4 +19,12 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+}
+
+.base {
+  width: 400px;
+  height: 220px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-around;
 }
