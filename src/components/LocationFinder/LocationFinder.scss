@@ -1,0 +1,14 @@
+.location-finder {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.location-finder_input {
+    grid-row: 1 / 2;
+}
+
+.location-icon {
+    margin-right: 30px;
+}
