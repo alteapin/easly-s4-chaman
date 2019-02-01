@@ -14,7 +14,7 @@ class App extends Component {
     const {ResponseApi}=this.state;
     return (
       <div className="App">
-   
+        Chamán 
       </div>
     );
   }
