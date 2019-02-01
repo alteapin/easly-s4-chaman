@@ -1,3 +1,11 @@
 .App {
   text-align: center;
 }
+
+.base {
+  width: 414px;
+  height: 220px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-around;
+}

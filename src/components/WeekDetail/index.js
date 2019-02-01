@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
+import './WeekDetail.scss';
+import Weekday from '../Weekday';
+import Cloud from '../../icons/cloud.svg';
+import Snow from '../../icons/snow.svg';
+import Sun from '../../icons/sun.svg';
 
 class WeekDetail extends Component {
   render() {
-    const tempIcon = {
-      backgroundImage: `url(${cloud})`
-    };
     return (
-      <div className='contain-week-detail'>
-       <div style={tempIcon}> </div>
-        <div className='temp-range'>
-            <p className='temp-high'>12º</p>
-            <p className='temp-low'>5º</p>
-
+        <div className='base'>
+        <Weekday day='TUE' icon={Cloud}/>
+        <Weekday day='WED' icon={Snow}/>
+        <Weekday day='THU' icon={Sun}/>
+        <Weekday day='FRI' icon={Sun}/>
+        <Weekday day='SAT' icon={Cloud}/>
+        <Weekday day='SUN' icon={Sun}/>
         </div>
-        <h3 class='day'>Mon</h3>
-      </div>
     );
   }
 }
