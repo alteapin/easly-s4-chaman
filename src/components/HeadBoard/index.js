@@ -3,23 +3,24 @@ import Wind from '../../icons/wind.svg';
 import Temp from '../../icons/temp.svg';
 import Rain from '../../icons/rain.svg';
 import Time from '../../icons/time.svg';
+import './HeadBoard.scss';
 
 class HeadBoard extends React.Component {
     render() {
         return(
-            <tr>
+            <tr className="headBoard__general">
             <th>
-                <img src={Time} alt='time icons' />
+                <img className="headBoard__icon" src={Time} alt='time icons' />
             </th>
             <th>
-                <img src={Temp} alt='temperature icon' />
+                <img className="headBoard__icon" src={Temp} alt='temperature icon' />
             </th>
-            <th>
-                <img src={Rain} alt='Rain percent' />
+            <th className='headBoard__icon-rain'>
+                <img className="headBoard__icon " src={Rain} alt='Rain percent' />
                 <span>(%)</span>
             </th>
             <th>
-                <img src={Wind} alt='Wind speed' />
+                <img className="headBoard__icon" src={Wind} alt='Wind speed' />
             </th>
         </tr>
         )
