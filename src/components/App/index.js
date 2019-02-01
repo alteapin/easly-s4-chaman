@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Daily from '../Daily';
 import API from '../../weather'
 import './App.scss';
 import Header from '../Header/index';
