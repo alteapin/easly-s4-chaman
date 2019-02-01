@@ -10,7 +10,7 @@ class LocationFinder extends Component {
                 <img className="location-icon" src={compass} alt="compass"/>
                 <form>
                     <label for="location">
-                        <input className="location-finder_input" type="text" name="location" placeholder="Placeholder Text" />
+                        <input className="location-finder_input" type="text" name="location" />
                     </label>
                 </form>
 

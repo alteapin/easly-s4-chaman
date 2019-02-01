@@ -7,6 +7,10 @@
 
 .location-finder_input {
     grid-row: 1 / 2;
+    border: 0;
+    outline: none;
+    border-bottom: solid 1px violet;
+    background-color:transparent;
 }
 
 .location-icon {
