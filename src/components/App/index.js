@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 //import Daily from '../Daily';
 import API from '../../weather'
 import './App.scss';
+import MainInfo from '../MainInfo';
 import WeekDetail from '../WeekDetail';
 import Header from '../Header/index';
 import sun from '../../images/sundark.png';
@@ -24,6 +25,7 @@ class App extends Component {
       <div className="App">
         <div style={BgImage} className="bg-image">
         <Header />
+        <MainInfo />
         <WeekDetail />
         </div>
         </div>
