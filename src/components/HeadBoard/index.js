@@ -8,19 +8,19 @@ import './HeadBoard.scss';
 class HeadBoard extends React.Component {
     render() {
         return(
-            <tr className="headBoard__general">
+            <tr className='headBoard__general'>
             <th>
-                <img className="headBoard__icon" src={Time} alt='time icons' />
+                <img className='headBoard__icon' src={Time} alt='time icons' />
             </th>
             <th>
-                <img className="headBoard__icon" src={Temp} alt='temperature icon' />
-            </th>
-            <th className='headBoard__icon-rain'>
-                <img className="headBoard__icon " src={Rain} alt='Rain percent' />
-                <span>(%)</span>
+                <img className='headBoard__icon' src={Temp} alt='temperature icon' />
             </th>
             <th>
-                <img className="headBoard__icon" src={Wind} alt='Wind speed' />
+                <img className='headBoard__icon' src={Rain} alt='Rain percent' />
+               {/*  <span>(%)</span> */}
+            </th>
+            <th>
+                <img className='headBoard__icon' src={Wind} alt='Wind speed' />
             </th>
         </tr>
         )

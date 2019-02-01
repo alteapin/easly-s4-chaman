@@ -1,1 +1,13 @@
-<?xml version="1.0" ?><svg height="20px" version="1.1" viewBox="0 0 20 20" width="20px" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink"><title/><desc/><defs/><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#000000" fill-opacity="0.9" id="Icons-Device" transform="translate(-44.000000, 0.000000)"><g id="access-time" transform="translate(44.000000, 0.000000)"><path d="M10,0 C4.5,0 0,4.5 0,10 C0,15.5 4.5,20 10,20 C15.5,20 20,15.5 20,10 C20,4.5 15.5,0 10,0 L10,0 Z M10,18 C5.6,18 2,14.4 2,10 C2,5.6 5.6,2 10,2 C14.4,2 18,5.6 18,10 C18,14.4 14.4,18 10,18 Z M10.5,5 L9,5 L9,11 L14.2,14.2 L15,12.9 L10.5,10.2 L10.5,5 Z" id="Shape"/></g></g></g></svg>
+<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+ <title/>
+ <desc/>
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title fill="#ffffff">Layer 1</title>
+  <path fill="#ffffff" id="Shape" d="m10,0c-5.5,0 -10,4.5 -10,10c0,5.5 4.5,10 10,10c5.5,0 10,-4.5 10,-10c0,-5.5 -4.5,-10 -10,-10l0,0zm0,18c-4.4,0 -8,-3.6 -8,-8c0,-4.4 3.6,-8 8,-8c4.4,0 8,3.6 8,8c0,4.4 -3.6,8 -8,8zm0.5,-13l-1.5,0l0,6l5.2,3.2l0.8,-1.3l-4.5,-2.7l0,-5.2z"/>
+ </g>
+</svg>
