@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import IconTemperature from '../IconTemperature';
+import Sentence from '../Sentence';
 import Degrees from '../Degrees';
 import MaxMinTemperature from '../MaxMinTemperature';
 import './MainInfo.scss';
@@ -11,8 +11,8 @@ class MainInfo extends Component {
 
         return ( 
         <div className='container__mainInfo-daily'>
-        <IconTemperature/>
         <Degrees/>
+        <Sentence/>
         <MaxMinTemperature/>
         </div> );
     }

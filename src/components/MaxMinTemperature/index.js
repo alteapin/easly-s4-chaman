@@ -7,6 +7,8 @@ class MaxMinTemperature extends Component {
        
         return ( 
         <div className='container__maxMinTemperature'>
+        <div className='minTemperature'></div>
+        <div className='maxTemperature'></div>
         </div> );
     }
 }
