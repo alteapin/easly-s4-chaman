@@ -13,11 +13,15 @@ class App extends Component {
   }
   
   render() {
+    const BgImage = {
+      backgroundImage: `url(${sun})`
+    };
     const {ResponseApi}=this.state;
     return (
       <div className="App">
-        <img className="bg-image" src={sun} alt="sun" />
+        <div style={BgImage} className="bg-image">
         <Header />
+        </div>
       </div>
     );
   }
