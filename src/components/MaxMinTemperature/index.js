@@ -5,8 +5,8 @@ class MaxMinTemperature extends Component {
   render() {
     return (
       <div className="container__maxMinTemperature">
-        <div className="minTemperature">2</div>
-        <div className="maxTemperature">15</div>
+        <div className="minTemperature">2º</div>
+        <div className="maxTemperature">15º</div>
       </div>
     );
   }
