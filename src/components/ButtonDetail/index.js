@@ -3,16 +3,16 @@ import { Link } from "react-router-dom";
 import './ButtonDetail.scss'
 
 class ButtonDetail extends Component {
-   
-    render() { 
-        return ( 
+
+    render() {
+        return (
             <div className='container__btn'>
-            <i className='fas fa-plus-circle btnPlus'/>
+                <Link to="/detail">
+                    <i className='fas fa-plus-circle btnPlus' />
+                </Link>
             </div>
-    //    <Link>
-    //    </Link>
         );
     }
 }
- 
+
 export default ButtonDetail;

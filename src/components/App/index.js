@@ -3,6 +3,7 @@ import API from '../../weather'
 import './App.scss';
 import { Route, Switch } from 'react-router-dom';
 import Main from '../Main';
+import Detail from '../Detail';
 
 
 class App extends Component {
