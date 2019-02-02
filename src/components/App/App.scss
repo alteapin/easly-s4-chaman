@@ -1,5 +1,4 @@
 .App {
-  padding: 10px 2px;
   text-align: center;
   width: 100%;
   background: linear-gradient(-75deg, #fed8c1, #fed8c1, #eb8249,#ef4335, #ff9d48);
@@ -20,7 +19,17 @@
     }
 
 .bg-image {
-    background-size: 410px;
+    background-size: 425px;
+    width: 100%;
     background-position: bottom;
     background-repeat: no-repeat;
 }
+
+@media all and (min-width: 425px) and (max-width: 768px) {
+    .bg-image {
+        background-size: cover;
+        width: 100%;
+        background-position: 0 165px;
+        background-repeat: no-repeat;
+    }
+  }
