@@ -1,31 +1,35 @@
 import React, { Component } from 'react';
-import Daily from '../Daily';
 import API from '../../weather'
 import './App.scss';
-import Header from '../Header/index';
-import sun from '../../images/sundark.png';
+import { Route, Switch } from 'react-router-dom';
+import Main from '../Main';
+
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
-    this.state={
-      Endpoint:API,
+    this.state = {
+      Endpoint: API,
     }
   }
-  
+
   render() {
-    const BgImage = {
-      backgroundImage: `url(${sun})`
-    };
-    const {ResponseApi}=this.state;
+
+    /*  const {ResponseApi}=this.state.Endpoint; */
     return (
       <div className="App">
-        <div style={BgImage} className="bg-image">
-        <Header />
-        </div>
+        <Main />
+        <Switch>
+          <Route exact path='/'
+            render={() => <Main />} />
+          <Route path="/detail"
+            render={() => <Detail />} />
+        </Switch>
+
       </div>
     );
   }
 }
 
 export default App;
+
