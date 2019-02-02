@@ -22,7 +22,9 @@ class App extends Component {
       <div className="App">
         <div style={BgImage} className="bg-image">
         <Header />
+       
         </div>
+        <Daily/>
       </div>
     );
   }
