@@ -7,6 +7,7 @@ import sun from "../../images/sundark.png";
 import { Switch, Route} from 'react-router-dom';
 import WeekDetail from "../WeekDetail";
 import Footer from "../Footer";
+import DailyDetail from "../DailyDetail";
 
 const url =
     "http://api.openweathermap.org/data/2.5/weather?APPID=e0911626bb8e9d069605aa705cac6693&id=6359304&units=metric&lang=es";
@@ -50,8 +51,12 @@ class App extends Component {
                     <div style={BgImage} className="bg-image">
                         <Header />
                         <Daily dataWeather={Endpoint} />
-                        <WeekDetail />
+                        <Switch >
+                            <Route exact path='/' render={()=><WeekDetail />} />
+                            <Route path='/detail' render={() => <DailyDetail />} />
+                        </Switch>
                         <Footer />
+
                     </div>
 
                 </div>
