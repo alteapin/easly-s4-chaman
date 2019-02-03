@@ -3,6 +3,7 @@ import Daily from "../Daily";
 import API from "../../weather";
 import "./App.scss";
 import Header from "../Header/index";
+import Footer from '../Footer';
 import WeekDetail from '../WeekDetail';
 import sun from "../../images/sundark.png";
 
@@ -50,6 +51,7 @@ class App extends Component {
                         <Header />
                         <Daily dataWeather={Endpoint} />
                         <WeekDetail />
+                        <Footer />
                     </div>
                 </div>
             );

@@ -1,0 +1,21 @@
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    /*cancel margin top after unifying all the components*/
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.logo-footer {
+    width: 20px;
+    height: 20px;
+}
+
+.copyright-footer {
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+    margin-bottom: 2px;
+}
