@@ -7,18 +7,20 @@ import "./Daily.scss";
 class Daily extends Component {
   render() {
     const { dataWeather } = this.props;
-    console.log(dataWeather.wind);
 
-    return (
+    if(dataWeather)
+
+
+    {return (
       <div className="container__daily">
-        <MainInfo 
+        <MainInfo
         mainData={dataWeather.main} />
-        <PlusInfo 
-        mainData={dataWeather.main} 
+        <PlusInfo
+        mainData={dataWeather.main}
         windData={dataWeather.wind} />
         <ButtonDetail />
       </div>
-    );
+    );}else{return false}
   }
 }
 
