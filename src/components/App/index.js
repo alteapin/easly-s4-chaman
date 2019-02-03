@@ -24,9 +24,11 @@ class App extends Component {
     return (
       <div className="App">
         <div style={BgImage} className="bg-image">
+        <div className='prueba'>
         <Header />
         <MainInfo />
         <WeekDetail />
+        </div>
         </div>
         </div>
     );

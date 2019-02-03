@@ -25,11 +25,29 @@
     background-repeat: no-repeat;
 }
 
+.prueba {
+   // margin: 10px;
+   background-color: rgba(61, 2, 44, 0.158);
+  //  background-color: rgba(128, 128, 128, 0.247);
+}
+
 @media all and (min-width: 425px) and (max-width: 768px) {
     .bg-image {
         background-size: cover;
         width: 100%;
         background-position: 0 165px;
+        background-repeat: no-repeat;
+    }
+  }
+
+  @media all and (min-width: 768px) and (max-width: 1450px) {
+      .prueba {
+          padding-top: 30px;
+      }
+    .bg-image {
+        background-size: cover;
+        width: 100%;
+        background-position: 0 100px;
         background-repeat: no-repeat;
     }
   }
