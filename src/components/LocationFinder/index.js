@@ -9,7 +9,7 @@ class LocationFinder extends Component {
             <div className="location-finder">
                 <img className="location-icon" src={compass} alt="compass"/>
                 <form>
-                    <label for="location">
+                    <label htmlFor="location">
                         <input className="location-finder_input" type="text" name="location" />
                     </label>
                 </form>
