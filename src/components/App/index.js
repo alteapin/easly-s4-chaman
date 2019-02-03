@@ -12,19 +12,25 @@ class App extends Component {
       Endpoint:API,
     }
   }
+
+  
+ 
   
   render() {
     const BgImage = {
       backgroundImage: `url(${sun})`
     };
-    const {ResponseApi}=this.state;
+    
+    const {ResponseApi}=this.state.Endpoint;
     return (
       <div className="App">
-        <div style={BgImage} className="bg-image">
+        <div style={BgImage} className='bg-image'>
         <Header />
+        <Daily 
+        dataWeather={ResponseApi}/>
        
         </div>
-        <Daily/>
+        
       </div>
     );
   }
