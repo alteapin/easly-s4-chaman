@@ -9,7 +9,7 @@ class MaxMinTemperature extends Component {
         <div className="minTemperature">{Math.round(temp_min)}</div>
         <div className="maxTemperature">{Math.round(temp_max)}</div>
       </div>
-    );
+    )
   }
 }
 
