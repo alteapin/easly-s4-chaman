@@ -4,17 +4,17 @@
     margin: 0;
 }
 .icon-temp {
-    width: 50px;
-    height: 55px;
+    width: 45px;
+    height: 45px;
     color: white;
-    background-size: 50px;
+    background-size: 45px;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .week-detail {
-    width: 55px;
-    height: 190px;
+    width: 52px;
+    height: 150px;
     color: white;
     display: flex;
     flex-direction: column;
@@ -23,8 +23,10 @@
 }
 
 .base {
-  height: 220px;
   display: flex;
-  justify-content: space-between;
-  padding: 2px;
+  justify-content: space-around;
+  //background-color:#4b012d;
+ // background-color: #4b012d49;
+  margin: 135px 10px 0;
+ // border-radius: 20px;
 }
