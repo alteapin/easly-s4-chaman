@@ -1,22 +1,43 @@
 .App {
   text-align: center;
   width: 100%;
-  background: linear-gradient(-75deg, #fed8c1, #fed8c1, #eb8249, #ef4335, #ff9d48);
-  background-size: 800%;
-  animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite;
+}
+
+.sun {
+    background: linear-gradient(-75deg, #fed8c1, #fed8c1, #eb8249, #ef4335, #ff9d48);
+    background-size: 800%;
+    animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite;
+}
+
+.snow {
+    background: linear-gradient(-75deg, #a5ebb5, #c6f2d1, #009090,#005b6d, #5af7e2);
+        background-size: 800%;
+        animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite;
+    }
+
+.night {
+    background: linear-gradient(-75deg, #090923, #643d69, #02013b,#1b4090, #090923);
+        background-size: 800%;
+        animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite;
+    }
+.rain {
+    background: linear-gradient(-75deg, #505c6c, #121c24, #b9c7d2,#6d868d, );
+    background-size: 800%;
+    animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite;
 }
 
 @keyframes gradred {
-  0% {
+    0% {
     background-position: 0% 50%;
-  }
-  50% {
+    }
+    50% {
     background-position: 100% 50%;
-  }
-  100% {
+    }
+    100% {
     background-position: 0% 50%;
-  }
+    }
 }
+
 .container-app {
   display: grid;
   grid-template-columns: 1fr;
