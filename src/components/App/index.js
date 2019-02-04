@@ -7,8 +7,6 @@ import Footer from '../Footer';
 import WeekDetail from '../WeekDetail';
 import sun from "../../images/sundark.png";
 import { Switch, Route} from 'react-router-dom';
-import WeekDetail from "../WeekDetail";
-import Footer from "../Footer";
 import DailyDetail from "../DailyDetail";
 
 const url =
