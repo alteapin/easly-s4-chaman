@@ -5,7 +5,7 @@ import "./App.scss";
 import Header from "../Header/index";
 import Footer from '../Footer';
 import WeekDetail from '../WeekDetail';
-import sun from "../../images/sundark.png";
+import sun from "../../images/night.png";
 import { Switch, Route } from 'react-router-dom';
 import DailyDetail from "../DailyDetail";
 
@@ -56,7 +56,7 @@ class App extends Component {
 
         if (this.state.loaded) {
             return (
-                <div className="App">
+                <div className="App sun">
                     <div style={BgImage} className="bg-image">
                         <Header
                         onClickAction={this.showInput}
