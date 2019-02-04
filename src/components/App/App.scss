@@ -20,7 +20,7 @@
 .container-app {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
 }
 .bg-image {
   background-size: 425px;
@@ -38,6 +38,7 @@
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 2;
+  padding: 10px;
 }
 
 @media all and (min-width: 425px) and (max-width: 768px) {

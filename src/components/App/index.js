@@ -73,11 +73,11 @@ class App extends Component {
                         visibility={this.state.visibility} />
                         <Daily dataWeather={Endpoint} quote={quoteTxt}/>
                         </div>
-                        <Switch >
-                            <Route exact path='/' render={() => <WeekDetail />} />
-                            <Route path='/detail' render={() => <DailyDetail />} />
-                        </Switch>
+                         <WeekDetail/>
+                        <DailyDetail />
                         <Footer />
+
+
 
                     </div>
 
