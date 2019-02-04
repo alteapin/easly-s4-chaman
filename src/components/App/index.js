@@ -18,7 +18,7 @@ class App extends Component {
             Endpoint: {},
             loaded: true,
             error: '',
-            quoteTxt: this.randomQuote(),
+            quoteTxt: '',
         };
 
     }
@@ -42,7 +42,10 @@ class App extends Component {
     }
 
     randomQuote(){
-       return arrayQuotes[Math.floor(Math.random() * arrayQuotes.length)];
+       const random= arrayQuotes[Math.floor(Math.random() * arrayQuotes.length)];
+       this.setState ({
+           quoteTxt: random
+       })
     }
 
     render() {
