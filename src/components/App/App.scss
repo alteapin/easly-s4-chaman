@@ -23,7 +23,7 @@
 .rain {
     background: linear-gradient(-75deg, #505c6c, #121c24, #b9c7d2,#6d868d, );
     background-size: 800%;
-    animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s
+    animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite;
 }
 
 @keyframes gradred {
