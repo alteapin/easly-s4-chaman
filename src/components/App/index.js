@@ -5,7 +5,7 @@ import "./App.scss";
 import Header from "../Header/index";
 import Footer from '../Footer';
 import WeekDetail from '../WeekDetail';
-import sun from "../../images/night.png";
+import sun from "../../images/sun.png";
 import { Switch, Route } from 'react-router-dom';
 import DailyDetail from "../DailyDetail";
 
