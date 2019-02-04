@@ -6,7 +6,7 @@ import Header from "../Header/index";
 import Footer from '../Footer';
 import WeekDetail from '../WeekDetail';
 import sun from "../../images/sundark.png";
-import { Switch, Route} from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import DailyDetail from "../DailyDetail";
 
 const url =
@@ -19,8 +19,10 @@ class App extends Component {
         this.state = {
             Endpoint: {},
             loaded: true,
-            error: ""
+            error: "",
+            visibility: "hidden"
         };
+        this.showInput = this.showInput.bind(this);
     }
 
     fetchApi() {
@@ -40,6 +42,12 @@ class App extends Component {
         this.fetchApi();
     }
 
+    showInput() {
+        this.setState({
+            visibility: "visible"
+        });
+    }
+
     render() {
         const { Endpoint } = this.state;
         const BgImage = {
@@ -50,10 +58,12 @@ class App extends Component {
             return (
                 <div className="App">
                     <div style={BgImage} className="bg-image">
-                        <Header />
+                        <Header
+                        onClickAction={this.showInput}
+                        visibility={this.state.visibility} />
                         <Daily dataWeather={Endpoint} />
                         <Switch >
-                            <Route exact path='/' render={()=><WeekDetail />} />
+                            <Route exact path='/' render={() => <WeekDetail />} />
                             <Route path='/detail' render={() => <DailyDetail />} />
                         </Switch>
                         <Footer />
