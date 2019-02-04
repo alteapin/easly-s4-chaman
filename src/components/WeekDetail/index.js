@@ -14,7 +14,6 @@ class WeekDetail extends Component {
         <WeekDay day='Thu' icon={Sun}/>
         <WeekDay day='Fri' icon={Sun}/>
         <WeekDay day='Sat' icon={Cloud}/>
-        <WeekDay day='Sun' icon={Sun}/>
         </div>
     );
   }

@@ -1,9 +1,12 @@
 .container__sentence {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
   align-items: center;
+  justify-content: center;
   display: flex;
   height: 50px;
+  text-shadow: 3px 3px 3px rgba(59, 59, 59, 0.459);
+  width: 350px;
 }
 
 @media all and (min-width: 425px) and (max-width: 768px) {
