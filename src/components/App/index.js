@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Daily from "../Daily";
-//import API from "../../weather";
 import "./App.scss";
 import Header from "../Header/index";
 import Footer from '../Footer';
@@ -67,11 +66,13 @@ class App extends Component {
         if (this.state.loaded) {
             return (
                 <div className="App">
-                    <div style={BgImage} className="bg-image">
+                    <div style={BgImage} className="bg-image container-app">
+                    <div className='container-screen'>
                         <Header
                         onClickAction={this.showInput}
                         visibility={this.state.visibility} />
                         <Daily dataWeather={Endpoint} quote={quoteTxt}/>
+                        </div>
                         <Switch >
                             <Route exact path='/' render={() => <WeekDetail />} />
                             <Route path='/detail' render={() => <DailyDetail />} />

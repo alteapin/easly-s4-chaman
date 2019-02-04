@@ -16,10 +16,11 @@ class Daily extends Component {
         <MainInfo
         mainData={dataWeather.main}
         quote={quote}/>
+        <ButtonDetail />
         <PlusInfo
         mainData={dataWeather.main}
         windData={dataWeather.wind} />
-        <ButtonDetail />
+
       </div>
     );}else{return false}
   }
