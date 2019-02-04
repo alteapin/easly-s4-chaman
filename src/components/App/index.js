@@ -6,12 +6,10 @@ import Header from "../Header/index";
 import Footer from '../Footer';
 import WeekDetail from '../WeekDetail';
 import sun from "../../images/sundark.png";
+import arrayQuotes from '../arrayQuotes';
 
 const url =
     "http://api.openweathermap.org/data/2.5/weather?APPID=e0911626bb8e9d069605aa705cac6693&id=6359304&units=metric&lang=es";
-
-const quotes = ['hola', 'como', 'estas'];
-
 
 class App extends Component {
     constructor(props) {
@@ -20,7 +18,7 @@ class App extends Component {
             Endpoint: {},
             loaded: true,
             error: '',
-            quoteTxt: ''
+            quoteTxt: this.randomQuote(),
         };
 
     }
@@ -44,11 +42,11 @@ class App extends Component {
     }
 
     randomQuote(){
-       return quotes[Math.floor(Math.random() * quotes.length)];
+       return arrayQuotes[Math.floor(Math.random() * arrayQuotes.length)];
     }
 
     render() {
-        const { Endpoint } = this.state;
+        const { Endpoint, quoteTxt } = this.state;
         const BgImage = {
             backgroundImage: `url(${sun})`
         };
@@ -59,7 +57,7 @@ class App extends Component {
                 <div className="App">
                     <div style={BgImage} className="bg-image">
                         <Header />
-                        <Daily dataWeather={Endpoint} />
+                        <Daily dataWeather={Endpoint} quote={quoteTxt} />
                         <WeekDetail />
                         <Footer />
                     </div>
