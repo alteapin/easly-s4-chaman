@@ -4,15 +4,11 @@ import "./App.scss";
 import Header from "../Header/index";
 import Footer from '../Footer';
 import WeekDetail from '../WeekDetail';
-<<<<<<< HEAD
-import sun from "../../images/sundark.png";
 import arrayQuotes from '../arrayQuotes';
-=======
 import sun from "../../images/sun.png";
 import night from "../../images/night.png";
 import snow from "../../images/snow.png";
 import rain from "../../images/rain.png";
->>>>>>> bg-animation
 import { Switch, Route } from 'react-router-dom';
 import DailyDetail from "../DailyDetail";
 
@@ -66,20 +62,15 @@ class App extends Component {
     render() {
         const { Endpoint, quoteTxt } = this.state;
         const BgImage = {
-            backgroundImage: `url(${sun})`
+            backgroundImage: `url(${rain})`
         };
         console.log(this.state.quoteTxt);
 
         if (this.state.loaded) {
             return (
-<<<<<<< HEAD
-                <div className="App">
+                <div className="App rain">
                     <div style={BgImage} className="bg-image container-app">
                     <div className='container-screen'>
-=======
-                <div className="App sun">
-                    <div style={BgImage} className="bg-image">
->>>>>>> bg-animation
                         <Header
                         onClickAction={this.showInput}
                         visibility={this.state.visibility} />
