@@ -1,29 +1,4 @@
 .App {
-<<<<<<< HEAD
-  text-align: center;
-  width: 100%;
-  background: linear-gradient(-75deg, #fed8c1, #fed8c1, #eb8249, #ef4335, #ff9d48);
-  background-size: 800%;
-  animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite;
-}
-
-@keyframes gradred {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-.container-app {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-}
-=======
 text-align: center;
 width: 100%;
 }
@@ -63,9 +38,12 @@ width: 100%;
             background-position: 0% 50%;
             }
 }
+.container-app {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
 
-
->>>>>>> bg-animation
 .bg-image {
   background-size: 425px;
   width: 100%;
@@ -93,17 +71,6 @@ width: 100%;
   }
 }
 
-<<<<<<< HEAD
-@media all and (min-width: 768px) and (max-width: 1450px) {
-  .prueba {
-    padding-top: 30px;
-  }
-  .bg-image {
-    background-size: cover;
-    width: 100%;
-    background-position: 0 100px;
-    background-repeat: no-repeat;
-=======
 @media all and (min-width: 425px) and (max-width: 768px) {
     .bg-image {
         background-size: cover;
@@ -123,6 +90,5 @@ width: 100%;
         background-position: 0 100px;
         background-repeat: no-repeat;
     }
->>>>>>> bg-animation
   }
-}
+
