@@ -1,8 +1,9 @@
 .container__mainInfo-daily{
-    height: 100px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 65%;;
 }
 
 @media all and (min-width: 425px) and (max-width: 768px) {

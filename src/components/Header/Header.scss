@@ -1,5 +1,10 @@
 .header-main {
-    height: 100px;
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+height: 20%;
+  display: grid;
+  padding-top: 5%;
+
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
