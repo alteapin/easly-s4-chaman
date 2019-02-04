@@ -6,7 +6,7 @@ import "./Daily.scss";
 
 class Daily extends Component {
   render() {
-    const { dataWeather } = this.props;
+    const { dataWeather, quote } = this.props;
 
     if(dataWeather)
 
@@ -14,7 +14,8 @@ class Daily extends Component {
     {return (
       <div className="container__daily">
         <MainInfo
-        mainData={dataWeather.main} />
+        mainData={dataWeather.main}
+        quote={quote}/>
         <PlusInfo
         mainData={dataWeather.main}
         windData={dataWeather.wind} />
