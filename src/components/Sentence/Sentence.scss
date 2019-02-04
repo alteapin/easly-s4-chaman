@@ -1,6 +1,15 @@
 .container__sentence {
-  font-size: 22px;
+  font-size: 26px;
+  font-weight: bold;
   align-items: center;
   display: flex;
-  height: 40%;
+  height: 50px;
+  margin-top: 100px;
+}
+
+
+@media all and (min-width: 425px) and (max-width: 768px) {
+  .container__sentence {
+      margin-top: 150px;
+  }
 }

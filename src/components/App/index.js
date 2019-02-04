@@ -3,6 +3,8 @@ import Daily from "../Daily";
 import API from "../../weather";
 import "./App.scss";
 import Header from "../Header/index";
+import Footer from '../Footer';
+import WeekDetail from '../WeekDetail';
 import sun from "../../images/sundark.png";
 import { Switch, Route} from 'react-router-dom';
 import WeekDetail from "../WeekDetail";
@@ -11,6 +13,7 @@ import DailyDetail from "../DailyDetail";
 
 const url =
     "http://api.openweathermap.org/data/2.5/weather?APPID=e0911626bb8e9d069605aa705cac6693&id=6359304&units=metric&lang=es";
+
 
 class App extends Component {
     constructor(props) {
