@@ -6,12 +6,13 @@ import "./MainInfo.scss";
 
 class MainInfo extends Component {
     render() {
+        const { quote } = this.props;
         if (this.props.mainData) {
             const { temp, temp_min, temp_max } = this.props.mainData;
             return (
                 <div className="container__mainInfo-daily">
                     <Degrees temp={temp} />
-                    <Sentence />
+                    <Sentence quote={quote} />
                     <MaxMinTemperature
                         temp_min={temp_min}
                         temp_max={temp_max}

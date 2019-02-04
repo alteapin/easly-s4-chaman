@@ -4,6 +4,7 @@ import HeadBoard from '../HeadBoard';
 import './DailyDetail.scss';
 import {Fragment} from 'react';
 import {Link } from 'react-router-dom';
+import BackBtn from '../BackBtn';
 
 
 
@@ -12,7 +13,9 @@ class DailyDetail extends React.Component {
     render() {
         return (
             <Fragment>
-            <Link to='/'>Return</Link>
+            <Link to='/'>
+                <BackBtn />
+            </Link>
             <table className="dailyDetail__table">
                 <HeadBoard />
                 <HourData hour={8} />

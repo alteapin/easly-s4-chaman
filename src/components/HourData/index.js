@@ -3,7 +3,7 @@ import React from 'react';
 class HourData extends React.Component {
     getRndInteger(min, max) {
         return Math.floor(Math.random() * (max - min) ) + min;
-      }
+    }
 
     render() {
         return(

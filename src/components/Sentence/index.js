@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 //import icon from'../../icons/iconfinder-icon.svg'
 import './Sentence.scss'
 
-class  Sentence extends Component {    
-    render() { 
-        return ( 
+class  Sentence extends Component {
+    render() {
+        const { quote } = this.props;
+
+        return (
             <div className='container__sentence'>
-            it's a sunny day</div>
+            {quote}</div>
          );
     }
 }
- 
+
 export  default  Sentence;

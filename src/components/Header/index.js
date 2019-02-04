@@ -5,12 +5,14 @@ import HourHeader from '../HourHeader/index';
 import CityLocation from '../CityLocation/index';
 
 class Header extends Component {
-    render() { 
-    
-        return ( 
+    render() {
+    const {onClickAction, visibility} = this.props;
+        return (
             <div className="header-main">
-                <LocationFinder />
-                <HourHeader />
+                <LocationFinder
+                onClickAction = {onClickAction}
+                visibility = {visibility}/>
+                <HourHeader/>
                 <CityLocation />
             </div>
         );
