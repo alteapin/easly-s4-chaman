@@ -1,6 +1,6 @@
 
 
-const ResponseApi = 
+const ResponseApi =
 
 {"coord":
     {"lon":145.77,"lat":-16.92},
@@ -16,6 +16,6 @@ const ResponseApi =
     "name":"Cairns",
     "cod":200}
 
-    export default { ResponseApi};
-    
+    export default { ResponseApi };
+
 
