@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Daily from "../Daily";
-import API from "../../weather";
+//import API from "../../weather";
 import "./App.scss";
 import Header from "../Header/index";
 import Footer from '../Footer';
@@ -10,6 +10,8 @@ import sun from "../../images/sundark.png";
 const url =
     "http://api.openweathermap.org/data/2.5/weather?APPID=e0911626bb8e9d069605aa705cac6693&id=6359304&units=metric&lang=es";
 
+const quotes = ['hola', 'como', 'estas'];
+
 
 class App extends Component {
     constructor(props) {
@@ -17,8 +19,10 @@ class App extends Component {
         this.state = {
             Endpoint: {},
             loaded: true,
-            error: ""
+            error: '',
+            quoteTxt: ''
         };
+
     }
 
     fetchApi() {
@@ -36,6 +40,11 @@ class App extends Component {
 
     componentDidMount() {
         this.fetchApi();
+        this.randomQuote();
+    }
+
+    randomQuote(){
+       return quotes[Math.floor(Math.random() * quotes.length)];
     }
 
     render() {
@@ -43,6 +52,7 @@ class App extends Component {
         const BgImage = {
             backgroundImage: `url(${sun})`
         };
+        console.log(this.state.quoteTxt);
 
         if (this.state.loaded) {
             return (
