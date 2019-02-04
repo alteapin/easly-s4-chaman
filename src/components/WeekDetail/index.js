@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './WeekDetail.scss';
-import Weekday from '../Weekday';
+import WeekDay from '../WeekDay';
 import Cloud from '../../icons/cloud.svg';
 import Snow from '../../icons/snow.svg';
 import Sun from '../../icons/sun.svg';
@@ -9,12 +9,12 @@ class WeekDetail extends Component {
   render() {
     return (
         <div className='base'>
-        <Weekday day='Tue' icon={Cloud}/>
-        <Weekday day='Wed' icon={Snow}/>
-        <Weekday day='Thu' icon={Sun}/>
-        <Weekday day='Fri' icon={Sun}/>
-        <Weekday day='Sat' icon={Cloud}/>
-        <Weekday day='Sun' icon={Sun}/>
+        <WeekDay day='Tue' icon={Cloud}/>
+        <WeekDay day='Wed' icon={Snow}/>
+        <WeekDay day='Thu' icon={Sun}/>
+        <WeekDay day='Fri' icon={Sun}/>
+        <WeekDay day='Sat' icon={Cloud}/>
+        <WeekDay day='Sun' icon={Sun}/>
         </div>
     );
   }

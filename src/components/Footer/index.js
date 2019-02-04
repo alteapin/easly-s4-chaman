@@ -7,13 +7,15 @@ class Footer extends Component {
         return (
             <div className="footer">
                 <a target="blank" href="https://www.accenture.com/es-es/service-liquid-squad-accenture-digital">
-                    <img className="logo-footer" src= {accenture}
-                    alt="logo-accenture"/>
+                    <img className="logo-footer" src={accenture}
+                        alt="logo-accenture" />
                 </a>
-                <small className="copyright-footer">Copyright</small>
+
+                <a className="copy-link" target="blank" href="https://www.iconfinder.com/Neolau1119"><small className="copyright-footer">© Yun Liu</small></a>
+
             </div>
-                );
-            }
-        }
-        
+        );
+    }
+}
+
 export default Footer;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Weekday.scss';
+import './WeekDay.scss';
 
 
 class Weekday extends Component {
