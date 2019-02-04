@@ -15,8 +15,8 @@ class LocationFinder extends Component {
                 onClick={onClickAction}/>
                 <form>
                     <label htmlFor="location">
-                        <input className="location-finder_input"
-                        style={{visibility : {visibility}}}
+                        <input className={`location-finder_input ${visibility}`}
+                        // style={{visibility : {visibility}}}
                         type="text" name="location" />
                     </label>
                 </form>

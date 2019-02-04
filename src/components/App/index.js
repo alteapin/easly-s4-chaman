@@ -20,7 +20,7 @@ class App extends Component {
             Endpoint: {},
             loaded: true,
             error: "",
-            visibility: "hidden"
+            isVisible: true,
         };
         this.showInput = this.showInput.bind(this);
     }
