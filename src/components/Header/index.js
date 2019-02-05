@@ -3,10 +3,11 @@ import './Header.scss';
 import LocationFinder from '../LocationFinder/index';
 import HourHeader from '../HourHeader/index';
 import CityLocation from '../CityLocation/index';
+import DayNameNumber from '../DayNameNumber';
 
 class Header extends Component {
     render() {
-    const {onClickAction, visibility} = this.props;
+    const {onClickAction, visibility, date} = this.props;
     console.log('header', this.props);
         return (
 
@@ -15,7 +16,7 @@ class Header extends Component {
                 onClickAction = {onClickAction}
                 visibility = {visibility}/>
                 <HourHeader/>
-                <p>{this.props.date}</p>
+                <DayNameNumber date={date} />
                 <CityLocation />
             </div>
         );
