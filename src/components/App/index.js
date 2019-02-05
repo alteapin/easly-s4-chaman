@@ -48,7 +48,7 @@ class App extends Component {
         this.printDayNameNumber();
     }
 
-    randomQuote() {
+   randomQuote() {
         const random = arrayQuotes[Math.floor(Math.random() * arrayQuotes.length)];
         this.setState({
             quoteTxt: random
