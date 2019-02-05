@@ -9,7 +9,6 @@ import sun from "../../images/sun.png";
 import night from "../../images/night.png";
 import snow from "../../images/snow.png";
 import rain from "../../images/rain.png";
-import { Switch, Route } from 'react-router-dom';
 import DailyDetail from "../DailyDetail";
 
 const url =
@@ -27,6 +26,7 @@ class App extends Component {
             date: ''
         };
         this.showInput = this.showInput.bind(this);
+        this.printDayNameNumber = this.printDayNameNumber.bind(this);
     }
 
     fetchApi() {
@@ -36,7 +36,7 @@ class App extends Component {
                 this.setState({
                     Endpoint: data,
                     loaded: true
-                })
+                }, () => console.log(this.state.E))
             )
             .catch(error => this.setState({ error: error }));
     }
@@ -48,11 +48,11 @@ class App extends Component {
         this.printDayNameNumber();
     }
 
-    randomQuote(){
-       const random= arrayQuotes[Math.floor(Math.random() * arrayQuotes.length)];
-       this.setState ({
-           quoteTxt: random
-       })
+   randomQuote() {
+        const random = arrayQuotes[Math.floor(Math.random() * arrayQuotes.length)];
+        this.setState({
+            quoteTxt: random
+        })
     }
 
     showInput() {
@@ -63,20 +63,18 @@ class App extends Component {
     printDayNameNumber() {
         const currentDate = new Date();
         const weekNumber = currentDate.getDate();
-        console.log('day', weekNumber);
         const weekday = new Array(7);
-            weekday[0] =  "Sun";
-            weekday[1] = "Mon";
-            weekday[2] = "Tue";
-            weekday[3] = "Wed";
-            weekday[4] = "Thu";
-            weekday[5] = "Fri";
-            weekday[6] = "Sat";
-            const weekName = weekday[currentDate.getDay()];
-            console.log('name', weekName);
-            this.setState ( {
-                date: weekName + ' ' + weekNumber,
-            })
+        weekday[0] = "Sun";
+        weekday[1] = "Mon";
+        weekday[2] = "Tue";
+        weekday[3] = "Wed";
+        weekday[4] = "Thu";
+        weekday[5] = "Fri";
+        weekday[6] = "Sat";
+        const weekName = weekday[currentDate.getDay()];
+        this.setState({
+            date: weekName + ' ' + weekNumber,
+        })
     }
 
     render() {
@@ -85,20 +83,20 @@ class App extends Component {
             backgroundImage: `url(${rain})`
         };
         console.log(this.state.quoteTxt);
-       /*  this.printDayNameNumber(); */
+
 
         if (this.state.loaded) {
             return (
                 <div className="App rain">
-                    <div style={BgImage} className="bg-image container-app">
-                    <div className='container-screen'>
-                        <Header
-                        onClickAction={this.showInput}
-                        visibility={this.state.visibility}
-                        date={this.state.date} />
-                        <Daily dataWeather={Endpoint} quote={quoteTxt}/>
+                    <div className="bg-image container-app">
+                        <div className='container-screen' style={BgImage} >
+                            <Header
+                                onClickAction={this.showInput}
+                                visibility={this.state.visibility}
+                                date={this.state.date} />
+                            <Daily dataWeather={Endpoint} quote={quoteTxt} />
                         </div>
-                         <WeekDetail/>
+                        <WeekDetail />
                         <DailyDetail />
                         <Footer />
 
