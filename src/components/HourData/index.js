@@ -1,4 +1,5 @@
 import React from 'react';
+import './HourData.scss';
 
 class HourData extends React.Component {
     getRndInteger(min, max) {
@@ -7,7 +8,7 @@ class HourData extends React.Component {
 
     render() {
         return(
-            <tr>
+            <tr className="table__row">
             <th className='HourData__hour'>{this.props.hour}</th>
             <th>{this.getRndInteger(-5,45)}</th>
             <th>{this.getRndInteger(-5,45)}</th>
