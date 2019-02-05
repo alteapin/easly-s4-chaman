@@ -2,6 +2,7 @@
   "name": "easly-s4-chaman",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "node-sass": "^4.11.0",
     "prop-types": "^15.6.2",
