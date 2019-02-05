@@ -24,6 +24,7 @@ class App extends Component {
             error: '',
             isVisible: true,
             quoteTxt: '',
+            date: ''
         };
         this.showInput = this.showInput.bind(this);
     }
@@ -44,6 +45,7 @@ class App extends Component {
     componentDidMount() {
         this.fetchApi();
         this.randomQuote();
+        this.printDayNameNumber();
     }
 
     randomQuote(){
@@ -58,6 +60,24 @@ class App extends Component {
             visibility: "visible"
         });
     }
+    printDayNameNumber() {
+        const currentDate = new Date();
+        const weekNumber = currentDate.getDate();
+        console.log('day', weekNumber);
+        const weekday = new Array(7);
+            weekday[0] =  "Sun";
+            weekday[1] = "Mon";
+            weekday[2] = "Tue";
+            weekday[3] = "Wed";
+            weekday[4] = "Thu";
+            weekday[5] = "Fri";
+            weekday[6] = "Sat";
+            const weekName = weekday[currentDate.getDay()];
+            console.log('name', weekName);
+            this.setState ( {
+                date: weekName + ' ' + weekNumber,
+            })
+    }
 
     render() {
         const { Endpoint, quoteTxt } = this.state;
@@ -65,6 +85,7 @@ class App extends Component {
             backgroundImage: `url(${rain})`
         };
         console.log(this.state.quoteTxt);
+       /*  this.printDayNameNumber(); */
 
         if (this.state.loaded) {
             return (
@@ -73,7 +94,8 @@ class App extends Component {
                     <div className='container-screen'>
                         <Header
                         onClickAction={this.showInput}
-                        visibility={this.state.visibility} />
+                        visibility={this.state.visibility}
+                        date={this.state.date} />
                         <Daily dataWeather={Endpoint} quote={quoteTxt}/>
                         </div>
                          <WeekDetail/>
