@@ -3,7 +3,10 @@
   grid-column-end: 2;
   grid-row-start: 3;
   grid-row-end: 4;
+  min-width: 300px;
   height: 60vh;
+  height: 60vh;
+  padding: 30px;
 }
 
 .dailyDetail__table {
@@ -11,56 +14,52 @@
   height: 100%;
   font-family: "Open Sans", sans-serif;
   color: white;
-  padding: 10px;
   border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
 }
 
 .sun-daily {
-    background: linear-gradient(-75deg, #c9223e, #7f0033, #48052c);
-    background-size: 800%;
-    animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite
+  background: linear-gradient(-75deg, #c9223e, #7f0033, #48052c);
+  background-size: 800%;
+  animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite;
 }
 
 .snow-daily {
-    background: linear-gradient(-75deg, #005b6d, #005b6d, #3d3449);
-    background-size: 800%;
-    animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite
+  background: linear-gradient(-75deg, #005b6d, #005b6d, #3d3449);
+  background-size: 800%;
+  animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite;
 }
 
-
 .rain-daily {
-    background: linear-gradient(-75deg, #100e19, #121c24,  #0d0d0d);
-    background-size: 800%;
-    animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite
+  background: linear-gradient(-75deg, #100e19, #121c24, #0d0d0d);
+  background-size: 800%;
+  animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite;
 }
 
 .night-daily {
-    background: linear-gradient(-75deg, #140055, #1b4090, #02013b);
-    background-size: 800%;
-    animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite
+  background: linear-gradient(-75deg, #140055, #1b4090, #02013b);
+  background-size: 800%;
+  animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite;
 }
-
 
 @keyframes gradred {
   0% {
-  background-position: 0% 50%;
+    background-position: 0% 50%;
   }
   50% {
-  background-position: 100% 50%;
+    background-position: 100% 50%;
   }
   100% {
-  background-position: 0% 50%;
+    background-position: 0% 50%;
   }
 }
-
-
-
 
 @media all and (min-width: 1020px) {
   .infoDaily-Detail {
     width: 60vw;
-    height: 70vh;
-    background: none;
+    height: 65vh;
 
     grid-column-start: 2;
     grid-column-end: 3;
