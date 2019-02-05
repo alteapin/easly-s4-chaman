@@ -89,14 +89,14 @@ class App extends Component {
     render() {
         const { Endpoint, quoteTxt } = this.state;
         const BgImage = {
-            backgroundImage: `url(${rain})`
+            backgroundImage: `url(${sun})`
         };
         console.log(this.state.quoteTxt);
 
 
         if (this.state.loaded) {
             return (
-                <div className="App rain">
+                <div className="App sun">
                     <div className="bg-image container-app">
                         <div className='container-screen' style={BgImage} >
                             <Header
