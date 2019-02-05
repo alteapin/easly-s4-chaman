@@ -12,11 +12,11 @@ class LocationFinder extends Component {
                 src={compass}
                 alt="compass"/>
                 <form>
-                    <label htmlFor="location">
+
+                    <label htmlFor="location">  </label>
                         <input className="location-finder_input"
                         type="text" name="location" />
-                    </label>
-                    <span class="underline"></span>
+
                 </form>
 
             </div>
