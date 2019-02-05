@@ -99,9 +99,6 @@ class App extends Component {
                         <WeekDetail />
                         <DailyDetail />
                         <Footer />
-
-
-
                     </div>
 
                 </div>
