@@ -43,10 +43,9 @@ class DailyDetail extends React.Component {
         console.log('info', this.state.data);
         console.log('hora', this.apiInfo);
         return (
-<<<<<<< HEAD
-            <div className='infoDaily-Detail rain-daily'>
+            <div className='infoDaily-Detail sun-daily'>
                 <p className='title-detail'>More info per hour<span> 6 Feb</span></p>
-                <table className="dailyDetail__table rain-daily">
+                <table className="dailyDetail__table">
                     <HeadBoard />
                     <tbody>
                         <HourData hour={'6 - 9'} />
@@ -59,23 +58,6 @@ class DailyDetail extends React.Component {
                         <HourData hour={'3 - 6'} />
                     </tbody>
                 </table>
-=======
-            <div className='infoDaily-Detail sun-daily'>
-
-            <table className="dailyDetail__table sun-daily">
-                <HeadBoard />
-                <tbody>
-                <HourData hour={'6 - 9'} />
-                <HourData hour={'9 - 12'} />
-                <HourData hour={'12 - 15'} />
-                <HourData hour={'15 - 18'} />
-                <HourData hour={'18 - 21'} />
-                <HourData hour={'21 - 00'} />
-                <HourData hour={'00 - 3'} />
-                <HourData hour={'3 - 6'} />
-                </tbody>
-            </table>
->>>>>>> aab0763d9557f45a18b0be141285187c20da500c
             </div>
 
 
