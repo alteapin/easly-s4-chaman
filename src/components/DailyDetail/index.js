@@ -14,7 +14,7 @@ class DailyDetail extends React.Component {
         return (
 <div className='infoDaily-Detail'>
 
-            <table className="dailyDetail__table rain-daily">
+            <table className="dailyDetail__table sun-daily">
             <tbody>
                 <HeadBoard />
                 <HourData hour={8} />

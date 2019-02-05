@@ -11,6 +11,8 @@ import snow from "../../images/snow.png";
 import rain from "../../images/rain.png";
 import DailyDetail from "../DailyDetail";
 
+const urlLocation = 'http://api.ipstack.com/62.82.24.195?access_key=80740194e65202f38b81670ff01f10ef';
+
 const url =
     "http://api.openweathermap.org/data/2.5/weather?APPID=e0911626bb8e9d069605aa705cac6693&id=6359304&units=metric&lang=es";
 
@@ -27,6 +29,12 @@ class App extends Component {
         };
         this.showInput = this.showInput.bind(this);
         this.printDayNameNumber = this.printDayNameNumber.bind(this);
+    }
+
+    fetchLocation(){
+        fetch(urlLocation)
+        .then(res=>res.json())
+        .then(data=> console.log(data))
     }
 
     fetchApi() {
@@ -46,6 +54,7 @@ class App extends Component {
         this.fetchApi();
         this.randomQuote();
         this.printDayNameNumber();
+        this.fetchLocation();
     }
 
    randomQuote() {
@@ -80,14 +89,14 @@ class App extends Component {
     render() {
         const { Endpoint, quoteTxt } = this.state;
         const BgImage = {
-            backgroundImage: `url(${rain})`
+            backgroundImage: `url(${sun})`
         };
         console.log(this.state.quoteTxt);
 
 
         if (this.state.loaded) {
             return (
-                <div className="App rain">
+                <div className="App sun">
                     <div className="bg-image container-app">
                         <div className='container-screen' style={BgImage} >
                             <Header
