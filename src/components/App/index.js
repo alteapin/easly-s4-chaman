@@ -27,6 +27,7 @@ class App extends Component {
             date: ''
         };
         this.showInput = this.showInput.bind(this);
+        this.printDayNameNumber = this.printDayNameNumber.bind(this);
     }
 
     fetchApi() {
@@ -63,7 +64,6 @@ class App extends Component {
     printDayNameNumber() {
         const currentDate = new Date();
         const weekNumber = currentDate.getDate();
-        console.log('day', weekNumber);
         const weekday = new Array(7);
             weekday[0] =  "Sun";
             weekday[1] = "Mon";
@@ -73,7 +73,6 @@ class App extends Component {
             weekday[5] = "Fri";
             weekday[6] = "Sat";
             const weekName = weekday[currentDate.getDay()];
-            console.log('name', weekName);
             this.setState ( {
                 date: weekName + ' ' + weekNumber,
             })
@@ -85,7 +84,7 @@ class App extends Component {
             backgroundImage: `url(${rain})`
         };
         console.log(this.state.quoteTxt);
-       /*  this.printDayNameNumber(); */
+
 
         if (this.state.loaded) {
             return (
