@@ -2,9 +2,7 @@ import React from 'react';
 import HourData from '../HourData';
 import HeadBoard from '../HeadBoard';
 import './DailyDetail.scss';
-import {Fragment} from 'react';
-import {Link } from 'react-router-dom';
-import BackBtn from '../BackBtn';
+
 
 
 
