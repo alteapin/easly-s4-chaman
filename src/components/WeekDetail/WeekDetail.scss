@@ -23,7 +23,6 @@
 }
 
 .base {
-  background: #47052d;
   display: flex;
   justify-content: space-around;
   grid-column-start: 1;
@@ -31,4 +30,17 @@
   grid-row-start: 2;
   grid-row-end: 3;
   padding: 5px 10px 30px 10px;
+}
+
+@media all and (min-width: 1020px) {
+  .base {
+    align-items: center;
+    background: none;
+    height: 30vh;
+    width: 60vw;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
 }

@@ -13,7 +13,7 @@ import { Switch, Route } from 'react-router-dom';
 import DailyDetail from "../DailyDetail";
 
 const url =
-    "http://api.openweathermap.org/data/2.5/forecast?APPID=e0911626bb8e9d069605aa705cac6693&id=6359304&units=metric&lang=es";
+    "http://api.openweathermap.org/data/2.5/weather?APPID=e0911626bb8e9d069605aa705cac6693&id=6359304&units=metric&lang=es";
 
 class App extends Component {
     constructor(props) {
@@ -90,8 +90,8 @@ class App extends Component {
         if (this.state.loaded) {
             return (
                 <div className="App rain">
-                    <div style={BgImage} className="bg-image container-app">
-                    <div className='container-screen'>
+                    <div className="bg-image container-app">
+                    <div className='container-screen' style={BgImage} >
                         <Header
                         onClickAction={this.showInput}
                         visibility={this.state.visibility}

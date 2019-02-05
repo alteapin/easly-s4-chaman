@@ -1,18 +1,31 @@
 .infoDaily-Detail {
   padding: 20px 0;
-  background-color: #4b012d;
-}
-
-.dailyDetail__table {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 3;
   grid-row-end: 4;
-
-  width: 100%;
   height: 60vh;
+}
+
+.dailyDetail__table {
+  width: 100%;
+  height: 100%;
+
   font-family: "Open Sans", sans-serif;
   color: white;
   padding: 10px;
   border-collapse: collapse;
+}
+
+@media all and (min-width: 1020px) {
+  .infoDaily-Detail {
+    width: 60vw;
+    height: 65vh;
+    background: none;
+
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+  }
 }

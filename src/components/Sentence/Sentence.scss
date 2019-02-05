@@ -1,13 +1,20 @@
 .container__sentence {
-  font-size: 16px;
-  font-weight: bold;
-  align-items: center;
-  display: flex;
-  height: 50px;
+    font-size: 16px;
+    width: 250px;
+    margin: 5% 0;
+    font-weight: bold;
+    align-items: center;
+    display: flex;
+    height: 50px;
+
+    text-shadow: -1px -1px 1px #505c6c, 1px 1px 1px #121c24, 0px 0px 0px #121c24, 0px 0px 0px #000;
 }
 
-@media all and (min-width: 425px) and (max-width: 768px) {
+@media all and (min-width: 768px) {
   .container__sentence {
-    margin-top: 150px;
+    font-size: 28px;
+    width: 400px;
+    margin: 15% 0;
+
   }
 }
