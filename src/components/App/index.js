@@ -20,9 +20,8 @@ class App extends Component {
             Endpoint: {},
             loaded: true,
             error: "",
-            isVisible: true,
         };
-        this.showInput = this.showInput.bind(this);
+
     }
 
     fetchApi() {
@@ -42,11 +41,6 @@ class App extends Component {
         this.fetchApi();
     }
 
-    showInput() {
-        this.setState({
-            visibility: "visible"
-        });
-    }
 
     render() {
         const { Endpoint } = this.state;
@@ -58,9 +52,7 @@ class App extends Component {
             return (
                 <div className="App">
                     <div style={BgImage} className="bg-image">
-                        <Header
-                        onClickAction={this.showInput}
-                        visibility={this.state.visibility} />
+                        <Header />
                         <Daily dataWeather={Endpoint} />
                         <Switch >
                             <Route exact path='/' render={() => <WeekDetail />} />
