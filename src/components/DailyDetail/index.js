@@ -16,18 +16,16 @@ class DailyDetail extends React.Component {
 
             <table className="dailyDetail__table">
                 <HeadBoard />
-                <HourData hour={8} />
-                <HourData hour={10} />
-                <HourData hour={12} />
-                <HourData hour={14} />
-                <HourData hour={16} />
-                <HourData hour={18} />
-                <HourData hour={20} />
-                <HourData hour={22} />
-                <HourData hour={24} />
-                <HourData hour={2} />
-                <HourData hour={4} />
-                <HourData hour={6} />
+                <tbody>
+                <HourData hour={'6 - 9'} />
+                <HourData hour={'9 - 12'} />
+                <HourData hour={'12 - 15'} />
+                <HourData hour={'15 - 18'} />
+                <HourData hour={'18 - 21'} />
+                <HourData hour={'21 - 00'} />
+                <HourData hour={'00 - 3'} />
+                <HourData hour={'3 - 6'} />
+                </tbody>
             </table>
             </div>
 
