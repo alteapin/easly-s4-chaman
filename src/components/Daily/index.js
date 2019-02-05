@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import MainInfo from "../MainInfo";
 import PlusInfo from "../PlusInfo";
-import ButtonDetail from "../ButtonDetail";
 import "./Daily.scss";
 
 class Daily extends Component {

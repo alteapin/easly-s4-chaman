@@ -9,7 +9,6 @@ import sun from "../../images/sun.png";
 import night from "../../images/night.png";
 import snow from "../../images/snow.png";
 import rain from "../../images/rain.png";
-import { Switch, Route } from 'react-router-dom';
 import DailyDetail from "../DailyDetail";
 
 const url =
