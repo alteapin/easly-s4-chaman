@@ -30,13 +30,31 @@
   grid-row-start: 2;
   grid-row-end: 3;
   padding: 5px 10px 30px 10px;
-
 }
+
+.sun-week {
+    background: linear-gradient(-75deg, #48052c, #c9223e, #7f0033);
+    background-size: 800%;
+    animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite
+}
+
+@keyframes gradred {
+  0% {
+  background-position: 0% 50%;
+  }
+  50% {
+  background-position: 100% 50%;
+  }
+  100% {
+  background-position: 0% 50%;
+  }
+}
+
+
 
 @media all and (min-width: 1020px) {
   .weekDetail-container {
     align-items: center;
-    background: none;
     height: 30vh;
     width: 60vw;
     grid-column-start: 2;
