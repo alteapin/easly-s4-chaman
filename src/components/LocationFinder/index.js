@@ -16,6 +16,7 @@ class LocationFinder extends Component {
                         <input className="location-finder_input"
                         type="text" name="location" />
                     </label>
+                    <span class="underline"></span>
                 </form>
 
             </div>
