@@ -60,6 +60,16 @@
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 2;
+  padding: 10px;
+}
+
+@media all and (min-width: 425px) and (max-width: 768px) {
+  .bg-image {
+    background-size: cover;
+    width: 100%;
+    background-position: 0 165px;
+    background-repeat: no-repeat;
+  }
 }
 
 @media all and (min-width: 425px) and (max-width: 768px) {

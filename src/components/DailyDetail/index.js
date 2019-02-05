@@ -12,10 +12,8 @@ class DailyDetail extends React.Component {
 
     render() {
         return (
-            <Fragment>
-            <Link to='/'>
-                <BackBtn />
-            </Link>
+<div className='infoDaily-Detail'>
+
             <table className="dailyDetail__table">
                 <HeadBoard />
                 <HourData hour={8} />
@@ -31,7 +29,8 @@ class DailyDetail extends React.Component {
                 <HourData hour={4} />
                 <HourData hour={6} />
             </table>
-            </Fragment>
+            </div>
+
 
 
         )

@@ -8,11 +8,12 @@
   padding-right: 10px;
   display: flex;
   justify-content: space-around;
+  padding: 10px 10px;
+
   grid-column-start: 1;
   grid-column-end: 2;
-  grid-row-start: 3;
-  grid-row-end: 4;
-  padding: 10px 10px;
+  grid-row-start: 4;
+  grid-row-end: 5;
 }
 
 .logo-footer {
