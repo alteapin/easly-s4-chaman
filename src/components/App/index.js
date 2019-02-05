@@ -36,7 +36,7 @@ class App extends Component {
                 this.setState({
                     Endpoint: data,
                     loaded: true
-                },()=>console.log(this.state.E))
+                }, () => console.log(this.state.E))
             )
             .catch(error => this.setState({ error: error }));
     }
@@ -48,11 +48,11 @@ class App extends Component {
         this.printDayNameNumber();
     }
 
-    randomQuote(){
-       const random= arrayQuotes[Math.floor(Math.random() * arrayQuotes.length)];
-       this.setState ({
-           quoteTxt: random
-       })
+    randomQuote() {
+        const random = arrayQuotes[Math.floor(Math.random() * arrayQuotes.length)];
+        this.setState({
+            quoteTxt: random
+        })
     }
 
     showInput() {
@@ -64,39 +64,39 @@ class App extends Component {
         const currentDate = new Date();
         const weekNumber = currentDate.getDate();
         const weekday = new Array(7);
-            weekday[0] =  "Sun";
-            weekday[1] = "Mon";
-            weekday[2] = "Tue";
-            weekday[3] = "Wed";
-            weekday[4] = "Thu";
-            weekday[5] = "Fri";
-            weekday[6] = "Sat";
-            const weekName = weekday[currentDate.getDay()];
-            this.setState ( {
-                date: weekName + ' ' + weekNumber,
-            })
+        weekday[0] = "Sun";
+        weekday[1] = "Mon";
+        weekday[2] = "Tue";
+        weekday[3] = "Wed";
+        weekday[4] = "Thu";
+        weekday[5] = "Fri";
+        weekday[6] = "Sat";
+        const weekName = weekday[currentDate.getDay()];
+        this.setState({
+            date: weekName + ' ' + weekNumber,
+        })
     }
 
     render() {
         const { Endpoint, quoteTxt } = this.state;
         const BgImage = {
-            backgroundImage: `url(${sun})`
+            backgroundImage: `url(${rain})`
         };
         console.log(this.state.quoteTxt);
 
 
         if (this.state.loaded) {
             return (
-                <div className="App sun">
+                <div className="App rain">
                     <div className="bg-image container-app">
-                    <div className='container-screen' style={BgImage} >
-                        <Header
-                        onClickAction={this.showInput}
-                        visibility={this.state.visibility}
-                        date={this.state.date} />
-                        <Daily dataWeather={Endpoint} quote={quoteTxt}/>
+                        <div className='container-screen' style={BgImage} >
+                            <Header
+                                onClickAction={this.showInput}
+                                visibility={this.state.visibility}
+                                date={this.state.date} />
+                            <Daily dataWeather={Endpoint} quote={quoteTxt} />
                         </div>
-                         <WeekDetail/>
+                        <WeekDetail />
                         <DailyDetail />
                         <Footer />
 
