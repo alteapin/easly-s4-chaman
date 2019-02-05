@@ -8,7 +8,7 @@ import Sun from '../../icons/sun.svg';
 class WeekDetail extends Component {
   render() {
     return (
-        <div className='base'>
+        <div className='weekDetail-container'>
         <WeekDay day='Tue' icon={Cloud}/>
         <WeekDay day='Wed' icon={Snow}/>
         <WeekDay day='Thu' icon={Sun}/>

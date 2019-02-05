@@ -22,7 +22,7 @@
   align-items: center;
 }
 
-.base {
+.weekDetail-container {
   display: flex;
   justify-content: space-around;
   grid-column-start: 1;
@@ -30,10 +30,11 @@
   grid-row-start: 2;
   grid-row-end: 3;
   padding: 5px 10px 30px 10px;
+
 }
 
 @media all and (min-width: 1020px) {
-  .base {
+  .weekDetail-container {
     align-items: center;
     background: none;
     height: 30vh;
