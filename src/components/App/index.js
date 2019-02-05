@@ -13,7 +13,7 @@ import { Switch, Route } from 'react-router-dom';
 import DailyDetail from "../DailyDetail";
 
 const url =
-    "http://api.openweathermap.org/data/2.5/weather?APPID=e0911626bb8e9d069605aa705cac6693&id=6359304&units=metric&lang=es";
+    "http://api.openweathermap.org/data/2.5/forecast?APPID=e0911626bb8e9d069605aa705cac6693&id=6359304&units=metric&lang=es";
 
 class App extends Component {
     constructor(props) {
@@ -36,7 +36,7 @@ class App extends Component {
                 this.setState({
                     Endpoint: data,
                     loaded: true
-                })
+                },()=>console.log(this.state.E))
             )
             .catch(error => this.setState({ error: error }));
     }

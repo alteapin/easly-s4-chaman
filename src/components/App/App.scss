@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   width: 100%;
+  min-width: 334px;
 }
 
 .sun {
@@ -46,6 +47,7 @@
 
 .bg-image {
   background-size: 425px;
+  min-width: 334px;
   width: 100%;
   min-height: 480px;
   height: 100vh;
