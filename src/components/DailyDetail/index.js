@@ -42,9 +42,9 @@ class DailyDetail extends React.Component {
         console.log('info',this.state.data);
         console.log('hora', this.apiInfo);
         return (
-            <div className='infoDaily-Detail rain-daily'>
+            <div className='infoDaily-Detail sun-daily'>
 
-            <table className="dailyDetail__table rain-daily">
+            <table className="dailyDetail__table sun-daily">
                 <HeadBoard />
                 <tbody>
                 <HourData hour={'6 - 9'} />
