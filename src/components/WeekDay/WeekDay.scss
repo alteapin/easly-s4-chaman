@@ -16,3 +16,14 @@
     background-color: rgba(128, 128, 128, 0.336);
     border-radius: 5px;
 }
+
+
+
+@media all and (min-width: 1020px) {
+    .temp-high, .temp-low {
+        font-size: 15px;
+    }
+    .weekday {
+        font-size: 18px;
+    }
+  }
