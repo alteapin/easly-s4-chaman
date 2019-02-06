@@ -11,23 +11,28 @@ import snow from "../../images/snow.png";
 import rain from "../../images/rain.png";
 import DailyDetail from "../DailyDetail";
 
-const urlLocation = 'http://api.ipstack.com/62.82.24.195?access_key=80740194e65202f38b81670ff01f10ef';
+const urlLocation = 'https://api.ipstack.com/62.82.24.195?access_key=80740194e65202f38b81670ff01f10ef';
 
 const url =
-    "http://api.openweathermap.org/data/2.5/weather?APPID=e0911626bb8e9d069605aa705cac6693&id=6359304&units=metric&lang=es";
+    "https://api.openweathermap.org/data/2.5/weather?APPID=e0911626bb8e9d069605aa705cac6693&id=6359304&units=metric&lang=es";
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            Endpoint: {},
-            loaded: true,
+            endpointCurrent: {},
+            endpointForecast:[],
+            loadedCurrent: true,
+            loadedForecast: true,
             error: '',
-            isVisible: true,
             quoteTxt: '',
-            date: ''
+            date: '',
+            theme:'',
+            selectedDay:'',
+            selectedLocation:'',
+            currentLocation:{},
         };
-        this.showInput = this.showInput.bind(this);
+
         this.printDayNameNumber = this.printDayNameNumber.bind(this);
     }
 
@@ -42,7 +47,7 @@ class App extends Component {
             .then(res => res.json())
             .then(data =>
                 this.setState({
-                    Endpoint: data,
+                    endpointCurrent: data,
                     loaded: true
                 }, () => console.log(this.state.E))
             )
@@ -64,11 +69,7 @@ class App extends Component {
         })
     }
 
-    showInput() {
-        this.setState({
-            visibility: "visible"
-        });
-    }
+
     printDayNameNumber() {
         const currentDate = new Date();
         const weekNumber = currentDate.getDate();
