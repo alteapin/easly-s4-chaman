@@ -1,7 +1,12 @@
 .HourData__hour {
     font-weight: 500;
 }
-
+.table__row {
+    font-size: 12px;
+}
 .table__row:nth-child(odd) {
     background-color: rgba(128, 128, 128, 0.336);
+}
+.dailyDetail_units {
+    font-size: 10px;
 }
