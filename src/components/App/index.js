@@ -10,9 +10,7 @@ import night from "../../images/night.png";
 import snow from "../../images/snow.png";
 import rain from "../../images/rain.png";
 import DailyDetail from "../DailyDetail";
-import { forecastService } from '../../services/forecastService';
-import { currentDayService } from '../../services/currentDayService';
-import { locationService } from '../../services/locationService';
+import ApiServices from "../../services/apiServices";
 
 
 class App extends Component {
@@ -36,7 +34,7 @@ class App extends Component {
     }
 
     fetchLocation() {
-        locationService()
+        ApiServices.locationService()
             .then(data => console.log(data))
     }
 
@@ -49,7 +47,8 @@ class App extends Component {
     }
 
     currentDayData() {
-        currentDayService()
+        const city = this.state.currentLocation;
+        ApiServices.currentDayService(city)
             .then(data =>
                 this.setState({
                     endpointCurrent: data,
@@ -60,7 +59,7 @@ class App extends Component {
     }
 
     forecastData() {
-        forecastService()
+        ApiServices.forecastService()
             .then(data => console.log(data));
     }
 
