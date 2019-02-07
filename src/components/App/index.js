@@ -10,11 +10,12 @@ import night from "../../images/night.png";
 import snow from "../../images/snow.png";
 import rain from "../../images/rain.png";
 import DailyDetail from "../DailyDetail";
+import { forecastService } from '../../services/forecastService';
+import { currentDayService } from '../../services/currentDayService';
+import { locationService } from '../../services/locationService';
 
-const urlLocation = 'https://api.ipstack.com/62.82.24.195?access_key=80740194e65202f38b81670ff01f10ef';
 
-const url =
-    "https://api.openweathermap.org/data/2.5/weather?APPID=e0911626bb8e9d069605aa705cac6693&id=6359304&units=metric&lang=es";
+// const urlLocation = 'https://api.ipstack.com/62.82.24.195?access_key=80740194e65202f38b81670ff01f10ef';
 
 class App extends Component {
     constructor(props) {
@@ -37,14 +38,20 @@ class App extends Component {
     }
 
     fetchLocation() {
-        fetch(urlLocation)
-            .then(res => res.json())
+        locationService()
             .then(data => console.log(data))
     }
 
-    fetchApi() {
-        fetch(url)
-            .then(res => res.json())
+    componentDidMount() {
+        this.currentDayData();
+        this.randomQuote();
+        this.printDayNameNumber();
+        this.fetchLocation();
+        this.forecastData();
+    }
+
+    currentDayData() {
+        currentDayService()
             .then(data =>
                 this.setState({
                     endpointCurrent: data,
@@ -54,12 +61,9 @@ class App extends Component {
             .catch(error => this.setState({ error: error }));
     }
 
-
-    componentDidMount() {
-        this.fetchApi();
-        this.randomQuote();
-        this.printDayNameNumber();
-        this.fetchLocation();
+    forecastData() {
+        forecastService()
+            .then(data => console.log(data));
     }
 
     randomQuote() {
