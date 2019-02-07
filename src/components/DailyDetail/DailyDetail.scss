@@ -4,8 +4,8 @@
   grid-row-start: 3;
   grid-row-end: 4;
   min-width: 300px;
-  height: 60vh;
-  height: 60vh;
+  min-height: 60vh;
+
   padding: 20px 30px 30px;
 }
 
@@ -61,6 +61,9 @@
     background-position: 0% 50%;
   }
 }
+
+
+
 
 @media all and (min-width: 1020px) {
   .infoDaily-Detail {
