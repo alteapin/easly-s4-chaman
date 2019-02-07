@@ -88,7 +88,10 @@ class App extends Component {
         })
     }
 
+
+
     render() {
+
         const { endpointCurrent, quoteTxt } = this.state;
         const BgImage = {
             backgroundImage: `url(${snow})`
