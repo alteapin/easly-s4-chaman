@@ -4,6 +4,11 @@
     justify-content: center;
     align-items: center;
     padding-top:25px;
+    font-size: 22px;
+
+    .unit{
+        font-size:22px;
+    }
 }
 
 .minTemperature{
@@ -13,3 +18,4 @@
 .maxTemperature{
     margin-left: 22px;
 }
+
