@@ -88,7 +88,7 @@ class App extends Component {
     }
 
     render() {
-        const { Endpoint, quoteTxt } = this.state;
+        const { endpointCurrent, quoteTxt } = this.state;
         const BgImage = {
             backgroundImage: `url(${snow})`
         };
@@ -104,7 +104,7 @@ class App extends Component {
                                 onClickAction={this.showInput}
                                 visibility={this.state.visibility}
                                 date={this.state.date} />
-                            <Daily dataWeather={Endpoint} quote={quoteTxt} />
+                            <Daily dataWeather={endpointCurrent} quote={quoteTxt} />
                         </div>
                         <WeekDetail />
                         <DailyDetail />
