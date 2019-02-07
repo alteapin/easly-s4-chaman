@@ -1,98 +1,96 @@
 .App {
-  text-align: center;
-  width: 100%;
-  min-width: 334px;
+    text-align: center;
+    width: 100%;
+    min-width: 334px;
 }
 
 .sun {
-  background: linear-gradient(-75deg,#c9223e,#eb8249, #ef4335, #ff9d48);
-  background-size: 800%;
-  animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite;
+    background: linear-gradient(-75deg, #c9223e, #eb8249, #ef4335, #ff9d48);
+    background-size: 800%;
+    animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite;
 }
 
 .snow {
-  background: linear-gradient(-75deg,#a5ebb5, #c6f2d1, #009090, #005b6d, #5af7e2);
-  background-size: 800%;
-  animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite;
+    background: linear-gradient(-75deg, #a5ebb5, #c6f2d1, #009090, #005b6d, #5af7e2);
+    background-size: 800%;
+    animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite;
 }
 
 .night {
-  background: linear-gradient(-75deg, #090923, #643d69, #02013b, #1b4090, #090923);
-  background-size: 800%;
-  animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite;
+    background: linear-gradient(-75deg, #090923, #643d69, #02013b, #1b4090, #090923);
+    background-size: 800%;
+    animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite;
 }
+
 .rain {
-  background: linear-gradient(-75deg, #505c6c, #121c24, #b9c7d2,#6d868d);
-  background-size: 800%;
-  animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite;
+    background: linear-gradient(-75deg, #505c6c, #121c24, #b9c7d2, #6d868d);
+    background-size: 800%;
+    animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite;
 }
 
 @keyframes gradred {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
+
 .container-app {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr auto auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto auto;
 }
 
 .container-screen {
-  height: 100vh;
-  min-height: 480px;
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 2;
-  padding: 10px;
-
-
-  min-width: 334px;
-  width: 100%;
-  min-height: 480px;
-  height: 100vh;
-background-size: cover;
-  background-position: bottom;
-  background-repeat: no-repeat;
-}
-
-@media all and (min-width: 768px) {
-  .container-screen {
-    background-size: cover;
-    width: 100%;
-  }
-}
-
-@media all and (min-width: 1020px) {
-  .container-app {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr auto auto;
-  }
-
-  .container-screen {
-    background-image: url(/static/media/rain.102d717a.png);
-    background-size: 100%;
+    height: 100vh;
+    min-height: 480px;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    padding: 10px;
     min-width: 334px;
     width: 100%;
     min-height: 480px;
     height: 100vh;
+    background-size: cover;
     background-position: bottom;
     background-repeat: no-repeat;
+}
 
-    height: 100vh;
-    width: 40vw;
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 4;
-    padding: 10px;
-    border-right: solid 5px white;
-  }
+@media all and (min-width: 768px) {
+    .container-screen {
+        background-size: cover;
+        width: 100%;
+    }
+}
+
+@media all and (min-width: 1020px) {
+    .container-app {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr auto auto;
+    }
+    .container-screen {
+        background-image: url(/static/media/rain.102d717a.png);
+        background-size: 100%;
+        min-width: 334px;
+        width: 100%;
+        min-height: 480px;
+        height: 100vh;
+        background-position: bottom;
+        background-repeat: no-repeat;
+        height: 100vh;
+        width: 40vw;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 4;
+        padding: 10px;
+        border-right: solid 5px white;
+    }
 }

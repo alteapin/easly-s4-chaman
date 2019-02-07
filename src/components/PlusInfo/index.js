@@ -16,14 +16,14 @@ class PlusInfo extends Component {
                         </p>
                         <p className="plusInfo-humidity-data data">
                             {" "}
-                            {humidity ? humidity : "---"}
+                            {humidity ? `${humidity} %` : "---"}
                         </p>
                     </div>
                     <div className="plusInfo-wind">
                         <p className="plusInfo-wind-title plus"> Wind</p>
                         <p className="plusInfo-wind-data data">
                             {" "}
-                            {speed ? speed : "---"}
+                            {speed ? `${speed} Km/h` : "---"}
                         </p>
                     </div>
                     <div className="plusInfo-pressure">
@@ -33,7 +33,7 @@ class PlusInfo extends Component {
                         </p>
                         <p className="plusInfo-pressure-data data">
                             {" "}
-                            {pressure ? pressure : "---"}
+                            {pressure ? `${pressure} hPa` : "---"}
                         </p>
                     </div>
                 </div>

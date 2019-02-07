@@ -1,22 +1,18 @@
-.container__daily{
-
+.container__daily {
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 2;
     grid-row-end: 3;
-
     padding: 2%;
     height: 80%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-
 }
-
 
 @media all and (min-width: 425px) and (max-width: 768px) {
     .container__sentence {
-        height: 40vh ;
+        height: 40vh;
     }
-  }
+}

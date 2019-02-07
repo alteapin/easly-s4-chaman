@@ -7,23 +7,23 @@ import './HeadBoard.scss';
 
 class HeadBoard extends React.Component {
     render() {
-        return(
+        return (
             <thead>
-            <tr className='headBoard__general'>
-            <th>
-                <img className='headBoard__icon' src={Time} alt='time icons' />
-            </th>
-            <th>
-                <img className='headBoard__icon' src={Temp} alt='temperature icon' />
-            </th>
-            <th>
-                <img className='headBoard__icon' src={CloudIcon} alt='Rain percent' />
-            </th>
-            <th>
-                <img className='headBoard__icon' src={Wind} alt='Wind speed' />
-            </th>
-        </tr>
-        </thead>
+                <tr className='headBoard__general'>
+                    <th>
+                        <img className='headBoard__icon' src={Time} alt='time icons' />
+                    </th>
+                    <th>
+                        <img className='headBoard__icon' src={Temp} alt='temperature icon' />
+                    </th>
+                    <th>
+                        <img className='headBoard__icon' src={CloudIcon} alt='Rain percent' />
+                    </th>
+                    <th>
+                        <img className='headBoard__icon' src={Wind} alt='Wind speed' />
+                    </th>
+                </tr>
+            </thead>
         )
     }
 }

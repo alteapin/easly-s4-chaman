@@ -3,17 +3,17 @@ import './HourData.scss';
 
 class HourData extends React.Component {
     getRndInteger(min, max) {
-        return Math.floor(Math.random() * (max - min) ) + min;
+        return Math.floor(Math.random() * (max - min)) + min;
     }
 
     render() {
-        return(
+        return (
             <tr className="table__row">
-            <th className='HourData__hour'>{this.props.hour}</th>
-            <th>{this.getRndInteger(-5,45)}</th>
-            <th>{this.getRndInteger(-5,45)}</th>
-            <th>{this.getRndInteger(-5,45)}</th>
-        </tr>
+                <th className='HourData__hour'>{this.props.hour}</th>
+                <th>{this.getRndInteger(-5, 45)}</th>
+                <th>{this.getRndInteger(-5, 45)}</th>
+                <th>{this.getRndInteger(-5, 45)}</th>
+            </tr>
         )
     }
 }

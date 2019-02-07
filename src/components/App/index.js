@@ -20,21 +20,26 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            Endpoint: {},
-            loaded: true,
+            endpointCurrent: {},
+            endpointForecast: [],
+            loadedCurrent: true,
+            loadedForecast: true,
             error: '',
-            isVisible: true,
             quoteTxt: '',
-            date: ''
+            date: '',
+            theme: '',
+            selectedDay: '',
+            selectedLocation: '',
+            currentLocation: {},
         };
-        this.showInput = this.showInput.bind(this);
+
         this.printDayNameNumber = this.printDayNameNumber.bind(this);
     }
 
-    fetchLocation(){
+    fetchLocation() {
         fetch(urlLocation)
-        .then(res=>res.json())
-        .then(data=> console.log(data))
+            .then(res => res.json())
+            .then(data => console.log(data))
     }
 
     fetchApi() {
@@ -42,7 +47,7 @@ class App extends Component {
             .then(res => res.json())
             .then(data =>
                 this.setState({
-                    Endpoint: data,
+                    endpointCurrent: data,
                     loaded: true
                 }, () => console.log(this.state.E))
             )
@@ -57,18 +62,14 @@ class App extends Component {
         this.fetchLocation();
     }
 
-   randomQuote() {
+    randomQuote() {
         const random = arrayQuotes[Math.floor(Math.random() * arrayQuotes.length)];
         this.setState({
             quoteTxt: random
         })
     }
 
-    showInput() {
-        this.setState({
-            visibility: "visible"
-        });
-    }
+
     printDayNameNumber() {
         const currentDate = new Date();
         const weekNumber = currentDate.getDate();
@@ -87,23 +88,23 @@ class App extends Component {
     }
 
     render() {
-        const { Endpoint, quoteTxt } = this.state;
+        const { endpointCurrent, quoteTxt } = this.state;
         const BgImage = {
-            backgroundImage: `url(${sun})`
+            backgroundImage: `url(${snow})`
         };
         console.log(this.state.quoteTxt);
 
 
         if (this.state.loaded) {
             return (
-                <div className="App sun">
+                <div className="App snow">
                     <div className="bg-image container-app">
                         <div className='container-screen' style={BgImage} >
                             <Header
                                 onClickAction={this.showInput}
                                 visibility={this.state.visibility}
                                 date={this.state.date} />
-                            <Daily dataWeather={Endpoint} quote={quoteTxt} />
+                            <Daily dataWeather={endpointCurrent} quote={quoteTxt} />
                         </div>
                         <WeekDetail />
                         <DailyDetail />
