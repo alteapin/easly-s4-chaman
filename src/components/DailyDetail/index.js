@@ -43,7 +43,7 @@ class DailyDetail extends React.Component {
         // console.log('hora', this.apiInfo);
         return (
             <div className='infoDaily-Detail snow-daily'>
-                <p className='title-detail'>More info per hour<span> 6 Feb</span></p>
+                <h3 className='title-detail'>Detailed information:<span className='table_title-day'> 6 Feb</span></h3>
                 <table className="dailyDetail__table">
                     <HeadBoard />
                     <tbody>
