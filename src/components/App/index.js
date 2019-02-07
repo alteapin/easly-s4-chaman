@@ -15,8 +15,6 @@ import { currentDayService } from '../../services/currentDayService';
 import { locationService } from '../../services/locationService';
 
 
-// const urlLocation = 'https://api.ipstack.com/62.82.24.195?access_key=80740194e65202f38b81670ff01f10ef';
-
 class App extends Component {
     constructor(props) {
         super(props);
@@ -73,7 +71,6 @@ class App extends Component {
         })
     }
 
-
     printDayNameNumber() {
         const currentDate = new Date();
         const weekNumber = currentDate.getDate();
@@ -97,7 +94,6 @@ class App extends Component {
             backgroundImage: `url(${snow})`
         };
         console.log(this.state.quoteTxt);
-
 
         if (this.state.loaded) {
             return (
