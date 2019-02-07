@@ -1,9 +1,21 @@
-.container__plusInfo-daily{
-    height: 25%;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
+.container__plusInfo-daily {
+  height: 25%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  font-size: 16px;
+}
+
+@media all and (min-width: 768px) {
+  .container__plusInfo-daily {
     font-size: 22px;
+  }
+}
+
+@media all and (min-width: 1020px) {
+  .container__plusInfo-daily {
+    font-size: 28px;
+  }
 }

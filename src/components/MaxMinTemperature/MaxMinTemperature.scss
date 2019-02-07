@@ -3,11 +3,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top:25px;
-    font-size: 22px;
+    padding-top: 15%;
+    font-size: 16px;
 
     .unit{
-        font-size:22px;
+        font-size:16px;
     }
 }
 
@@ -18,4 +18,22 @@
 .maxTemperature{
     margin-left: 22px;
 }
+
+@media all and (min-width: 768px) {
+    .container__maxMinTemperature {
+      font-size: 22px;
+    }
+    .unit{
+        font-size:22px;
+    }
+  }
+
+  @media all and (min-width: 1020px) {
+    .container__maxMinTemperature{
+      font-size: 28px;
+    }
+    .unit{
+        font-size:28px;
+    }
+  }
 
