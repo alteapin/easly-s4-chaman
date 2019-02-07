@@ -9,14 +9,12 @@ class Weekday extends Component {
             backgroundImage: `url(${icon})`
         };
         return (
-            <div className={`contain-week-detail ${currentDay}`}>
-                <div className='week-detail'>
+                <div className={`week-detail ${currentDay}`}>
                     <h3 className='weekday'>{day}</h3>
                     <div className='icon-temp' style={iconTemp}></div>
                     <p className='temp-high'>12º</p>
                     <p className='temp-low'>5º</p>
                 </div>
-            </div>
         );
     }
 }

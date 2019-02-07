@@ -26,7 +26,8 @@
 
 .weekDetail-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: space-between;
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 2;
@@ -70,20 +71,31 @@
     }
 }
 
+@media all and (min-width: 768px) and (max-width: 1020px){
+    .weekDetail-container{
+        padding: 15px 29px;
+    }
+    .week-detail {
+        padding: 10px;
+        width: 80px;
+        height: 160px;
+    }
+}
+
 @media all and (min-width: 1020px) {
     .weekDetail-container {
         align-items: center;
-        height: 30vh;
+        height: 35vh;
         width: 60vw;
         grid-column-start: 2;
         grid-column-end: 3;
         grid-row-start: 1;
         grid-row-end: 2;
+        padding: 15px 29px;
     }
     .week-detail {
         padding: 10px;
-        width: 80px;
-        height: 150px;
-        padding-bottom: 10px;
+        width: 100px;
+        height: 200px;
     }
 }
