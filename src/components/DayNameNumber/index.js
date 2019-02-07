@@ -1,8 +1,8 @@
 import React from 'react';
 
-class DayNameNumber extends React.Component{
+class DayNameNumber extends React.Component {
     render() {
-        return(
+        return (
             <p>{this.props.date}</p>
         )
     }

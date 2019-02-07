@@ -7,15 +7,15 @@ import DayNameNumber from '../DayNameNumber';
 
 class Header extends Component {
     render() {
-    const {onClickAction, visibility, date} = this.props;
-    console.log('header', this.props);
+        const { onClickAction, visibility, date } = this.props;
+        console.log('header', this.props);
         return (
 
             <div className="header-main">
                 <LocationFinder
-                onClickAction = {onClickAction}
-                visibility = {visibility}/>
-                <HourHeader/>
+                    onClickAction={onClickAction}
+                    visibility={visibility} />
+                <HourHeader />
                 <DayNameNumber date={date} />
                 <CityLocation />
             </div>

@@ -6,7 +6,7 @@ import './BackBtn.scss';
 class BackBtn extends React.Component {
     render() {
         return (
-            <img  className='back__btn' alt='return button' src={arrow}/>
+            <img className='back__btn' alt='return button' src={arrow} />
         )
     }
 }

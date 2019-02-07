@@ -21,25 +21,25 @@ class App extends Component {
         super(props);
         this.state = {
             endpointCurrent: {},
-            endpointForecast:[],
+            endpointForecast: [],
             loadedCurrent: true,
             loadedForecast: true,
             error: '',
             quoteTxt: '',
             date: '',
-            theme:'',
-            selectedDay:'',
-            selectedLocation:'',
-            currentLocation:{},
+            theme: '',
+            selectedDay: '',
+            selectedLocation: '',
+            currentLocation: {},
         };
 
         this.printDayNameNumber = this.printDayNameNumber.bind(this);
     }
 
-    fetchLocation(){
+    fetchLocation() {
         fetch(urlLocation)
-        .then(res=>res.json())
-        .then(data=> console.log(data))
+            .then(res => res.json())
+            .then(data => console.log(data))
     }
 
     fetchApi() {
@@ -62,7 +62,7 @@ class App extends Component {
         this.fetchLocation();
     }
 
-   randomQuote() {
+    randomQuote() {
         const random = arrayQuotes[Math.floor(Math.random() * arrayQuotes.length)];
         this.setState({
             quoteTxt: random

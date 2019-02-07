@@ -1,10 +1,11 @@
-*{
+* {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
 
-.temp-high, .temp-low {
+.temp-high,
+.temp-low {
     font-size: 12px;
 }
 
@@ -17,13 +18,12 @@
     border-radius: 5px;
 }
 
-
-
 @media all and (min-width: 1020px) {
-    .temp-high, .temp-low {
+    .temp-high,
+    .temp-low {
         font-size: 15px;
     }
     .weekday {
         font-size: 18px;
     }
-  }
+}

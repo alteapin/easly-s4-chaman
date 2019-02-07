@@ -7,7 +7,7 @@ class HourHeader extends Component {
     render() {
         return (
             <div className="hour-header-container">
-            <Clock />
+                <Clock />
             </div>
         );
     }

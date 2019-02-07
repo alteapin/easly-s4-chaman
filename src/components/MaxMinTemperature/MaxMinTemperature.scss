@@ -1,38 +1,37 @@
 .container__maxMinTemperature {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 15%;
-  font-size: 16px;
-
-  .unit {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 15%;
     font-size: 16px;
-  }
+    .unit {
+        font-size: 16px;
+    }
 }
 
 .minTemperature {
-  margin-right: 22px;
+    margin-right: 22px;
 }
 
 .maxTemperature {
-  margin-left: 22px;
+    margin-left: 22px;
 }
 
 @media all and (min-width: 768px) {
-  .container__maxMinTemperature {
-    font-size: 22px;
-    .unit {
-      font-size: 22px;
+    .container__maxMinTemperature {
+        font-size: 22px;
+        .unit {
+            font-size: 22px;
+        }
     }
-  }
 }
 
 @media all and (min-width: 1020px) {
-  .container__maxMinTemperature {
-    font-size: 26px;
-    .unit {
-      font-size: 26px;
+    .container__maxMinTemperature {
+        font-size: 26px;
+        .unit {
+            font-size: 26px;
+        }
     }
-  }
 }
