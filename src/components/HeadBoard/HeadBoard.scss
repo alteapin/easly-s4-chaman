@@ -1,8 +1,15 @@
 .headBoard__icon {
-    width: 30px;
+    width: 25px;
 }
+
 
 .headBoard__general {
     border-bottom: 1px solid white;
     height: 45px;
+}
+
+@media all and (min-width: 1020px) {
+    .headBoard__icon {
+        width: 30px;
+    }
 }
