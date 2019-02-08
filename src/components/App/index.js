@@ -10,6 +10,7 @@ import {themeWeather} from '../data/bg';
 import ApiServices from '../../services/apiServices';
 
 
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -25,6 +26,7 @@ class App extends Component {
             selectedDay: "",
             selectedLocation: "",
             currentLocation: {},
+            CurrentHour: ""
         };
 
         this.printDayNameNumber = this.printDayNameNumber.bind(this);
@@ -53,6 +55,7 @@ class App extends Component {
         this.randomQuote();
         this.printDayNameNumber();
         this.fetchGetLocation();
+
     }
 
 
@@ -111,6 +114,15 @@ class App extends Component {
     focusTextInput() {
         this.textInput.current.focus();
     }
+
+
+    changeBackground ()  {
+        const currentUtc = this.state.endpointCurrent;
+        console.log('ey', currentUtc)
+    }
+
+
+
 
 
 
