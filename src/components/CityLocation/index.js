@@ -23,7 +23,7 @@ class CityLocation extends Component {
                         name="location"
                         onClick = {focusInput}
                         onFocus={(e) => e.target.placeholder = ""}
-                        onBlur={(e) => e.target.placeholder = "Name"}
+                        onBlur={(e) => e.target.placeholder = "Madrid"}
                         />
                     </label>
                 </form>
