@@ -7,9 +7,7 @@ import WeekDetail from '../WeekDetail';
 import arrayQuotes from '../arrayQuotes';
 import DailyDetail from '../DailyDetail';
 import {themeWeather} from '../data/bg';
-import { forecastService } from '../../services/forecastService';
-import { currentDayService } from '../../services/currentDayService';
-import { locationService } from '../../services/locationService';
+import ApiServices from '../../services/apiServices';
 
 
 class App extends Component {
