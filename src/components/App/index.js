@@ -41,7 +41,7 @@ class App extends Component {
                 },
                 () => {
                     console.log(data);
-                   // const { city, country } = this.state.currentLocation;
+                    // const { city, country } = this.state.currentLocation;
                     this.currentDayData();
                     this.forecastData();
                 }
@@ -50,11 +50,11 @@ class App extends Component {
     }
 
     componentDidMount() {
-       // this.currentDayData();
+        // this.currentDayData();
         this.randomQuote();
         this.printDayNameNumber();
         this.fetchGetLocation();
-      //  this.forecastData();
+        //  this.forecastData();
     }
 
 
