@@ -11,8 +11,8 @@ export default class ApiServices {
     }
 
     static locationService = () => {
-        const url ='https://api.ipstack.com/62.82.24.195?access_key=80740194e65202f38b81670ff01f10ef';
-        return fetch(url).then(res => res.json());
+        const urlLocation ='http://api.ipstack.com/62.82.24.195?access_key=80740194e65202f38b81670ff01f10ef';
+        return fetch(urlLocation).then(res => res.json());
     }
 
 }
