@@ -50,6 +50,8 @@ class App extends Component {
         );
     }
 
+
+
     componentDidMount() {
         this.fetchGetLocation();
         this.randomQuote();
@@ -70,7 +72,7 @@ class App extends Component {
     }
 
     forecastData(city, country) {
-        const urlForecast = `http://api.openweathermap.org/data/2.5/forecast?APPID=e0911626bb8e9d069605aa705cac6693&q=${city},${country}&units=metric&lang=es`;
+        const urlForecast = `http://api.openweathermap.org/data/2.5/forecast?APPID=e0911626bb8e9d069605aa705cac6693&q=${city},${country}&units=metric&lang=en`;
         fetch(urlForecast)
             .then(res => res.json())
             .then(data =>
