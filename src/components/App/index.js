@@ -5,11 +5,8 @@ import Header from "../Header/index";
 import Footer from '../Footer';
 import WeekDetail from '../WeekDetail';
 import arrayQuotes from '../arrayQuotes';
-import sun from "../../images/sun.png";
-import night from "../../images/night.png";
-import snow from "../../images/snow.png";
-import rain from "../../images/rain.png";
-import DailyDetail from "../DailyDetail";
+import DailyDetail from '../DailyDetail';
+import {themeWeather} from '../data/bg';
 import { forecastService } from '../../services/forecastService';
 import { currentDayService } from '../../services/currentDayService';
 import { locationService } from '../../services/locationService';
@@ -100,9 +97,9 @@ class App extends Component {
         const { endpointCurrent, quoteTxt, date } = this.state;
         const {textInput , focusTextInput} = this.props;
         const BgImage = {
-            backgroundImage: `url(${snow})`
+            backgroundImage: `url(${themeWeather.snow})`
         };
-        console.log(this.state.quoteTxt);
+
 
         if (this.state.loaded) {
             return (
