@@ -51,11 +51,13 @@ class App extends Component {
     }
 
 
+
     componentDidMount() {
         this.randomQuote();
         this.printDayNameNumber();
         this.fetchGetLocation();
     }
+
 
     currentDayData() {
         const { city, country } = this.state.currentLocation;
