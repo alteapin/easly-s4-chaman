@@ -10,9 +10,8 @@ import night from "../../images/night.png";
 import snow from "../../images/snow.png";
 import rain from "../../images/rain.png";
 import DailyDetail from "../DailyDetail";
-//import { forecastService } from "../../services/forecastService";
-//import { currentDayService } from "../../services/currentDayService";
-import { locationService } from "../../services/locationService";
+import ApiServices from "../../services/apiServices";
+
 
 class App extends Component {
     constructor(props) {
@@ -37,33 +36,30 @@ class App extends Component {
     }
 
     fetchGetLocation() {
-        locationService().then(data =>
+        ApiServices.locationService().then(data =>
             this.setState(
                 {
                     currentLocation: data
                 },
                 () => {
                     console.log(data);
-                    const { city, country } = this.state.currentLocation;
-                    this.currentDayData(city, country);
-                    this.forecastData(city, country);
+                    this.currentDayData();
+                    this.forecastData();
                 }
             )
         );
     }
 
 
-
     componentDidMount() {
-        this.fetchGetLocation();
         this.randomQuote();
         this.printDayNameNumber();
+        this.fetchGetLocation();
     }
 
-    currentDayData(city, country) {
-        const urlCurrent = `http://api.openweathermap.org/data/2.5/weather?APPID=e0911626bb8e9d069605aa705cac6693&q=${city}${country}&units=metric&lang=en`;
-        fetch(urlCurrent)
-            .then(res => res.json())
+    currentDayData() {
+        const { city, country } = this.state.currentLocation;
+        ApiServices.currentDayService(city, country)
             .then(data =>
                 this.setState({
                     endpointCurrent: data,
@@ -73,20 +69,19 @@ class App extends Component {
             .catch(error => this.setState({ error: error }));
     }
 
-    forecastData(city, country) {
-        const urlForecast = `http://api.openweathermap.org/data/2.5/forecast?APPID=e0911626bb8e9d069605aa705cac6693&q=${city}${country}&units=metric&lang=en`;
-        fetch(urlForecast)
-            .then(res => res.json())
-            .then(data =>
-                this.setState(
-                    {
-                        endpointForecast: data,
-                        loaded: true
-                    },
-                    () => console.log(data)
-                )
+    forecastData() {
+        const { city, country } = this.state.currentLocation;
+        ApiServices.forecastService(city, country)
+        .then(data =>
+            this.setState(
+                {
+                    endpointForecast: data,
+                    loaded: true
+                },
+                () => console.log(data)
             )
-            .catch(error => this.setState({ error: error }));
+        )
+        .catch(error => this.setState({ error: error }));
     }
 
     randomQuote() {
