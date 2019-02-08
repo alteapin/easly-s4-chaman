@@ -6,12 +6,15 @@ import DayNameNumber from '../DayNameNumber';
 
 class Header extends Component {
     render() {
-    const {date} = this.props;
+    const {date, textInput, focusInput} = this.props;
     console.log('header', this.props);
         return (
 
             <div className="header-main">
-                 <CityLocation />
+                <CityLocation
+                textInput = {textInput}
+                focusInput = {focusInput}
+                />
                 <HourHeader/>
                 <DayNameNumber date={date} />
 

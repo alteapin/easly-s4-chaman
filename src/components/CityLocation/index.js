@@ -5,6 +5,7 @@ import compass from '../../icons/compass.png';
 class CityLocation extends Component {
 
     render() {
+        const {textInput , focusInput} = this.props;
         return (
             <div className="citylocation">
                 <img
@@ -14,8 +15,13 @@ class CityLocation extends Component {
                 />
                 <form>
                     <label name="location">
-                        <input className="location-finder_input"
-                        type="text" placeholder="Madrid" name="location" />
+                        <input
+                        className="location-finder_input"
+                        type="text"
+                        ref = {textInput}
+                        placeholder="Madrid"
+                        name="location"
+                        onClick = {focusInput}/>
                     </label>
                 </form>
             </div>
