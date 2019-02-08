@@ -18,7 +18,8 @@ class App extends Component {
         super(props);
         this.state = {
             endpointCurrent: {},
-            endpointForecast: {},
+            endpointForecast: [],
+            weekForecast: [],
             loadedCurrent: true,
             loadedForecast: true,
             error: "",
@@ -73,13 +74,13 @@ class App extends Component {
         const map = new Map();
         list.forEach((item) => {
             const key = item[keyGetter];
-            console.log(key);
             const collection = map.get(key);
             if (!collection) {
                 map.set(key, [item]);
             } else {
                 collection.push(item);
             }
+            console.log(map);
         });
         return map;
     }
@@ -94,8 +95,18 @@ class App extends Component {
                 })
 
                 const grouped = this.groupDateBy(myList, 'formattedDate');
+
+                const newList = [];
+
+                grouped.forEach(single => {
+                    newList.push(single[0]);
+                })
+
+                console.log(newList);
+
                 this.setState({
                     endpointForecast: grouped,
+                    weekForecast: newList,
                     loaded: true
                 }, () => console.log(grouped))
             })
@@ -135,7 +146,7 @@ class App extends Component {
 
 
     render() {
-        const { endpointCurrent, quoteTxt, date } = this.state;
+        const { endpointCurrent, quoteTxt, date, weekForecast } = this.state;
         const { textInput, focusTextInput } = this.props;
         const BgImage = {
             backgroundImage: `url(${snow})`
@@ -154,7 +165,7 @@ class App extends Component {
                             />
                             <Daily dataWeather={endpointCurrent} quote={quoteTxt} />
                         </div>
-                        <WeekDetail />
+                        <WeekDetail forecastData={weekForecast}/>
                         <DailyDetail />
                         <Footer />
                     </div>
