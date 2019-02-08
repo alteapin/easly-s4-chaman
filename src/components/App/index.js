@@ -47,13 +47,11 @@ class App extends Component {
     }
 
 
-
     componentDidMount() {
         this.randomQuote();
         this.printDayNameNumber();
         this.fetchGetLocation();
     }
-
 
     currentDayData() {
         const { city, country } = this.state.currentLocation;
@@ -67,20 +65,39 @@ class App extends Component {
             .catch(error => this.setState({ error: error }));
     }
 
+    groupDateBy(list, keyGetter) {
+        const map = new Map();
+        list.forEach((item) => {
+            const key = item[keyGetter];
+            console.log(key);
+            const collection = map.get(key);
+            if (!collection) {
+                map.set(key, [item]);
+            } else {
+                collection.push(item);
+            }
+        });
+        return map;
+    }
+
     forecastData() {
         const { city, country } = this.state.currentLocation;
         ApiServices.forecastService(city, country)
-        .then(data =>
-            this.setState(
-                {
-                    endpointForecast: data,
+            .then(data => {
+                const myList = data.list.map(item => {
+                    item.formattedDate = item.dt_txt.slice(0, 10);
+                    return item;
+                })
+
+                const grouped = this.groupDateBy(myList, 'formattedDate');
+                this.setState({
+                    endpointForecast: grouped,
                     loaded: true
-                },
-                () => console.log(data)
-            )
-        )
-        .catch(error => this.setState({ error: error }));
+                }, () => console.log(grouped))
+            })
+            .catch(error => this.setState({ error: error }));
     }
+
 
     randomQuote() {
         const random =
@@ -115,7 +132,7 @@ class App extends Component {
 
     render() {
         const { endpointCurrent, quoteTxt, date } = this.state;
-        const {textInput , focusTextInput} = this.props;
+        const { textInput, focusTextInput } = this.props;
         const BgImage = {
             backgroundImage: `url(${themeWeather.snow})`
         };
@@ -128,9 +145,9 @@ class App extends Component {
                         <div className="container-screen" style={BgImage}>
                             <Header
                                 date={date}
-                                textInput = {textInput}
-                                focusInput = {focusTextInput}
-                                />
+                                textInput={textInput}
+                                focusInput={focusTextInput}
+                            />
                             <Daily dataWeather={endpointCurrent} quote={quoteTxt} />
                         </div>
                         <WeekDetail />
