@@ -3,7 +3,7 @@ const urlLocation ='http://api.ipstack.com/62.82.24.195?access_key=80740194e6520
 const locationService = () =>
     fetch(urlLocation)
         .then(res => res.json())
-        .then(data=>data = {city: data.city, country:data.country_code})
+        .then(data=>data = {city: data.city, country:data.country_code?`,${data.country}`:null})
 
 
 export { locationService };

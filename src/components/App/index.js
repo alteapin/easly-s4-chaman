@@ -59,7 +59,7 @@ class App extends Component {
     }
 
     currentDayData(city, country) {
-        const urlCurrent = `http://api.openweathermap.org/data/2.5/weather?APPID=e0911626bb8e9d069605aa705cac6693&q=${city},${country}&units=metric&lang=en`;
+        const urlCurrent = `http://api.openweathermap.org/data/2.5/weather?APPID=e0911626bb8e9d069605aa705cac6693&q=${city}${country}&units=metric&lang=en`;
         fetch(urlCurrent)
             .then(res => res.json())
             .then(data =>
@@ -72,7 +72,7 @@ class App extends Component {
     }
 
     forecastData(city, country) {
-        const urlForecast = `http://api.openweathermap.org/data/2.5/forecast?APPID=e0911626bb8e9d069605aa705cac6693&q=${city},${country}&units=metric&lang=en`;
+        const urlForecast = `http://api.openweathermap.org/data/2.5/forecast?APPID=e0911626bb8e9d069605aa705cac6693&q=${city}${country}&units=metric&lang=en`;
         fetch(urlForecast)
             .then(res => res.json())
             .then(data =>
