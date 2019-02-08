@@ -33,18 +33,43 @@ class App extends Component {
         this.printDayNameNumber = this.printDayNameNumber.bind(this);
     }
 
-    fetchLocation() {
-        ApiServices.locationService()
-            .then(data => console.log(data))
+    fetchGetLocation() {
+        ApiServices.locationService().then(data =>
+            this.setState(
+                {
+                    currentLocation: data
+                },
+                () => {
+                    console.log(data);
+                    const { city, country } = this.state.currentLocation;
+                    this.currentDayData(city, country);
+                    this.forecastData(city, country);
+                }
+            )
+        );
     }
 
     componentDidMount() {
-        this.currentDayData();
+       // this.currentDayData();
         this.randomQuote();
         this.printDayNameNumber();
-        this.fetchLocation();
-        this.forecastData();
+        this.fetchGetLocation();
+      //  this.forecastData();
     }
+    // currentDayData(city, country) {
+    //     const urlCurrent = `http://api.openweathermap.org/data/2.5/weather?APPID=e0911626bb8e9d069605aa705cac6693&q=${city},${country}&units=metric&lang=en`;
+    //     fetch(urlCurrent)
+    //         .then(res => res.json())
+    //         .then(data =>
+    //             this.setState({
+    //                 endpointCurrent: data,
+    //                 loaded: true
+    //             })
+    //         )
+    //         .catch(error => this.setState({ error: error }));
+    // }
+
+
 
     currentDayData() {
         const city = this.state.currentLocation;
