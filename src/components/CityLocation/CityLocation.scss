@@ -1,10 +1,54 @@
 .citylocation {
-    grid-row: 3 / 4;
+    grid-row: 1 / 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 2px 5px;
+
 }
 
-.citylocation-name {
+.location-finder_input {
+    grid-row: 1 / 2;
+    border: none;
+    outline: none;
+    background-color:transparent;
+    font-size: 20px;
     font-family: 'Open Sans', sans-serif;
     color: white;
     text-transform: uppercase;
     margin-top: 0;
+    width: 134px;
+    font-size: 28px;
+}
+
+.location-finder_input::placeholder {
+color: white;
+font-family: 'Open Sans', sans-serif;
+padding-right: 20px;
+}
+
+
+.location-finder_input:hover{
+    text-shadow: 4px -1px 1px #474e5786, 1px 1px 1px #12181d7e, 0px 0px 0px #121c24, 0px 0px 0px #000;
+}
+
+.location-icon {
+    width: 25px;
+    height: 25px;
+    margin-right: 15px;
+}
+
+@media all and (min-width: 768px) {
+    .location-finder_input {
+        width: 200px;
+        font-size: 42px;
+    }
+}
+
+@media all and (min-width: 1200px) {
+    .location-finder_input {
+        width: 180px;
+        font-size: 38px;
+    }
 }

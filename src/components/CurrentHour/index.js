@@ -7,7 +7,7 @@ class CurrentHour extends Component {
     render() {
         return (
             <div>
-                <Clock format="HH:mm" ticking={true} interval={1000} />
+                <Clock className="clock" format="HH:mm" ticking={true} interval={1000} />
             </div>
         );
     }

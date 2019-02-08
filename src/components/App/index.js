@@ -32,6 +32,8 @@ class App extends Component {
         };
 
         this.printDayNameNumber = this.printDayNameNumber.bind(this);
+        this.textInput = React.createRef();
+        this.focusTextInput = this.focusTextInput.bind(this);
     }
 
     fetchGetLocation() {
@@ -112,8 +114,15 @@ class App extends Component {
         });
     }
 
+    focusTextInput() {
+        this.textInput.current.focus();
+    }
+
+
+
     render() {
-        const { endpointCurrent, quoteTxt } = this.state;
+        const { endpointCurrent, quoteTxt, date } = this.state;
+        const {textInput , focusTextInput} = this.props;
         const BgImage = {
             backgroundImage: `url(${snow})`
         };
@@ -125,14 +134,11 @@ class App extends Component {
                     <div className="bg-image container-app">
                         <div className="container-screen" style={BgImage}>
                             <Header
-                                onClickAction={this.showInput}
-                                visibility={this.state.visibility}
-                                date={this.state.date}
-                            />
-                            <Daily
-                                dataWeather={endpointCurrent}
-                                quote={quoteTxt}
-                            />
+                                date={date}
+                                textInput = {textInput}
+                                focusInput = {focusTextInput}
+                                />
+                            <Daily dataWeather={endpointCurrent} quote={quoteTxt} />
                         </div>
                         <WeekDetail />
                         <DailyDetail />
