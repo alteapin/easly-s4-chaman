@@ -10,8 +10,14 @@ import night from "../../images/night.png";
 import snow from "../../images/snow.png";
 import rain from "../../images/rain.png";
 import DailyDetail from "../DailyDetail";
+<<<<<<< HEAD
+//import { forecastService } from "../../services/forecastService";
+//import { currentDayService } from "../../services/currentDayService";
+import { locationService } from "../../services/locationService";
+=======
 import ApiServices from "../../services/apiServices";
 
+>>>>>>> 01f9a2c7759c013507dddfd90348d614ece1df14
 
 class App extends Component {
     constructor(props) {
@@ -51,11 +57,13 @@ class App extends Component {
     }
 
 
+
     componentDidMount() {
         this.randomQuote();
         this.printDayNameNumber();
         this.fetchGetLocation();
     }
+
 
     currentDayData() {
         const { city, country } = this.state.currentLocation;
