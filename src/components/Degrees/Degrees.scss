@@ -6,3 +6,15 @@
 .unit {
     font-size: 90px;
 }
+
+.degrees {
+    font-size: 45px;
+}
+
+
+@media screen and (orientation : landscape) {
+    .container__Degree {
+    margin-top: 10px;
+    }
+
+}
