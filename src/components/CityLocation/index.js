@@ -21,7 +21,10 @@ class CityLocation extends Component {
                         ref = {textInput}
                         placeholder="Madrid"
                         name="location"
-                        onClick = {focusInput}/>
+                        onClick = {focusInput}
+                        onFocus={(e) => e.target.placeholder = ""}
+                        onBlur={(e) => e.target.placeholder = "Name"}
+                        />
                     </label>
                 </form>
             </div>
