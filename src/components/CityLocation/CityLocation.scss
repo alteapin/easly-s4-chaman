@@ -38,3 +38,17 @@ padding-right: 20px;
     height: 25px;
     margin-right: 15px;
 }
+
+@media all and (min-width: 768px) {
+    .location-finder_input {
+        width: 200px;
+        font-size: 42px;
+    }
+}
+
+@media all and (min-width: 1200px) {
+    .location-finder_input {
+        width: 180px;
+        font-size: 38px;
+    }
+}
