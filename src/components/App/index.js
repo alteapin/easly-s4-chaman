@@ -90,13 +90,6 @@ class App extends Component {
         })
     }
 
-<<<<<<< HEAD
-
-
-    render() {
-
-        const { endpointCurrent, quoteTxt } = this.state;
-=======
     focusTextInput() {
         this.textInput.current.focus();
     }
@@ -106,7 +99,6 @@ class App extends Component {
     render() {
         const { endpointCurrent, quoteTxt, date } = this.state;
         const {textInput , focusTextInput} = this.props;
->>>>>>> filterlocation
         const BgImage = {
             backgroundImage: `url(${snow})`
         };
