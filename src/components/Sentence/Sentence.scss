@@ -9,6 +9,16 @@
     text-shadow: -1px -1px 1px #505c6c, 1px 1px 1px #121c24, 0px 0px 0px #121c24, 0px 0px 0px #000;
 }
 
+
+@media screen and (orientation : landscape) {
+    .container__sentence {
+        margin: 45% 0;
+    }
+
+}
+
+
+
 @media all and (min-width: 768px) {
     .container__sentence {
         font-size: 28px;

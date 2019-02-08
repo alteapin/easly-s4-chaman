@@ -47,13 +47,49 @@
 }
 
 .container-screen {
-    height: 100vh;
-    min-height: 480px;
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 2;
-    padding: 10px;
+  height: 100vh;
+  min-height: 480px;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  padding: 10px;
+  min-width: 334px;
+  width: 100%;
+  min-height: 480px;
+  height: 100vh;
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+
+
+@media screen and (orientation : landscape) {
+    .container-screen {
+    max-width: 100vw;
+    max-height: 100vh;
+    }
+
+}
+
+
+
+@media all and (min-width: 768px) {
+  .container-screen {
+    background-size: cover;
+    width: 100%;
+  }
+}
+
+@media all and (min-width: 1020px) {
+  .container-app {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto auto;
+  }
+
+  .container-screen {
+    background-image: url(/static/media/rain.102d717a.png);
+    background-size: 100%;
     min-width: 334px;
     width: 100%;
     min-height: 480px;
