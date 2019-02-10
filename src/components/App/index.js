@@ -168,7 +168,7 @@ class App extends Component {
                             <Daily dataWeather={endpointCurrent} quote={quoteTxt} />
                         </div>
                         <WeekDetail />
-                        <DailyDetail todayInfo={this.state.todayInfo} />
+                        <DailyDetail todayInfo={this.state.todayInfo} actualDate={this.state.date} />
                         <Footer />
                     </div>
                 </div>
