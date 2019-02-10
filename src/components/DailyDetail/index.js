@@ -25,7 +25,8 @@ class DailyDetail extends React.Component {
                          {todayInfo.map((result, key) => {
 
                             return(
-                               <HourData key={key} hour={result.dt_txt} wind={result.wind.speed}/>
+                               <HourData key={key} hour={result.dt_txt} wind={result.wind.speed}
+                               temp={result.main.temp}/>
                             )
 
 
