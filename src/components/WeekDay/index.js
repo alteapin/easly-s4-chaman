@@ -42,7 +42,6 @@ class Weekday extends Component {
         console.log(weekName)
         return weekName;
 
-
     }
 
     render() {
@@ -58,8 +57,8 @@ class Weekday extends Component {
             <div className='week-detail'>
                 <h3 className='weekday'>{this.getDateOfWeek()}</h3>
                 <div className='icon-temp' style={iconTemp}></div>
-                {/* <p className='temp-high'>12º</p>
-                    <p className='temp-low'>5º</p> */}
+                <p className='temp-high'>12º</p>
+                <p className='temp-low'>5º</p>
             </div>
 
         );

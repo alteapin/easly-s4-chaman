@@ -43,7 +43,7 @@ class App extends Component {
                     currentLocation: data
                 },
                 () => {
-                    console.log(data);
+
                     this.currentDayData();
                     this.forecastData();
                 }
@@ -71,18 +71,17 @@ class App extends Component {
     }
 
     groupDateBy(list, keyGetter) {
-        const map = new Map();
+        const listFromDate = new Map();
         list.forEach((item) => {
             const key = item[keyGetter];
-            const collection = map.get(key);
+            const collection = listFromDate.get(key);
             if (!collection) {
-                map.set(key, [item]);
+                listFromDate.set(key, [item]);
             } else {
                 collection.push(item);
             }
-            console.log(map);
         });
-        return map;
+        return listFromDate;
     }
 
     forecastData() {
@@ -96,19 +95,39 @@ class App extends Component {
 
                 const grouped = this.groupDateBy(myList, 'formattedDate');
 
-                const newList = [];
+                const weekList = [];
 
                 grouped.forEach(single => {
-                    newList.push(single[0]);
+                    const hoursForDay = single.length;
+                    const eachMinTemp = single.map(item => {
+                        return item.main.temp_min;
+                    });
+                    const eachMaxTemp = single.map(item => {
+                        return item.main.temp_max;
+                    });
+
+                    const listWithTemp = single.map(item => {
+                        item.tempMax = eachMaxTemp;
+                        item.tempMin = eachMinTemp;
+                        return item;
+                    })
+
+                    console.log('list',listWithTemp);
+                    console.log(single);
+                    console.log(hoursForDay);
+                    console.log(eachMinTemp);
+                    console.log(eachMaxTemp);
+                    weekList.push(single[0]);
                 })
 
-                console.log(newList);
+                console.log('lista-------------------------', myList);
+                console.log('lista foreach de grouped-------------------------', weekList);
 
                 this.setState({
-                    endpointForecast: grouped,
-                    weekForecast: newList,
+                    endpointForecast: myList,
+                    weekForecast: weekList,
                     loaded: true
-                }, () => console.log(grouped))
+                })
             })
             .catch(error => this.setState({ error: error }));
     }
@@ -151,7 +170,6 @@ class App extends Component {
         const BgImage = {
             backgroundImage: `url(${snow})`
         };
-        console.log(this.state.quoteTxt);
 
         if (this.state.loaded) {
             return (
@@ -165,7 +183,7 @@ class App extends Component {
                             />
                             <Daily dataWeather={endpointCurrent} quote={quoteTxt} />
                         </div>
-                        <WeekDetail forecastData={weekForecast}/>
+                        <WeekDetail forecastData={weekForecast} />
                         <DailyDetail />
                         <Footer />
                     </div>

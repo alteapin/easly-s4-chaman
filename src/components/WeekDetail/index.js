@@ -11,7 +11,7 @@ class WeekDetail extends Component {
             <div className='weekDetail-container snow-week'>
                 {
                     forecastData.map(day => (
-                        <WeekDay day={day} />
+                        <WeekDay day={day} key={day.dt} />
                     ))
                 }
             </div>
