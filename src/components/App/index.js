@@ -98,29 +98,23 @@ class App extends Component {
                 const weekList = [];
 
                 grouped.forEach(single => {
-                    const hoursForDay = single.length;
-                    const eachMinTemp = single.map(item => {
-                        return item.main.temp_min;
-                    });
-                    const eachMaxTemp = single.map(item => {
-                        return item.main.temp_max;
+                    let minTmp = single[0].main.temp_min;
+                    let maxTmp = single[0].main.temp_max;
+                    single.forEach(item => {
+                        const min = item.main.temp_min;
+                        const max = item.main.temp_max;
+                        if (min < minTmp) {
+                            minTmp = min;
+                        }
+                        if (max > maxTmp) {
+                            maxTmp = max;
+                        }
                     });
 
-                    const listWithTemp = single.map(item => {
-                        item.tempMax = eachMaxTemp;
-                        item.tempMin = eachMinTemp;
-                        return item;
-                    })
-
-                    console.log('list',listWithTemp);
-                    console.log(single);
-                    console.log(hoursForDay);
-                    console.log(eachMinTemp);
-                    console.log(eachMaxTemp);
+                    single[0].minTmp = Math.round(minTmp);
+                    single[0].maxTmp =  Math.round(maxTmp);
                     weekList.push(single[0]);
                 })
-
-                console.log('lista-------------------------', myList);
                 console.log('lista foreach de grouped-------------------------', weekList);
 
                 this.setState({

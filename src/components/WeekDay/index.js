@@ -47,18 +47,18 @@ class Weekday extends Component {
     render() {
         const { day } = this.props;
 
-        const iconTemp = {
+        const iconTmp = {
             backgroundImage: `url(${this.showIcon()})`
         };
         console.log(day);
 
         return (
 
-            <div className='week-detail'>
+            <div className='week-detail current_weekday'>
                 <h3 className='weekday'>{this.getDateOfWeek()}</h3>
-                <div className='icon-temp' style={iconTemp}></div>
-                <p className='temp-high'>12º</p>
-                <p className='temp-low'>5º</p>
+                <div className='icon-temp' style={iconTmp}></div>
+                <p className='temp-high'>{day.maxTmp}ºC</p>
+                <p className='temp-low'>{day.minTmp}ºC</p>
             </div>
 
         );
