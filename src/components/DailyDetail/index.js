@@ -22,10 +22,10 @@ class DailyDetail extends React.Component {
                 <table className="dailyDetail__table">
                     <HeadBoard />
                     <tbody>
-                         {todayInfo.map(result => {
+                         {todayInfo.map((result, key) => {
 
                             return(
-                               <HourData hour={result.dt_txt}/>
+                               <HourData key={key} hour={result.dt_txt} wind={result.wind.speed}/>
                             )
 
 
