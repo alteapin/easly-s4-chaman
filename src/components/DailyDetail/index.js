@@ -26,7 +26,7 @@ class DailyDetail extends React.Component {
 
                             return(
                                <HourData key={key} hour={result.dt_txt} wind={result.wind.speed}
-                               temp={result.main.temp}/>
+                               temp={result.main.temp} rain={result.weather[0].description}/>
                             )
 
 

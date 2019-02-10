@@ -24,7 +24,7 @@ class App extends Component {
             selectedDay: "",
             selectedLocation: "",
             currentLocation: {},
-            joana: '',
+            forecastInf: '',
             todayInfo: ''
         };
 
@@ -88,7 +88,7 @@ class App extends Component {
         ApiServices.forecastService(city, country)
             .then(data => {
                 this.setState({
-                    joana: data
+                    forecastInf: data
                 })
                 const myList = data.list.map(item => {
                     item.formattedDate = item.dt_txt.slice(0, 10);
@@ -135,7 +135,7 @@ class App extends Component {
     }
 
     paintDayDetail() {
-        const dailyDetailInfo = this.state.joana.list;
+        const dailyDetailInfo = this.state.forecastInf.list;
 
         const todayInfo = dailyDetailInfo.slice(0, 8);
 
