@@ -7,40 +7,10 @@ import './DailyDetail.scss';
 
 
 class DailyDetail extends React.Component {
-    //     constructor(props) {
-    //         super(props);
-    //         this.state = {
-    //             data: '',
-    //             loaded: false,
-    //             error: '',
-    //         };
-    //     }
-
-    //     fetchApi() {
-    //         fetch('http://api.openweathermap.org/data/2.5/forecast?APPID=e0911626bb8e9d069605aa705cac6693&id=6359304&units=metric&lang=es%E2%80%9C')
-    //             .then(res => res.json())
-    //             .then(data =>
-    //                 this.setState({
-    //                     data: data,
-    //                     loaded: true
-    //                 })
-    //             )
-    //             .catch(error => this.setState({ error: error }));
-    //     }
-    //     componentDidMount() {
-    //         this.fetchApi();
-    //        this.currentDayDetail();
-    //     }
-    //    currentDayDetail() {
-    //         if(this.setState.loaded === true){
-    //          const apiInfo = this.state.data.list.map(day =>
-    //             day.dt_txt)}
-    //         }
-
 
     render() {
-        // console.log('info',this.state.data);
-        // console.log('hora', this.apiInfo);
+        const {todayInfo} = this.props;
+        console.log('daily props', todayInfo);
         return (
             <div className='infoDaily-Detail snow-daily'>
                 <h3 className='title-detail'>Detailed information:<span className='table_title-day'> 6 Feb</span></h3>
