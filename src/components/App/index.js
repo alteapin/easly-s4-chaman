@@ -27,6 +27,7 @@ class App extends Component {
             date: "",
             theme: "",
             selectedDay: "",
+            activeDay: "",
             selectedLocation: "",
             currentLocation: {},
         };
@@ -34,6 +35,7 @@ class App extends Component {
         this.printDayNameNumber = this.printDayNameNumber.bind(this);
         this.textInput = React.createRef();
         this.focusTextInput = this.focusTextInput.bind(this);
+        this.onDayClick = this.onDayClick.bind(this);
     }
 
     fetchGetLocation() {
@@ -112,7 +114,7 @@ class App extends Component {
                     });
 
                     single[0].minTmp = Math.round(minTmp);
-                    single[0].maxTmp =  Math.round(maxTmp);
+                    single[0].maxTmp = Math.round(maxTmp);
                     weekList.push(single[0]);
                 })
                 console.log('lista foreach de grouped-------------------------', weekList);
@@ -120,7 +122,9 @@ class App extends Component {
                 this.setState({
                     endpointForecast: myList,
                     weekForecast: weekList,
-                    loaded: true
+                    loaded: true,
+                    activeDay: weekList[0],
+
                 })
             })
             .catch(error => this.setState({ error: error }));
@@ -156,10 +160,15 @@ class App extends Component {
         this.textInput.current.focus();
     }
 
+    onDayClick(day) {
+        this.setState({
+            activeDay: day
+        })
+    }
 
 
     render() {
-        const { endpointCurrent, quoteTxt, date, weekForecast } = this.state;
+        const { endpointCurrent, quoteTxt, date, weekForecast, activeDay} = this.state;
         const { textInput, focusTextInput } = this.props;
         const BgImage = {
             backgroundImage: `url(${snow})`
@@ -177,7 +186,7 @@ class App extends Component {
                             />
                             <Daily dataWeather={endpointCurrent} quote={quoteTxt} />
                         </div>
-                        <WeekDetail forecastData={weekForecast} />
+                        <WeekDetail forecastData={weekForecast} onDayClick={this.onDayClick} activeDay={activeDay}/>
                         <DailyDetail />
                         <Footer />
                     </div>
