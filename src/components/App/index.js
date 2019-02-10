@@ -117,6 +117,7 @@ class App extends Component {
                     single[0].maxTmp = Math.round(maxTmp);
                     weekList.push(single[0]);
                 })
+                console.log('para joa', myList);
                 console.log('lista foreach de grouped-------------------------', weekList);
 
                 this.setState({
