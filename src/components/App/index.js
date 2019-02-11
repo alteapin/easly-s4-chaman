@@ -5,13 +5,9 @@ import Header from "../Header/index";
 import Footer from "../Footer";
 import WeekDetail from "../WeekDetail";
 import arrayQuotes from "../arrayQuotes";
-import sun from "../../images/sun.png";
-import night from "../../images/night.png";
-import snow from "../../images/snow.png";
-import rain from "../../images/rain.png";
 import DailyDetail from "../DailyDetail";
+import { themeWeather } from "../data/bg";
 import ApiServices from "../../services/apiServices";
-
 
 class App extends Component {
     constructor(props) {
@@ -28,29 +24,36 @@ class App extends Component {
             theme: "",
             selectedDay: "",
             selectedLocation: "",
-            currentLocation: {},
+            currentLocation: {}
         };
 
         this.printDayNameNumber = this.printDayNameNumber.bind(this);
         this.textInput = React.createRef();
         this.focusTextInput = this.focusTextInput.bind(this);
+        this.onChangeCity = this.onChangeCity.bind(this);
+        this.getCurrentLocation = this.getCurrentLocation.bind(this);
     }
 
     fetchGetLocation() {
         ApiServices.locationService().then(data =>
             this.setState(
                 {
-                    currentLocation: data
+                    currentLocation: data,
+                    selectedLocation: data
                 },
                 () => {
+<<<<<<< HEAD
 
                     this.currentDayData();
                     this.forecastData();
+=======
+                    this.currentDayData(data.city, data.country);
+                    this.forecastData(data.city, data.country);
+>>>>>>> 8cab168b0918f0b6d3415b1f4ce22d8dfc581c2a
                 }
             )
         );
     }
-
 
     componentDidMount() {
         this.randomQuote();
@@ -58,8 +61,7 @@ class App extends Component {
         this.fetchGetLocation();
     }
 
-    currentDayData() {
-        const { city, country } = this.state.currentLocation;
+    currentDayData(city, country) {
         ApiServices.currentDayService(city, country)
             .then(data =>
                 this.setState({
@@ -71,8 +73,13 @@ class App extends Component {
     }
 
     groupDateBy(list, keyGetter) {
+<<<<<<< HEAD
         const listFromDate = new Map();
         list.forEach((item) => {
+=======
+        const map = new Map();
+        list.forEach(item => {
+>>>>>>> 8cab168b0918f0b6d3415b1f4ce22d8dfc581c2a
             const key = item[keyGetter];
             const collection = listFromDate.get(key);
             if (!collection) {
@@ -84,13 +91,13 @@ class App extends Component {
         return listFromDate;
     }
 
-    forecastData() {
-        const { city, country } = this.state.currentLocation;
+    forecastData(city, country) {
         ApiServices.forecastService(city, country)
             .then(data => {
                 const myList = data.list.map(item => {
                     item.formattedDate = item.dt_txt.slice(0, 10);
                     return item;
+<<<<<<< HEAD
                 })
 
                 const grouped = this.groupDateBy(myList, 'formattedDate');
@@ -122,10 +129,21 @@ class App extends Component {
                     weekForecast: weekList,
                     loaded: true
                 })
+=======
+                });
+
+                const grouped = this.groupDateBy(myList, "formattedDate");
+                this.setState(
+                    {
+                        endpointForecast: grouped,
+                        loaded: true
+                    },
+                    () => console.log(grouped)
+                );
+>>>>>>> 8cab168b0918f0b6d3415b1f4ce22d8dfc581c2a
             })
             .catch(error => this.setState({ error: error }));
     }
-
 
     randomQuote() {
         const random =
@@ -156,13 +174,48 @@ class App extends Component {
         this.textInput.current.focus();
     }
 
+    onChangeCity(e) {
+        if (e) {
+            const newCurrentLocation = {
+                city: e.value,
+                country: `,${e.codeCountry}`
+            };
+            this.currentDayData(e.value, `,${e.codeCountry}`);
+            this.forecastData(e.value, `,${e.codeCountry}`);
+            this.setState({
+                selectedLocation: newCurrentLocation
+            });
+        } else if (!e) {
+            this.currentDayData(
+                `${this.state.currentLocation.city},${
+                    this.state.currentLocation.country
+                }`
+            );
+        } else {
+            return console.log("error");
+        }
+    }
 
+    getCurrentLocation() {
+        this.fetchGetLocation();
+        this.onChangeCity();
+    }
 
     render() {
+<<<<<<< HEAD
         const { endpointCurrent, quoteTxt, date, weekForecast } = this.state;
+=======
+        const {
+            endpointCurrent,
+            quoteTxt,
+            date,
+            currentLocation,
+            selectedLocation
+        } = this.state;
+>>>>>>> 8cab168b0918f0b6d3415b1f4ce22d8dfc581c2a
         const { textInput, focusTextInput } = this.props;
         const BgImage = {
-            backgroundImage: `url(${snow})`
+            backgroundImage: `url(${themeWeather.snow})`
         };
 
         if (this.state.loaded) {
@@ -171,11 +224,18 @@ class App extends Component {
                     <div className="bg-image container-app">
                         <div className="container-screen" style={BgImage}>
                             <Header
+                                getCurrentLocation={this.getCurrentLocation}
+                                currentLocation={currentLocation}
+                                selectedLocation={selectedLocation}
                                 date={date}
                                 textInput={textInput}
                                 focusInput={focusTextInput}
+                                onChangeCity={this.onChangeCity}
                             />
-                            <Daily dataWeather={endpointCurrent} quote={quoteTxt} />
+                            <Daily
+                                dataWeather={endpointCurrent}
+                                quote={quoteTxt}
+                            />
                         </div>
                         <WeekDetail forecastData={weekForecast} />
                         <DailyDetail />
