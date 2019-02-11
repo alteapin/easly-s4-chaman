@@ -22,10 +22,11 @@ class App extends Component {
             quoteTxt: "",
             date: "",
             theme: "",
-            selectedDay: "",
             activeDay: "",
             selectedLocation: "",
-            currentLocation: {}
+            currentLocation: {},
+            forecastInf: '',
+            todayInfo: ''
         };
 
         this.printDayNameNumber = this.printDayNameNumber.bind(this);
@@ -34,6 +35,7 @@ class App extends Component {
         this.onChangeCity = this.onChangeCity.bind(this);
         this.getCurrentLocation = this.getCurrentLocation.bind(this);
         this.onDayClick = this.onDayClick.bind(this);
+        this.paintDayDetail = this.paintDayDetail.bind(this);
     }
 
     fetchGetLocation() {
@@ -85,11 +87,14 @@ class App extends Component {
     forecastData(city, country) {
         ApiServices.forecastService(city, country)
             .then(data => {
+                this.setState({
+                    forecastInf: data
+                })
                 const myList = data.list.map(item => {
                     item.formattedDate = item.dt_txt.slice(0, 10);
                     return item;
                 })
-
+                this.paintDayDetail();
                 const grouped = this.groupDateBy(myList, 'formattedDate');
 
                 const weekList = [];
@@ -182,6 +187,16 @@ class App extends Component {
             activeDay: day
         })
     }
+    paintDayDetail() {
+        const dailyDetailInfo = this.state.forecastInf.list;
+
+        const todayInfo = dailyDetailInfo.slice(0, 8);
+
+        this.setState({
+            todayInfo: todayInfo
+        })
+    }
+
 
     getCurrentLocation() {
         this.fetchGetLocation();
@@ -205,6 +220,7 @@ class App extends Component {
         };
 
         if (this.state.loaded) {
+
             return (
                 <div className="App snow">
                     <div className="bg-image container-app">
@@ -224,7 +240,8 @@ class App extends Component {
                             />
                         </div>
                         <WeekDetail forecastData={weekForecast} onDayClick={this.onDayClick} activeDay={activeDay}/>
-                        <DailyDetail />
+                        <DailyDetail todayInfo={this.state.todayInfo} actualDate={this.state.date} />
+
                         <Footer />
                     </div>
                 </div>
