@@ -8,6 +8,7 @@ import arrayQuotes from '../arrayQuotes';
 import DailyDetail from '../DailyDetail';
 import {themeWeather} from '../data/bg';
 import ApiServices from '../../services/apiServices';
+import Loading from '../Loading/index';
 
 class App extends Component {
     constructor(props) {
@@ -174,7 +175,9 @@ class App extends Component {
                 </div>
             );
         } else {
-            return false;
+            return (
+                <Loading />
+            );
         }
     }
 }
