@@ -43,6 +43,7 @@ class App extends Component {
         this.getCurrentLocation = this.getCurrentLocation.bind(this);
         this.onDayClick = this.onDayClick.bind(this);
         this.paintDayDetail = this.paintDayDetail.bind(this);
+        this.defaultDetailInfo = this.defaultDetailInfo.bind(this);
     }
 
     fetchGetLocation() {
@@ -157,6 +158,7 @@ class App extends Component {
                     item.formattedDate = item.dt_txt.slice(0, 10);
                     return item;
                 })
+                this.defaultDetailInfo();
 
                 const grouped = this.groupDateBy(myList, 'formattedDate');
 
@@ -249,6 +251,15 @@ class App extends Component {
             activeDay: day
         },() => this.paintDayDetail());
     }
+
+    defaultDetailInfo() {
+        const currentInfo = this.state.forecastInf.list;
+        const defaultInfo = currentInfo.slice(0, 8);
+        this.setState({
+            todayInfo: defaultInfo
+        })
+    }
+
     paintDayDetail() {
         const daySelected = this.state.activeDay.dt_txt;
         const indexSelected = this.state.forecastInf.list.map(item => {
@@ -256,11 +267,8 @@ class App extends Component {
             return indexdate;
         })
         const index = indexSelected.indexOf(daySelected);
-        const secondIndex = index + 7;
+        const secondIndex = index + 8;
         const dailyDetailInfo = this.state.forecastInf.list;
-
-
-
 
         const todayInfo = dailyDetailInfo.slice(index, secondIndex);
         this.setState({
