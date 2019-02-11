@@ -332,7 +332,7 @@ class App extends Component {
                             />
                         </div>
                         <WeekDetail forecastData={weekForecast} onDayClick={this.onDayClick} activeDay={activeDay} animation={animationDetail}/>
-                        <DailyDetail todayInfo={this.state.todayInfo} actualDate={this.state.date} animation={animationDetail}/>
+                        <DailyDetail todayInfo={this.state.todayInfo} activeDay={this.state.activeDay} animation={animationDetail}/>
 
                         <Footer />
                     </div>
