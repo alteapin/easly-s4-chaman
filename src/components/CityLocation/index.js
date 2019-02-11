@@ -3,6 +3,12 @@ import "./CityLocation.scss";
 import AsyncSelect from "react-select/lib/Async";
 import compass from "../../icons/compass.png";
 
+
+const customStyles = {
+    dropdownIndicator: ()=>({display:'none'}),
+    indicatorSeparator:()=>({display:'none'})
+  }
+
 class CityLocation extends Component {
     getAsyncOptions(inputValue) {
         return new Promise((resolve, reject) => {
@@ -33,10 +39,7 @@ class CityLocation extends Component {
 
     render() {
         const {
-            textInput,
-            focusInput,
             onChangeCity,
-            currentLocation,
             getCurrentLocation,
             selectedLocation
         } = this.props;
@@ -50,6 +53,8 @@ class CityLocation extends Component {
                     onClick={getCurrentLocation}
                 />
                 <AsyncSelect
+                 styles={customStyles}
+                    arrowRenderer={()=>null}
                     onChange={onChangeCity}
                     value={`${selectedLocation.city} ${
                         selectedLocation.country
@@ -59,10 +64,9 @@ class CityLocation extends Component {
                     } `}
                     escapeClearsValue={true}
                     captureMenuScroll={true}
-                    defaultOptions
                     autoFocus
                     name="search"
-                    loadOptions={inputValue => this.getAsyncOptions(inputValue)}
+                    loadOptions={this.getAsyncOptions}
                     className="react-select-container"
                     classNamePrefix="react-select"
                     theme={theme => ({
@@ -71,28 +75,14 @@ class CityLocation extends Component {
 
                         colors: {
                             ...theme.colors,
-                            primary25: "#F7F5F4", //elegido en lista
-                            primary: "transparent", //borde caja
-                            neutral0: "transparent", //color de fondo
+                            primary25: "#F7F5F4", //selected in list
+                            primary: "transparent", //border box
+                            neutral0: "transparent", //color background
                             neutral80: "white", //cursor
-                            neutral50: "white" //texto interior
+                            neutral50: "white" //text inside
                         }
                     })}
                 />
-                {/* <form>
-                    <label name="location">
-                        <input
-                        className="location-finder_input"
-                        type="text"
-                        ref = {textInput}
-                        placeholder="Madrid"
-                        name="location"
-                        onClick = {focusInput}
-                        onFocus={(e) => e.target.placeholder = ""}
-                        onBlur={(e) => e.target.placeholder = "Madrid"}
-                        />
-                    </label>
-                </form> */}
             </div>
         );
     }

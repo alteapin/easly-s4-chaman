@@ -2,15 +2,13 @@ import React, { Component } from "react";
 import Daily from "../Daily";
 import "./App.scss";
 import Header from "../Header/index";
-import Footer from '../Footer';
-import WeekDetail from '../WeekDetail';
-import arrayQuotes from '../arrayQuotes';
-import DailyDetail from '../DailyDetail';
-import { themeWeather } from '../data/bg';
-import ApiServices from '../../services/apiServices';
-
-
-
+import Footer from "../Footer";
+import WeekDetail from "../WeekDetail";
+import arrayQuotes from "../arrayQuotes";
+import DailyDetail from "../DailyDetail";
+import { themeWeather } from "../data/bg";
+import Error from "../Error"
+import ApiServices from "../../services/apiServices";
 
 class App extends Component {
     constructor(props) {
@@ -21,7 +19,7 @@ class App extends Component {
             weekForecast: [],
             loadedCurrent: true,
             loadedForecast: true,
-            error: "",
+            error:false,
             quoteTxt: "",
             date: "",
             theme: "",
@@ -47,18 +45,23 @@ class App extends Component {
     }
 
     fetchGetLocation() {
-        ApiServices.locationService().then(data =>
+        ApiServices.locationService()
+        .then(data =>
             this.setState(
                 {
                     currentLocation: data,
                     selectedLocation: data
+
                 },
                 () => {
                     this.currentDayData(data.city, data.country);
                     this.forecastData(data.city, data.country);
                 }
             )
-        );
+        )
+        .catch(error=>(this.setState({
+            error:error,
+        })));
     }
 
     componentDidMount() {
@@ -134,20 +137,6 @@ class App extends Component {
             .catch(error => this.setState({ error: error }));
     }
 
-    groupDateBy(list, keyGetter) {
-        const listFromDate = new Map();
-        list.forEach((item) => {
-            const key = item[keyGetter];
-            const collection = listFromDate.get(key);
-            if (!collection) {
-                listFromDate.set(key, [item]);
-            } else {
-                collection.push(item);
-            }
-        });
-        return listFromDate;
-    }
-
     forecastData(city, country) {
         ApiServices.forecastService(city, country)
             .then(data => {
@@ -194,6 +183,22 @@ class App extends Component {
             })
             .catch(error => this.setState({ error: error }));
     }
+
+    groupDateBy(list, keyGetter) {
+        const listFromDate = new Map();
+        list.forEach((item) => {
+            const key = item[keyGetter];
+            const collection = listFromDate.get(key);
+            if (!collection) {
+                listFromDate.set(key, [item]);
+            } else {
+                collection.push(item);
+            }
+        });
+        return listFromDate;
+    }
+
+
 
     randomQuote() {
         const random =
@@ -282,9 +287,11 @@ class App extends Component {
         this.onChangeCity();
     }
 
-    render() {
 
+
+    render() {
         const {
+            error,
             endpointCurrent,
             quoteTxt,
             date,
@@ -303,7 +310,6 @@ class App extends Component {
             backgroundImage: `url(${theme})`
         };
 
-        if (this.state.loaded) {
 
             return (
                 <div className={`App ${animation}`}>
@@ -332,10 +338,9 @@ class App extends Component {
                     </div>
                 </div>
             );
-        } else {
-            return false;
-        }
-    }
+
+
+}
 }
 
 export default App;
