@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import './WeekDetail.scss';
 import WeekDay from '../WeekDay';
-import Cloud from '../../icons/cloud.svg';
-import Snow from '../../icons/snow.svg';
-import Sun from '../../icons/sun.svg';
 
 class WeekDetail extends Component {
+
     render() {
+        const { forecastData, onDayClick, activeDay } = this.props;
+
+
         return (
             <div className='weekDetail-container snow-week'>
-                <WeekDay day='Tue' icon={Cloud} currentDay='current_weekday' />
-                <WeekDay day='Wed' icon={Snow} />
-                <WeekDay day='Thu' icon={Sun} />
-                <WeekDay day='Fri' icon={Sun} />
-                <WeekDay day='Sat' icon={Cloud} />
+                {
+                    forecastData.map(day => (
+                        <WeekDay day={day} key={day.dt} activeDay={activeDay} onDayClick={onDayClick} />
+                    ))
+                }
             </div>
         );
     }
