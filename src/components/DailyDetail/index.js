@@ -1,6 +1,7 @@
 import React from 'react';
 import HourData from '../HourData';
 import HeadBoard from '../HeadBoard';
+import Moment from 'moment';
 import './DailyDetail.scss';
 
 
@@ -8,9 +9,16 @@ import './DailyDetail.scss';
 
 class DailyDetail extends React.Component {
 
+    paintDate(){
+        let objDate = new Date(this.props.activeDay.dt_txt);
+        let d = Moment(objDate);
+        d.month();
+        return d.format('ddd MMM DD YYYY')
+    }
+
     render() {
         const {todayInfo, animation} = this.props;
-        console.log('daily props', todayInfo);
+
         if(todayInfo.length === 0) {
             return(
                 <p>Buscando resultados</p>
@@ -18,7 +26,7 @@ class DailyDetail extends React.Component {
         } else {
         return (
             <div className={`infoDaily-Detail ${animation}`}>
-                <h3 className='title-detail'>Detailed information:<span className='table_title-day'> {this.props.activeDay.formattedDate}</span></h3>
+                <h3 className='title-detail'>Detailed information:<span className='table_title-day'> {this.paintDate()}</span></h3>
                 <table className="dailyDetail__table">
                     <HeadBoard />
                     <tbody>
