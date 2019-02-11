@@ -8,6 +8,7 @@ import arrayQuotes from '../arrayQuotes';
 import DailyDetail from '../DailyDetail';
 import {themeWeather} from '../data/bg';
 import ApiServices from '../../services/apiServices';
+import BgLogic from '../BgLogic/index';
 
 
 
@@ -23,6 +24,7 @@ class App extends Component {
             quoteTxt: "",
             date: "",
             theme: "",
+            animation: "",
             selectedDay: "",
             selectedLocation: "",
             currentLocation: {},
@@ -32,6 +34,8 @@ class App extends Component {
         this.printDayNameNumber = this.printDayNameNumber.bind(this);
         this.textInput = React.createRef();
         this.focusTextInput = this.focusTextInput.bind(this);
+        // this.changeBg = this.changeBg.bind(this);
+
     }
 
     fetchGetLocation() {
@@ -55,6 +59,7 @@ class App extends Component {
         this.randomQuote();
         this.printDayNameNumber();
         this.fetchGetLocation();
+        // this.changeBg();
 
     }
 
@@ -115,13 +120,44 @@ class App extends Component {
         this.textInput.current.focus();
     }
 
+//     changeBg() {
+//         const { endpointCurrent } = this.state.endpointCurrent;
 
-    changeBackground ()  {
-        const currentUtc = this.state.endpointCurrent;
-        console.log('ey', currentUtc)
-    }
+//         if (endpointCurrent.dt > endpointCurrent.sys.sunset && endpointCurrent.dt < endpointCurrent.sys.sunrise) {
+//             this.setState(
+//                 {
+//                     theme: themeWeather.night,
+//                     animation: 'night'
+//                 }
+//             )
+//         } else {
 
+//             if (endpointCurrent.clouds.all > 20) {
+//                 this.setState(
+//                     {
+//                         theme: themeWeather.rain,
+//                         animation: 'rain'
+//                     }
+//                 )
+//             } else if
+//                 (endpointCurrent.main.temp > 18) {
+//                 this.setState(
+//                     {
+//                         theme: themeWeather.sun,
+//                         animation: 'sun'
+//                     }
+//                 )
+//         } else {
+//             this.setState(
+//                 {
+//                     theme: themeWeather.snow,
+//                     animation: 'snow'
+//                 }
+//             )
+//         }
+//     }
 
+// }
 
 
 
@@ -139,10 +175,13 @@ class App extends Component {
                 <div className="App snow">
                     <div className="bg-image container-app">
                         <div className="container-screen" style={BgImage}>
+                        <BgLogic
+                        endpointCurrent = {endpointCurrent} />
                             <Header
                                 date={date}
                                 textInput = {textInput}
                                 focusInput = {focusTextInput}
+
                                 />
                             <Daily dataWeather={endpointCurrent} quote={quoteTxt} />
                         </div>
