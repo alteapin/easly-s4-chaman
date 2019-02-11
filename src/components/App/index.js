@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import Daily from "../Daily";
 import "./App.scss";
 import Header from "../Header/index";
-import Footer from "../Footer";
-import WeekDetail from "../WeekDetail";
-import arrayQuotes from "../arrayQuotes";
-import DailyDetail from "../DailyDetail";
-import { themeWeather } from "../data/bg";
-import ApiServices from "../../services/apiServices";
+import Footer from '../Footer';
+import WeekDetail from '../WeekDetail';
+import arrayQuotes from '../arrayQuotes';
+import DailyDetail from '../DailyDetail';
+import { themeWeather } from '../data/bg';
+import ApiServices from '../../services/apiServices';
+
+
+
 
 class App extends Component {
     constructor(props) {
@@ -26,7 +29,11 @@ class App extends Component {
             selectedLocation: "",
             currentLocation: {},
             forecastInf: '',
-            todayInfo: ''
+            todayInfo: '',
+            animation: "",
+            animationDetail: "",
+            selectedDay: "",
+            CurrentHour: ""
         };
 
         this.printDayNameNumber = this.printDayNameNumber.bind(this);
@@ -59,12 +66,68 @@ class App extends Component {
         this.fetchGetLocation();
     }
 
+    changeBackground(a, b, c, d) {
+        if (a < b && a > c) {
+            return themeWeather.night
+        } else {
+            if (d.includes('clear sky', 'few clouds', 'scattered clouds')) {
+                return themeWeather.sun
+            } else if (d.includes('broken clouds', 'shower rain', 'rain', 'thunderstorm', 'drizzle')) {
+                return themeWeather.rain
+            } else if (d.includes('snow')) {
+                return themeWeather.snow
+            } else {
+                return themeWeather.sun
+            }
+
+        }
+    }
+
+    changeAnimation(a, b, c, d) {
+        if (a < b && a > c) {
+            return 'night'
+        } else {
+            if (d.includes('clear sky', 'few clouds', 'scattered clouds')) {
+                return 'sun'
+            } else if (d.includes('broken clouds', 'shower rain', 'rain', 'thunderstorm', 'drizzle')) {
+                return 'rain'
+            } else if (d.includes('snow')) {
+                return 'snow'
+            } else {
+                return 'sun'
+            }
+
+        }
+    }
+
+    changeAnimationDetail(a, b, c, d) {
+        if (a < b && a > c) {
+            return 'night-detail'
+        } else {
+            if (d.includes('clear sky', 'few clouds', 'scattered clouds')) {
+                return 'sun-detail'
+            } else if (d.includes('broken clouds', 'shower rain', 'rain', 'thunderstorm', 'drizzle')) {
+                return 'rain-detail'
+            } else if (d.includes('snow')) {
+                return 'snow-detail'
+            } else {
+                return 'sun-detail'
+            }
+
+        }
+    }
+
+
     currentDayData(city, country) {
+
         ApiServices.currentDayService(city, country)
             .then(data =>
                 this.setState({
                     endpointCurrent: data,
-                    loaded: true
+                    loaded: true,
+                    theme: this.changeBackground(data.dt, data.sys.sunrise, data.sys.sunset, data.weather[0].description),
+                    animation: this.changeAnimation(data.dt, data.sys.sunrise, data.sys.sunset, data.weather[0].description),
+                    animationDetail: this.changeAnimationDetail(data.dt, data.sys.sunrise, data.sys.sunset, data.weather[0].description)
                 })
             )
             .catch(error => this.setState({ error: error }));
@@ -220,19 +283,25 @@ class App extends Component {
             currentLocation,
             selectedLocation,
             weekForecast,
-            activeDay
+            activeDay,
+            animation,
+            animationDetail,
+            theme
         } = this.state;
+
         const { textInput, focusTextInput } = this.props;
+
         const BgImage = {
-            backgroundImage: `url(${themeWeather.snow})`
+            backgroundImage: `url(${theme})`
         };
 
         if (this.state.loaded) {
 
             return (
-                <div className="App snow">
+                <div className={`App ${animation}`}>
                     <div className="bg-image container-app">
                         <div className="container-screen" style={BgImage}>
+
                             <Header
                                 getCurrentLocation={this.getCurrentLocation}
                                 currentLocation={currentLocation}
@@ -245,10 +314,11 @@ class App extends Component {
                             <Daily
                                 dataWeather={endpointCurrent}
                                 quote={quoteTxt}
+
                             />
                         </div>
-                        <WeekDetail forecastData={weekForecast} onDayClick={this.onDayClick} activeDay={activeDay}/>
-                        <DailyDetail todayInfo={this.state.todayInfo} actualDate={this.state.date} />
+                        <WeekDetail forecastData={weekForecast} onDayClick={this.onDayClick} activeDay={activeDay} animation={animationDetail}/>
+                        <DailyDetail todayInfo={this.state.todayInfo} actualDate={this.state.date} animation={animationDetail}/>
 
                         <Footer />
                     </div>
