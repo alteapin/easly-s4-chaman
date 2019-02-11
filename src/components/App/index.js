@@ -6,7 +6,7 @@ import Footer from '../Footer';
 import WeekDetail from '../WeekDetail';
 import arrayQuotes from '../arrayQuotes';
 import DailyDetail from '../DailyDetail';
-import {themeWeather} from '../data/bg';
+import { themeWeather } from '../data/bg';
 import ApiServices from '../../services/apiServices';
 
 
@@ -62,15 +62,15 @@ class App extends Component {
         this.fetchGetLocation();
     }
 
-    changeBackground (a, b, c, d) {
+    changeBackground(a, b, c, d) {
         if (a < b && a > c) {
             return themeWeather.night
         } else {
             if (d.includes('clear sky', 'few clouds', 'scattered clouds')) {
                 return themeWeather.sun
-            } else if  (d.includes( 'broken clouds', 'shower rain', 'rain', 'thunderstorm', 'drizzle')){
+            } else if (d.includes('broken clouds', 'shower rain', 'rain', 'thunderstorm', 'drizzle')) {
                 return themeWeather.rain
-            } else if (d.includes('snow')){
+            } else if (d.includes('snow')) {
                 return themeWeather.snow
             } else {
                 return themeWeather.sun
@@ -79,15 +79,15 @@ class App extends Component {
         }
     }
 
-    changeAnimation (a, b, c, d) {
+    changeAnimation(a, b, c, d) {
         if (a < b && a > c) {
             return 'night'
         } else {
             if (d.includes('clear sky', 'few clouds', 'scattered clouds')) {
                 return 'sun'
-            } else if  (d.includes( 'broken clouds', 'shower rain', 'rain', 'thunderstorm', 'drizzle')){
+            } else if (d.includes('broken clouds', 'shower rain', 'rain', 'thunderstorm', 'drizzle')) {
                 return 'rain'
-            } else if (d.includes('snow')){
+            } else if (d.includes('snow')) {
                 return 'snow'
             } else {
                 return 'sun'
@@ -96,15 +96,15 @@ class App extends Component {
         }
     }
 
-    changeAnimationDetail (a, b, c, d) {
+    changeAnimationDetail(a, b, c, d) {
         if (a < b && a > c) {
             return 'night-detail'
         } else {
             if (d.includes('clear sky', 'few clouds', 'scattered clouds')) {
                 return 'sun-detail'
-            } else if  (d.includes( 'broken clouds', 'shower rain', 'rain', 'thunderstorm', 'drizzle')){
+            } else if (d.includes('broken clouds', 'shower rain', 'rain', 'thunderstorm', 'drizzle')) {
                 return 'rain-detail'
-            } else if (d.includes('snow')){
+            } else if (d.includes('snow')) {
                 return 'snow-detail'
             } else {
                 return 'sun-detail'
@@ -132,16 +132,16 @@ class App extends Component {
     forecastData() {
         const { city, country } = this.state.currentLocation;
         ApiServices.forecastService(city, country)
-        .then(data =>
-            this.setState(
-                {
-                    endpointForecast: data,
-                    loaded: true
-                },
-                () => console.log(data)
+            .then(data =>
+                this.setState(
+                    {
+                        endpointForecast: data,
+                        loaded: true
+                    },
+                    () => console.log(data)
+                )
             )
-        )
-        .catch(error => this.setState({ error: error }));
+            .catch(error => this.setState({ error: error }));
     }
 
     randomQuote() {
@@ -179,7 +179,7 @@ class App extends Component {
 
     render() {
         const { endpointCurrent, quoteTxt, date, theme, animation, animationDetail } = this.state;
-        const {textInput , focusTextInput} = this.props;
+        const { textInput, focusTextInput } = this.props;
         const BgImage = {
             backgroundImage: `url(${theme})`
         };
@@ -193,17 +193,17 @@ class App extends Component {
 
                             <Header
                                 date={date}
-                                textInput = {textInput}
-                                focusInput = {focusTextInput}
+                                textInput={textInput}
+                                focusInput={focusTextInput}
 
-                                />
+                            />
                             <Daily dataWeather={endpointCurrent} quote={quoteTxt} />
                         </div>
                         <WeekDetail
-                        animation = {animationDetail}
+                            animation={animationDetail}
                         />
                         <DailyDetail
-                        animation = {animationDetail}
+                            animation={animationDetail}
                         />
                         <Footer />
                     </div>
