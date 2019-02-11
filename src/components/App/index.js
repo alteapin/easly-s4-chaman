@@ -24,11 +24,14 @@ class App extends Component {
             selectedDay: "",
             selectedLocation: "",
             currentLocation: {},
+            forecastInf: '',
+            todayInfo: ''
         };
 
         this.printDayNameNumber = this.printDayNameNumber.bind(this);
         this.textInput = React.createRef();
         this.focusTextInput = this.focusTextInput.bind(this);
+        this.getCurrentDay = this.getCurrentDay.bind(this);
     }
 
     fetchGetLocation() {
@@ -38,7 +41,7 @@ class App extends Component {
                     currentLocation: data
                 },
                 () => {
-                    console.log(data);
+                    /* console.log(data); */
                     this.currentDayData();
                     this.forecastData();
                 }
@@ -69,7 +72,7 @@ class App extends Component {
         const map = new Map();
         list.forEach((item) => {
             const key = item[keyGetter];
-            console.log(key);
+            /* console.log(key); */
             const collection = map.get(key);
             if (!collection) {
                 map.set(key, [item]);
@@ -84,11 +87,14 @@ class App extends Component {
         const { city, country } = this.state.currentLocation;
         ApiServices.forecastService(city, country)
             .then(data => {
+                this.setState({
+                    forecastInf: data
+                })
                 const myList = data.list.map(item => {
                     item.formattedDate = item.dt_txt.slice(0, 10);
                     return item;
                 })
-
+                this.getCurrentDay();
                 const grouped = this.groupDateBy(myList, 'formattedDate');
                 this.setState({
                     endpointForecast: grouped,
@@ -128,6 +134,16 @@ class App extends Component {
         this.textInput.current.focus();
     }
 
+    getCurrentDay() {
+        const dailyDetailInfo = this.state.forecastInf.list;
+
+        const todayInfo = dailyDetailInfo.slice(0, 8);
+
+        this.setState({
+            todayInfo: todayInfo
+        })
+    }
+
 
 
     render() {
@@ -139,6 +155,7 @@ class App extends Component {
 
 
         if (this.state.loaded) {
+
             return (
                 <div className="App snow">
                     <div className="bg-image container-app">
@@ -151,7 +168,7 @@ class App extends Component {
                             <Daily dataWeather={endpointCurrent} quote={quoteTxt} />
                         </div>
                         <WeekDetail />
-                        <DailyDetail />
+                        <DailyDetail todayInfo={this.state.todayInfo} actualDate={this.state.date} />
                         <Footer />
                     </div>
                 </div>
