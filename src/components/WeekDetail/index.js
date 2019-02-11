@@ -8,8 +8,9 @@ import '../DailyDetail/DailyDetail.scss';
 
 class WeekDetail extends Component {
     render() {
+        const {animation} = this.props;
         return (
-            <div className='weekDetail-container snow-detail'>
+            <div className={`weekDetail-container ${animation}`}>
                 <WeekDay day='Tue' icon={Cloud} currentDay='current_weekday' />
                 <WeekDay day='Wed' icon={Snow} />
                 <WeekDay day='Thu' icon={Sun} />

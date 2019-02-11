@@ -8,7 +8,7 @@ import arrayQuotes from '../arrayQuotes';
 import DailyDetail from '../DailyDetail';
 import {themeWeather} from '../data/bg';
 import ApiServices from '../../services/apiServices';
-import BgLogic from '../BgLogic/index';
+
 
 
 
@@ -25,6 +25,7 @@ class App extends Component {
             date: "",
             theme: "",
             animation: "",
+            animationDetail: "",
             selectedDay: "",
             selectedLocation: "",
             currentLocation: {},
@@ -34,7 +35,6 @@ class App extends Component {
         this.printDayNameNumber = this.printDayNameNumber.bind(this);
         this.textInput = React.createRef();
         this.focusTextInput = this.focusTextInput.bind(this);
-        // this.changeBg = this.changeBg.bind(this);
 
     }
 
@@ -48,6 +48,7 @@ class App extends Component {
                     console.log(data);
                     this.currentDayData();
                     this.forecastData();
+
                 }
             )
         );
@@ -59,8 +60,57 @@ class App extends Component {
         this.randomQuote();
         this.printDayNameNumber();
         this.fetchGetLocation();
-        // this.changeBg();
+    }
 
+    changeBackground (a, b, c, d) {
+        if (a < b && a > c) {
+            return themeWeather.night
+        } else {
+            if (d.includes('clear sky', 'few clouds', 'scattered clouds')) {
+                return themeWeather.sun
+            } else if  (d.includes( 'broken clouds', 'shower rain', 'rain', 'thunderstorm', 'drizzle')){
+                return themeWeather.rain
+            } else if (d.includes('snow')){
+                return themeWeather.snow
+            } else {
+                return themeWeather.sun
+            }
+
+        }
+    }
+
+    changeAnimation (a, b, c, d) {
+        if (a < b && a > c) {
+            return 'night'
+        } else {
+            if (d.includes('clear sky', 'few clouds', 'scattered clouds')) {
+                return 'sun'
+            } else if  (d.includes( 'broken clouds', 'shower rain', 'rain', 'thunderstorm', 'drizzle')){
+                return 'rain'
+            } else if (d.includes('snow')){
+                return 'snow'
+            } else {
+                return 'sun'
+            }
+
+        }
+    }
+
+    changeAnimationDetail (a, b, c, d) {
+        if (a < b && a > c) {
+            return 'night-detail'
+        } else {
+            if (d.includes('clear sky', 'few clouds', 'scattered clouds')) {
+                return 'sun-detail'
+            } else if  (d.includes( 'broken clouds', 'shower rain', 'rain', 'thunderstorm', 'drizzle')){
+                return 'rain-detail'
+            } else if (d.includes('snow')){
+                return 'snow-detail'
+            } else {
+                return 'sun-detail'
+            }
+
+        }
     }
 
 
@@ -70,7 +120,10 @@ class App extends Component {
             .then(data =>
                 this.setState({
                     endpointCurrent: data,
-                    loaded: true
+                    loaded: true,
+                    theme: this.changeBackground(data.dt, data.sys.sunrise, data.sys.sunset, data.weather[0].description),
+                    animation: this.changeAnimation(data.dt, data.sys.sunrise, data.sys.sunset, data.weather[0].description),
+                    animationDetail: this.changeAnimationDetail(data.dt, data.sys.sunrise, data.sys.sunset, data.weather[0].description)
                 })
             )
             .catch(error => this.setState({ error: error }));
@@ -120,63 +173,24 @@ class App extends Component {
         this.textInput.current.focus();
     }
 
-//     changeBg() {
-//         const { endpointCurrent } = this.state.endpointCurrent;
-
-//         if (endpointCurrent.dt > endpointCurrent.sys.sunset && endpointCurrent.dt < endpointCurrent.sys.sunrise) {
-//             this.setState(
-//                 {
-//                     theme: themeWeather.night,
-//                     animation: 'night'
-//                 }
-//             )
-//         } else {
-
-//             if (endpointCurrent.clouds.all > 20) {
-//                 this.setState(
-//                     {
-//                         theme: themeWeather.rain,
-//                         animation: 'rain'
-//                     }
-//                 )
-//             } else if
-//                 (endpointCurrent.main.temp > 18) {
-//                 this.setState(
-//                     {
-//                         theme: themeWeather.sun,
-//                         animation: 'sun'
-//                     }
-//                 )
-//         } else {
-//             this.setState(
-//                 {
-//                     theme: themeWeather.snow,
-//                     animation: 'snow'
-//                 }
-//             )
-//         }
-//     }
-
-// }
 
 
 
 
     render() {
-        const { endpointCurrent, quoteTxt, date } = this.state;
+        const { endpointCurrent, quoteTxt, date, theme, animation, animationDetail } = this.state;
         const {textInput , focusTextInput} = this.props;
         const BgImage = {
-            backgroundImage: `url(${themeWeather.snow})`
+            backgroundImage: `url(${theme})`
         };
 
 
         if (this.state.loaded) {
             return (
-                <div className="App snow">
+                <div className={`App ${animation}`}>
                     <div className="bg-image container-app">
                         <div className="container-screen" style={BgImage}>
-                        <BgLogic
-                        endpointCurrent = {endpointCurrent} />
+
                             <Header
                                 date={date}
                                 textInput = {textInput}
@@ -185,8 +199,12 @@ class App extends Component {
                                 />
                             <Daily dataWeather={endpointCurrent} quote={quoteTxt} />
                         </div>
-                        <WeekDetail />
-                        <DailyDetail />
+                        <WeekDetail
+                        animation = {animationDetail}
+                        />
+                        <DailyDetail
+                        animation = {animationDetail}
+                        />
                         <Footer />
                     </div>
                 </div>

@@ -39,10 +39,11 @@ class DailyDetail extends React.Component {
 
 
     render() {
+        const {animation} = this.props;
         // console.log('info',this.state.data);
         // console.log('hora', this.apiInfo);
         return (
-            <div className='infoDaily-Detail snow-detail'>
+            <div className={`infoDaily-Detail ${animation}`}>
                 <h3 className='title-detail'>Detailed information:<span className='table_title-day'> 6 Feb</span></h3>
                 <table className="dailyDetail__table">
                     <HeadBoard />
