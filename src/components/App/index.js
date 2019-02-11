@@ -7,7 +7,7 @@ import WeekDetail from "../WeekDetail";
 import arrayQuotes from "../arrayQuotes";
 import DailyDetail from "../DailyDetail";
 import { themeWeather } from "../data/bg";
-import Error from "../Error"
+import Error from "../Error";
 import ApiServices from "../../services/apiServices";
 
 class App extends Component {
@@ -19,15 +19,15 @@ class App extends Component {
             weekForecast: [],
             loadedCurrent: true,
             loadedForecast: true,
-            error:false,
+            error: false,
             quoteTxt: "",
             date: "",
             theme: "",
             activeDay: "",
             selectedLocation: "",
             currentLocation: {},
-            forecastInf: '',
-            todayInfo: '',
+            forecastInf: "",
+            todayInfo: "",
             animation: "",
             animationDetail: "",
             selectedDay: "",
@@ -46,22 +46,23 @@ class App extends Component {
 
     fetchGetLocation() {
         ApiServices.locationService()
-        .then(data =>
-            this.setState(
-                {
-                    currentLocation: data,
-                    selectedLocation: data
-
-                },
-                () => {
-                    this.currentDayData(data.city, data.country);
-                    this.forecastData(data.city, data.country);
-                }
+            .then(data =>
+                this.setState(
+                    {
+                        currentLocation: data,
+                        selectedLocation: data
+                    },
+                    () => {
+                        this.currentDayData(data.city, data.country);
+                        this.forecastData(data.city, data.country);
+                    }
+                )
             )
-        )
-        .catch(error=>(this.setState({
-            error:error,
-        })));
+            .catch(error =>
+                this.setState({
+                    error: error
+                })
+            );
     }
 
     componentDidMount() {
@@ -72,66 +73,100 @@ class App extends Component {
 
     changeBackground(a, b, c, d) {
         if (a < b && a > c) {
-            return themeWeather.night
+            return themeWeather.night;
         } else {
-            if (d.includes('clear sky', 'few clouds', 'scattered clouds')) {
-                return themeWeather.sun
-            } else if (d.includes('broken clouds', 'shower rain', 'rain', 'thunderstorm', 'drizzle')) {
-                return themeWeather.rain
-            } else if (d.includes('snow')) {
-                return themeWeather.snow
+            if (d.includes("clear sky", "few clouds", "scattered clouds")) {
+                return themeWeather.sun;
+            } else if (
+                d.includes(
+                    "broken clouds",
+                    "shower rain",
+                    "rain",
+                    "thunderstorm",
+                    "drizzle"
+                )
+            ) {
+                return themeWeather.rain;
+            } else if (d.includes("snow")) {
+                return themeWeather.snow;
             } else {
-                return themeWeather.sun
+                return themeWeather.sun;
             }
-
         }
     }
 
     changeAnimation(a, b, c, d) {
         if (a < b && a > c) {
-            return 'night'
+            return "night";
         } else {
-            if (d.includes('clear sky', 'few clouds', 'scattered clouds')) {
-                return 'sun'
-            } else if (d.includes('broken clouds', 'shower rain', 'rain', 'thunderstorm', 'drizzle')) {
-                return 'rain'
-            } else if (d.includes('snow')) {
-                return 'snow'
+            if (d.includes("clear sky", "few clouds", "scattered clouds")) {
+                return "sun";
+            } else if (
+                d.includes(
+                    "broken clouds",
+                    "shower rain",
+                    "rain",
+                    "thunderstorm",
+                    "drizzle"
+                )
+            ) {
+                return "rain";
+            } else if (d.includes("snow")) {
+                return "snow";
             } else {
-                return 'sun'
+                return "sun";
             }
-
         }
     }
 
     changeAnimationDetail(a, b, c, d) {
         if (a < b && a > c) {
-            return 'night-detail'
+            return "night-detail";
         } else {
-            if (d.includes('clear sky', 'few clouds', 'scattered clouds')) {
-                return 'sun-detail'
-            } else if (d.includes('broken clouds', 'shower rain', 'rain', 'thunderstorm', 'drizzle')) {
-                return 'rain-detail'
-            } else if (d.includes('snow')) {
-                return 'snow-detail'
+            if (d.includes("clear sky", "few clouds", "scattered clouds")) {
+                return "sun-detail";
+            } else if (
+                d.includes(
+                    "broken clouds",
+                    "shower rain",
+                    "rain",
+                    "thunderstorm",
+                    "drizzle"
+                )
+            ) {
+                return "rain-detail";
+            } else if (d.includes("snow")) {
+                return "snow-detail";
             } else {
-                return 'sun-detail'
+                return "sun-detail";
             }
-
         }
     }
 
-
     currentDayData(city, country) {
-
         ApiServices.currentDayService(city, country)
             .then(data =>
                 this.setState({
                     endpointCurrent: data,
                     loaded: true,
-                    theme: this.changeBackground(data.dt, data.sys.sunrise, data.sys.sunset, data.weather[0].description),
-                    animation: this.changeAnimation(data.dt, data.sys.sunrise, data.sys.sunset, data.weather[0].description),
-                    animationDetail: this.changeAnimationDetail(data.dt, data.sys.sunrise, data.sys.sunset, data.weather[0].description)
+                    theme: this.changeBackground(
+                        data.dt,
+                        data.sys.sunrise,
+                        data.sys.sunset,
+                        data.weather[0].description
+                    ),
+                    animation: this.changeAnimation(
+                        data.dt,
+                        data.sys.sunrise,
+                        data.sys.sunset,
+                        data.weather[0].description
+                    ),
+                    animationDetail: this.changeAnimationDetail(
+                        data.dt,
+                        data.sys.sunrise,
+                        data.sys.sunset,
+                        data.weather[0].description
+                    )
                 })
             )
             .catch(error => this.setState({ error: error }));
@@ -142,14 +177,14 @@ class App extends Component {
             .then(data => {
                 this.setState({
                     forecastInf: data
-                })
+                });
                 const myList = data.list.map(item => {
                     item.formattedDate = item.dt_txt.slice(0, 10);
                     return item;
-                })
+                });
                 this.defaultDetailInfo();
 
-                const grouped = this.groupDateBy(myList, 'formattedDate');
+                const grouped = this.groupDateBy(myList, "formattedDate");
 
                 const weekList = [];
 
@@ -170,23 +205,21 @@ class App extends Component {
                     single[0].minTmp = Math.round(minTmp);
                     single[0].maxTmp = Math.round(maxTmp);
                     weekList.push(single[0]);
-                })
-
+                });
 
                 this.setState({
                     endpointForecast: myList,
                     weekForecast: weekList,
                     loaded: true,
-                    activeDay: weekList[0],
-
-                })
+                    activeDay: weekList[0]
+                });
             })
             .catch(error => this.setState({ error: error }));
     }
 
     groupDateBy(list, keyGetter) {
         const listFromDate = new Map();
-        list.forEach((item) => {
+        list.forEach(item => {
             const key = item[keyGetter];
             const collection = listFromDate.get(key);
             if (!collection) {
@@ -197,8 +230,6 @@ class App extends Component {
         });
         return listFromDate;
     }
-
-
 
     randomQuote() {
         const random =
@@ -252,9 +283,12 @@ class App extends Component {
     }
 
     onDayClick(day) {
-        this.setState({
-            activeDay: day
-        },() => this.paintDayDetail());
+        this.setState(
+            {
+                activeDay: day
+            },
+            () => this.paintDayDetail()
+        );
     }
 
     defaultDetailInfo() {
@@ -262,7 +296,7 @@ class App extends Component {
         const defaultInfo = currentInfo.slice(0, 8);
         this.setState({
             todayInfo: defaultInfo
-        })
+        });
     }
 
     paintDayDetail() {
@@ -270,7 +304,7 @@ class App extends Component {
         const indexSelected = this.state.forecastInf.list.map(item => {
             const indexdate = item.dt_txt;
             return indexdate;
-        })
+        });
         const index = indexSelected.indexOf(daySelected);
         const secondIndex = index + 8;
         const dailyDetailInfo = this.state.forecastInf.list;
@@ -278,16 +312,13 @@ class App extends Component {
         const todayInfo = dailyDetailInfo.slice(index, secondIndex);
         this.setState({
             todayInfo: todayInfo
-        })
+        });
     }
-
 
     getCurrentLocation() {
         this.fetchGetLocation();
         this.onChangeCity();
     }
-
-
 
     render() {
         const {
@@ -310,37 +341,38 @@ class App extends Component {
             backgroundImage: `url(${theme})`
         };
 
-
-            return (
-                <div className={`App ${animation}`}>
-                    <div className="bg-image container-app">
-                        <div className="container-screen" style={BgImage}>
-
-                            <Header
-                                getCurrentLocation={this.getCurrentLocation}
-                                currentLocation={currentLocation}
-                                selectedLocation={selectedLocation}
-                                date={date}
-                                textInput={textInput}
-                                focusInput={focusTextInput}
-                                onChangeCity={this.onChangeCity}
-                            />
-                            <Daily
-                                dataWeather={endpointCurrent}
-                                quote={quoteTxt}
-
-                            />
-                        </div>
-                        <WeekDetail forecastData={weekForecast} onDayClick={this.onDayClick} activeDay={activeDay} animation={animationDetail}/>
-                        <DailyDetail todayInfo={this.state.todayInfo} activeDay={this.state.activeDay} animation={animationDetail}/>
-
-                        <Footer />
+        return (
+            <div className={`App ${animation}`}>
+                <div className="bg-image container-app">
+                    <div className="container-screen" style={BgImage}>
+                        <Header
+                            getCurrentLocation={this.getCurrentLocation}
+                            currentLocation={currentLocation}
+                            selectedLocation={selectedLocation}
+                            date={date}
+                            textInput={textInput}
+                            focusInput={focusTextInput}
+                            onChangeCity={this.onChangeCity}
+                        />
+                        <Daily dataWeather={endpointCurrent} quote={quoteTxt} />
                     </div>
+                    <WeekDetail
+                        forecastData={weekForecast}
+                        onDayClick={this.onDayClick}
+                        activeDay={activeDay}
+                        animation={animationDetail}
+                    />
+                    <DailyDetail
+                        todayInfo={this.state.todayInfo}
+                        activeDay={this.state.activeDay}
+                        animation={animationDetail}
+                    />
+
+                    <Footer />
                 </div>
-            );
-
-
-}
+            </div>
+        );
+    }
 }
 
 export default App;
