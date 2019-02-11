@@ -94,7 +94,7 @@ class App extends Component {
                     item.formattedDate = item.dt_txt.slice(0, 10);
                     return item;
                 })
-                this.paintDayDetail();
+
                 const grouped = this.groupDateBy(myList, 'formattedDate');
 
                 const weekList = [];
@@ -117,8 +117,7 @@ class App extends Component {
                     single[0].maxTmp = Math.round(maxTmp);
                     weekList.push(single[0]);
                 })
-                console.log('para joa', myList);
-                console.log('lista foreach de grouped-------------------------', weekList);
+
 
                 this.setState({
                     endpointForecast: myList,
@@ -185,13 +184,22 @@ class App extends Component {
     onDayClick(day) {
         this.setState({
             activeDay: day
-        })
+        },() => this.paintDayDetail());
     }
     paintDayDetail() {
+        const daySelected = this.state.activeDay.dt_txt;
+        const indexSelected = this.state.forecastInf.list.map(item => {
+            const indexdate = item.dt_txt;
+            return indexdate;
+        })
+        const index = indexSelected.indexOf(daySelected);
+        const secondIndex = index + 7;
         const dailyDetailInfo = this.state.forecastInf.list;
 
-        const todayInfo = dailyDetailInfo.slice(0, 8);
 
+
+
+        const todayInfo = dailyDetailInfo.slice(index, secondIndex);
         this.setState({
             todayInfo: todayInfo
         })
