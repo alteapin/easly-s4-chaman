@@ -33,8 +33,6 @@ class CityLocation extends Component {
 
     render() {
         const {
-            textInput,
-            focusInput,
             onChangeCity,
             currentLocation,
             getCurrentLocation,
@@ -59,10 +57,9 @@ class CityLocation extends Component {
                     } `}
                     escapeClearsValue={true}
                     captureMenuScroll={true}
-                    defaultOptions
                     autoFocus
                     name="search"
-                    //loadOptions={inputValue => this.getAsyncOptions(inputValue)}
+                    loadOptions={this.getAsyncOptions}
                     className="react-select-container"
                     classNamePrefix="react-select"
                     theme={theme => ({

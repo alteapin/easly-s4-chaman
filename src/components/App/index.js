@@ -7,6 +7,7 @@ import WeekDetail from "../WeekDetail";
 import arrayQuotes from "../arrayQuotes";
 import DailyDetail from "../DailyDetail";
 import { themeWeather } from "../data/bg";
+import Error from "../Error"
 import ApiServices from "../../services/apiServices";
 
 class App extends Component {
