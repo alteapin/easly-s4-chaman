@@ -38,41 +38,6 @@
     padding: 15px 17px;
 }
 
-.sun-week {
-    background: linear-gradient(-75deg, #c9223e, #7f0033, #48052c);
-    background-size: 800%;
-    animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite
-}
-
-.snow-week {
-    background: linear-gradient(-75deg, #005b6d, #005b6d, #3d3449);
-    background-size: 800%;
-    animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite
-}
-
-.rain-week {
-    background: linear-gradient(-75deg, #100e19, #121c24, #0d0d0d);
-    background-size: 800%;
-    animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite
-}
-
-.night-week {
-    background: linear-gradient(-75deg, #140055, #1b4090, #02013b);
-    background-size: 800%;
-    animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite
-}
-
-@keyframes gradred {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
 
 @media all and (min-width: 768px) and (max-width: 1020px){
     .weekDetail-container{

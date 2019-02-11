@@ -7,6 +7,7 @@ class Daily extends Component {
     render() {
         const { dataWeather, quote } = this.props;
 
+
         if (dataWeather) {
             return (
                 <div className="container__daily">

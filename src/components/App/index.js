@@ -23,10 +23,15 @@ class App extends Component {
             quoteTxt: "",
             date: "",
             theme: "",
-            selectedDay: "",
             activeDay: "",
             selectedLocation: "",
-            currentLocation: {}
+            currentLocation: {},
+            forecastInf: '',
+            todayInfo: '',
+            animation: "",
+            animationDetail: "",
+            selectedDay: "",
+            CurrentHour: ""
         };
 
         this.printDayNameNumber = this.printDayNameNumber.bind(this);
@@ -35,6 +40,8 @@ class App extends Component {
         this.onChangeCity = this.onChangeCity.bind(this);
         this.getCurrentLocation = this.getCurrentLocation.bind(this);
         this.onDayClick = this.onDayClick.bind(this);
+        this.paintDayDetail = this.paintDayDetail.bind(this);
+        this.defaultDetailInfo = this.defaultDetailInfo.bind(this);
     }
 
     fetchGetLocation() {
@@ -63,14 +70,68 @@ class App extends Component {
         this.fetchGetLocation();
     }
 
+    changeBackground(a, b, c, d) {
+        if (a < b && a > c) {
+            return themeWeather.night
+        } else {
+            if (d.includes('clear sky', 'few clouds', 'scattered clouds')) {
+                return themeWeather.sun
+            } else if (d.includes('broken clouds', 'shower rain', 'rain', 'thunderstorm', 'drizzle')) {
+                return themeWeather.rain
+            } else if (d.includes('snow')) {
+                return themeWeather.snow
+            } else {
+                return themeWeather.sun
+            }
+
+        }
+    }
+
+    changeAnimation(a, b, c, d) {
+        if (a < b && a > c) {
+            return 'night'
+        } else {
+            if (d.includes('clear sky', 'few clouds', 'scattered clouds')) {
+                return 'sun'
+            } else if (d.includes('broken clouds', 'shower rain', 'rain', 'thunderstorm', 'drizzle')) {
+                return 'rain'
+            } else if (d.includes('snow')) {
+                return 'snow'
+            } else {
+                return 'sun'
+            }
+
+        }
+    }
+
+    changeAnimationDetail(a, b, c, d) {
+        if (a < b && a > c) {
+            return 'night-detail'
+        } else {
+            if (d.includes('clear sky', 'few clouds', 'scattered clouds')) {
+                return 'sun-detail'
+            } else if (d.includes('broken clouds', 'shower rain', 'rain', 'thunderstorm', 'drizzle')) {
+                return 'rain-detail'
+            } else if (d.includes('snow')) {
+                return 'snow-detail'
+            } else {
+                return 'sun-detail'
+            }
+
+        }
+    }
 
 
     currentDayData(city, country) {
+
         ApiServices.currentDayService(city, country)
             .then(data =>
                 this.setState({
                     endpointCurrent: data,
                     loaded: true,
+                    theme: this.changeBackground(data.dt, data.sys.sunrise, data.sys.sunset, data.weather[0].description),
+                    animation: this.changeAnimation(data.dt, data.sys.sunrise, data.sys.sunset, data.weather[0].description),
+                    animationDetail: this.changeAnimationDetail(data.dt, data.sys.sunrise, data.sys.sunset, data.weather[0].description)
                 })
             )
             .catch(error => this.setState({ error: error }));
@@ -79,10 +140,14 @@ class App extends Component {
     forecastData(city, country) {
         ApiServices.forecastService(city, country)
             .then(data => {
+                this.setState({
+                    forecastInf: data
+                })
                 const myList = data.list.map(item => {
                     item.formattedDate = item.dt_txt.slice(0, 10);
                     return item;
                 })
+                this.defaultDetailInfo();
 
                 const grouped = this.groupDateBy(myList, 'formattedDate');
 
@@ -106,8 +171,7 @@ class App extends Component {
                     single[0].maxTmp = Math.round(maxTmp);
                     weekList.push(single[0]);
                 })
-                console.log('para joa', myList);
-                console.log('lista foreach de grouped-------------------------', weekList);
+
 
                 this.setState({
                     endpointForecast: myList,
@@ -190,8 +254,33 @@ class App extends Component {
     onDayClick(day) {
         this.setState({
             activeDay: day
+        },() => this.paintDayDetail());
+    }
+
+    defaultDetailInfo() {
+        const currentInfo = this.state.forecastInf.list;
+        const defaultInfo = currentInfo.slice(0, 8);
+        this.setState({
+            todayInfo: defaultInfo
         })
     }
+
+    paintDayDetail() {
+        const daySelected = this.state.activeDay.dt_txt;
+        const indexSelected = this.state.forecastInf.list.map(item => {
+            const indexdate = item.dt_txt;
+            return indexdate;
+        })
+        const index = indexSelected.indexOf(daySelected);
+        const secondIndex = index + 8;
+        const dailyDetailInfo = this.state.forecastInf.list;
+
+        const todayInfo = dailyDetailInfo.slice(index, secondIndex);
+        this.setState({
+            todayInfo: todayInfo
+        })
+    }
+
 
     getCurrentLocation() {
         this.fetchGetLocation();
@@ -209,18 +298,24 @@ class App extends Component {
             currentLocation,
             selectedLocation,
             weekForecast,
-            activeDay
+            activeDay,
+            animation,
+            animationDetail,
+            theme
         } = this.state;
+
         const { textInput, focusTextInput } = this.props;
+
         const BgImage = {
-            backgroundImage: `url(${themeWeather.snow})`
+            backgroundImage: `url(${theme})`
         };
 
-if(!error){
+
             return (
-                <div className="App snow">
+                <div className={`App ${animation}`}>
                     <div className="bg-image container-app">
                         <div className="container-screen" style={BgImage}>
+
                             <Header
                                 getCurrentLocation={this.getCurrentLocation}
                                 currentLocation={currentLocation}
@@ -233,17 +328,18 @@ if(!error){
                             <Daily
                                 dataWeather={endpointCurrent}
                                 quote={quoteTxt}
+
                             />
                         </div>
-                        <WeekDetail forecastData={weekForecast} onDayClick={this.onDayClick} activeDay={activeDay}/>
-                        <DailyDetail />
+                        <WeekDetail forecastData={weekForecast} onDayClick={this.onDayClick} activeDay={activeDay} animation={animationDetail}/>
+                        <DailyDetail todayInfo={this.state.todayInfo} actualDate={this.state.date} animation={animationDetail}/>
+
                         <Footer />
                     </div>
                 </div>
             );
 
-    }else{console.log("mensaje loko",this.state.error)
-        return <div>Erorrrrrrr</div>}
+
 }
 }
 
