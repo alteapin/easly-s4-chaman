@@ -5,13 +5,14 @@ import WeekDay from '../WeekDay';
 class WeekDetail extends Component {
 
     render() {
-        const { forecastData } = this.props;
+        const { forecastData, onDayClick, activeDay } = this.props;
+
 
         return (
             <div className='weekDetail-container snow-week'>
                 {
                     forecastData.map(day => (
-                        <WeekDay day={day} key={day.dt} />
+                        <WeekDay day={day} key={day.dt} activeDay={activeDay} onDayClick={onDayClick} />
                     ))
                 }
             </div>

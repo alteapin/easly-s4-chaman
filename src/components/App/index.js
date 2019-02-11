@@ -23,6 +23,7 @@ class App extends Component {
             date: "",
             theme: "",
             selectedDay: "",
+            activeDay: "",
             selectedLocation: "",
             currentLocation: {}
         };
@@ -32,6 +33,7 @@ class App extends Component {
         this.focusTextInput = this.focusTextInput.bind(this);
         this.onChangeCity = this.onChangeCity.bind(this);
         this.getCurrentLocation = this.getCurrentLocation.bind(this);
+        this.onDayClick = this.onDayClick.bind(this);
     }
 
     fetchGetLocation() {
@@ -42,14 +44,8 @@ class App extends Component {
                     selectedLocation: data
                 },
                 () => {
-<<<<<<< HEAD
-
-                    this.currentDayData();
-                    this.forecastData();
-=======
                     this.currentDayData(data.city, data.country);
                     this.forecastData(data.city, data.country);
->>>>>>> 8cab168b0918f0b6d3415b1f4ce22d8dfc581c2a
                 }
             )
         );
@@ -73,13 +69,8 @@ class App extends Component {
     }
 
     groupDateBy(list, keyGetter) {
-<<<<<<< HEAD
         const listFromDate = new Map();
         list.forEach((item) => {
-=======
-        const map = new Map();
-        list.forEach(item => {
->>>>>>> 8cab168b0918f0b6d3415b1f4ce22d8dfc581c2a
             const key = item[keyGetter];
             const collection = listFromDate.get(key);
             if (!collection) {
@@ -97,7 +88,6 @@ class App extends Component {
                 const myList = data.list.map(item => {
                     item.formattedDate = item.dt_txt.slice(0, 10);
                     return item;
-<<<<<<< HEAD
                 })
 
                 const grouped = this.groupDateBy(myList, 'formattedDate');
@@ -119,28 +109,19 @@ class App extends Component {
                     });
 
                     single[0].minTmp = Math.round(minTmp);
-                    single[0].maxTmp =  Math.round(maxTmp);
+                    single[0].maxTmp = Math.round(maxTmp);
                     weekList.push(single[0]);
                 })
+                console.log('para joa', myList);
                 console.log('lista foreach de grouped-------------------------', weekList);
 
                 this.setState({
                     endpointForecast: myList,
                     weekForecast: weekList,
-                    loaded: true
-                })
-=======
-                });
+                    loaded: true,
+                    activeDay: weekList[0],
 
-                const grouped = this.groupDateBy(myList, "formattedDate");
-                this.setState(
-                    {
-                        endpointForecast: grouped,
-                        loaded: true
-                    },
-                    () => console.log(grouped)
-                );
->>>>>>> 8cab168b0918f0b6d3415b1f4ce22d8dfc581c2a
+                })
             })
             .catch(error => this.setState({ error: error }));
     }
@@ -196,23 +177,29 @@ class App extends Component {
         }
     }
 
+    onDayClick(day) {
+        this.setState({
+            activeDay: day
+        })
+    }
+
     getCurrentLocation() {
         this.fetchGetLocation();
         this.onChangeCity();
     }
 
     render() {
-<<<<<<< HEAD
-        const { endpointCurrent, quoteTxt, date, weekForecast } = this.state;
-=======
+
         const {
             endpointCurrent,
             quoteTxt,
             date,
             currentLocation,
-            selectedLocation
+            selectedLocation,
+            weekForecast,
+            activeDay
         } = this.state;
->>>>>>> 8cab168b0918f0b6d3415b1f4ce22d8dfc581c2a
+
         const { textInput, focusTextInput } = this.props;
         const BgImage = {
             backgroundImage: `url(${themeWeather.snow})`
@@ -237,7 +224,7 @@ class App extends Component {
                                 quote={quoteTxt}
                             />
                         </div>
-                        <WeekDetail forecastData={weekForecast} />
+                        <WeekDetail forecastData={weekForecast} onDayClick={this.onDayClick} activeDay={activeDay}/>
                         <DailyDetail />
                         <Footer />
                     </div>

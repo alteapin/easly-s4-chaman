@@ -45,16 +45,18 @@ class Weekday extends Component {
     }
 
     render() {
-        const { day } = this.props;
+        const { day, onDayClick, activeDay } = this.props;
 
         const iconTmp = {
             backgroundImage: `url(${this.showIcon()})`
         };
+
         console.log(day);
+        console.log(activeDay);
 
         return (
 
-            <div className='week-detail current_weekday'>
+            <div className={`week-detail ${activeDay.dt === day.dt ? 'current_weekday' : ''}`} onClick={() => onDayClick(day)}>
                 <h3 className='weekday'>{this.getDateOfWeek()}</h3>
                 <div className='icon-temp' style={iconTmp}></div>
                 <p className='temp-high'>{day.maxTmp}ºC</p>
