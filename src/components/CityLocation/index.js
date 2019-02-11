@@ -62,7 +62,7 @@ class CityLocation extends Component {
                     defaultOptions
                     autoFocus
                     name="search"
-                    loadOptions={inputValue => this.getAsyncOptions(inputValue)}
+                    //loadOptions={inputValue => this.getAsyncOptions(inputValue)}
                     className="react-select-container"
                     classNamePrefix="react-select"
                     theme={theme => ({

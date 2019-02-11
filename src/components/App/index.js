@@ -54,12 +54,14 @@ class App extends Component {
         this.fetchGetLocation();
     }
 
+
+
     currentDayData(city, country) {
         ApiServices.currentDayService(city, country)
             .then(data =>
                 this.setState({
                     endpointCurrent: data,
-                    loaded: true
+                    loaded: true,
                 })
             )
             .catch(error => this.setState({ error: error }));
