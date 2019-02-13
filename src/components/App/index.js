@@ -70,6 +70,30 @@ class App extends Component {
         this.fetchGetLocation();
     }
 
+    checkViewport() {
+        const width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        if (width > 1400) {
+            setInterval(() => {
+                this.autoSelect();
+            }, 5000);
+        }
+    }
+
+    autoSelect() {
+        const days = this.state.weekForecast;
+        const length = days.length;
+        const actual = this.state.activeDay;
+        console.log(actual);
+        const lastIndex = days.indexOf(actual);
+        console.log(lastIndex);
+        let nextIndex = lastIndex < length - 1 ? lastIndex + 1 : 0;
+        const nextDay = days[nextIndex];
+        this.onDayClick(nextDay);
+        console.log(lastIndex);
+        console.log(days);
+        console.log(actual);
+    }
+
     changeBackground(a, b, c, d) {
         if (a < b && a > c) {
             return themeWeather.night
@@ -179,7 +203,7 @@ class App extends Component {
                     loaded: true,
                     activeDay: weekList[0],
 
-                })
+                }, () => this.checkViewport())
             })
             .catch(error => this.setState({ error: error }));
     }
