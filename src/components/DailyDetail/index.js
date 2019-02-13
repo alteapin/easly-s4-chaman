@@ -18,6 +18,7 @@ class DailyDetail extends React.Component {
 
     render() {
         const {todayInfo, animation} = this.props;
+        console.log('props', todayInfo);
 
         if(todayInfo.length === 0) {
             return(
@@ -34,7 +35,8 @@ class DailyDetail extends React.Component {
 
                             return(
                                <HourData key={key} hour={result.dt_txt} wind={result.wind.speed}
-                               temp={result.main.temp} rain={result.weather[0].description}/>
+                               temp={result.main.temp} rain={result.weather[0].description}
+                               rainPercent={result.rain||0}/>
                             )
 
 
