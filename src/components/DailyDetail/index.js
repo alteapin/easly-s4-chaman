@@ -14,7 +14,16 @@ class DailyDetail extends React.Component {
  // let d = Moment(objDate);
         // return d.format('ddd MMM DD YYYY');
 
-console.log(this.props.activeDay.dt_txt);
+
+
+
+        // let completeDate = this.props.activeDay.dt_txt;
+        // let y = completeDate.splice(1, 4);
+        // let m = completeDate.splice(5, 6);
+        // let d = completeDate.splice(7, 8);
+        // let date = `${m}/${d}/${y}`;
+// console.log(date);
+// console.log(this.props.activeDay.dt_txt);
 
 
       return Moment(this.props.activeDay.dt_txt).format('MMMM DD, YYYY');
