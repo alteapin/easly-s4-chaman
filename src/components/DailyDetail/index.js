@@ -11,9 +11,10 @@ class DailyDetail extends React.Component {
 
     paintDate(){
         let objDate = new Date(this.props.activeDay.dt_txt);
-        let d = Moment(objDate);
-        d.month();
-        return d.format('ddd MMM DD YYYY')
+        // let d = Moment(objDate);
+        // return d.format('ddd MMM DD YYYY');
+
+       return Moment(objDate).format("MMM Do YY");
     }
 
     render() {
