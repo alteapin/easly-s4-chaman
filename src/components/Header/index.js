@@ -7,7 +7,7 @@ import DayNameNumber from '../DayNameNumber';
 class Header extends Component {
     render() {
     const {date, textInput, focusInput, onChangeCity, currentLocation, getCurrentLocation, selectedLocation} = this.props;
-    console.log('header', this.props);
+    //console.log('header', this.props);
         return (
 
             <div className="header-main">

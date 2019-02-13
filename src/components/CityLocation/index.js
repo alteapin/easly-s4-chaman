@@ -3,12 +3,13 @@ import "./CityLocation.scss";
 import AsyncSelect from "react-select/lib/Async";
 import compass from "../../icons/compass.png";
 
-
 const customStyles = {
-    dropdownIndicator: ()=>({display:'none'}),
-    indicatorSeparator:()=>({display:'none'})
-  }
+    dropdownIndicator: () => ({ display: "none" }),
+    indicatorSeparator: () => ({ display: "none" }),
+    control: () => ({ border: "none" }),
+};
 
+const defaultO = [{ value: 1, label: "One" }];
 class CityLocation extends Component {
     getAsyncOptions(inputValue) {
         return new Promise((resolve, reject) => {
@@ -20,19 +21,30 @@ class CityLocation extends Component {
                 .then(cities =>
                     cities.map(city => {
                         return {
-                            value: city.name ? city.name : false,
-                            label: `${city.name ? city.name : false}  ${
+                            value: {
+                                name: city.name,
+                                lat: city.lat,
+                                lon: city.lng
+                            },
+
+                            label: `${city.name ? city.name : false}
+                            ${
                                 city.adminCodes1.ISO3166_2
                                     ? city.adminCodes1.ISO3166_2
                                     : false
-                            } ${city.countryCode ? city.countryCode : false} `,
+                            }
+                            ${city.countryCode ? city.countryCode : false} `,
+
                             codeCountry: city.countryCode
                                 ? city.countryCode
                                 : false
                         };
                     })
                 )
-                .then(data => resolve(data))
+                .then(data => {
+                    //{console.log("data", data)
+                    resolve(data);
+                })
                 .catch(error => console.log(error));
         });
     }
@@ -43,7 +55,7 @@ class CityLocation extends Component {
             getCurrentLocation,
             selectedLocation
         } = this.props;
-        console.log("selected", selectedLocation);
+        //console.log("selected", selectedLocation);
         return (
             <div className="citylocation">
                 <img
@@ -53,8 +65,10 @@ class CityLocation extends Component {
                     onClick={getCurrentLocation}
                 />
                 <AsyncSelect
-                 styles={customStyles}
-                    arrowRenderer={()=>null}
+                    defaultOptions={defaultO}
+                    cacheOptions
+                    styles={customStyles}
+                    arrowRenderer={() => null}
                     onChange={onChangeCity}
                     value={`${selectedLocation.city} ${
                         selectedLocation.country

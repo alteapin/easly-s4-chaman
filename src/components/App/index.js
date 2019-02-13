@@ -9,11 +9,13 @@ import DailyDetail from "../DailyDetail";
 import { themeWeather } from "../data/bg";
 import Error from "../Error";
 import ApiServices from "../../services/apiServices";
+import GetLocation from "../../services/getIp";
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            coordinates: {},
             endpointCurrent: {},
             endpointForecast: [],
             weekForecast: [],
@@ -24,8 +26,8 @@ class App extends Component {
             date: "",
             theme: "",
             activeDay: "",
-            selectedLocation: "",
-            currentLocation: {},
+            selectedLocation: {},
+            currentLocation: true,
             forecastInf: "",
             todayInfo: "",
             animation: "",
@@ -35,8 +37,6 @@ class App extends Component {
         };
 
         this.printDayNameNumber = this.printDayNameNumber.bind(this);
-        this.textInput = React.createRef();
-        this.focusTextInput = this.focusTextInput.bind(this);
         this.onChangeCity = this.onChangeCity.bind(this);
         this.getCurrentLocation = this.getCurrentLocation.bind(this);
         this.onDayClick = this.onDayClick.bind(this);
@@ -44,33 +44,148 @@ class App extends Component {
         this.defaultDetailInfo = this.defaultDetailInfo.bind(this);
     }
 
-    fetchGetLocation() {
-        ApiServices.locationService()
-            .then(data =>
-                this.setState(
-                    {
-                        currentLocation: data,
-                        selectedLocation: data
-                    },
-                    () => {
-                        this.currentDayData(data.city, data.country);
-                        this.forecastData(data.city, data.country);
-                    }
-                )
-            )
-            .catch(error =>
-                this.setState({
-                    error: error
-                })
-            );
-    }
-
     componentDidMount() {
+        this.getLocationCoordinates();
         this.randomQuote();
         this.printDayNameNumber();
-        this.fetchGetLocation();
     }
 
+    getLocationCoordinates() {
+        //get coordinates and then call weather endpoints
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position =>
+                this.setState(
+                    { coordinates: position.coords },
+
+                    () => {
+                        const { coordinates } = this.state;
+                        this.currentDayData(
+                            coordinates.latitude,
+                            coordinates.longitude,
+                            true
+                        );
+                        this.forecastData(
+                            coordinates.latitude,
+                            coordinates.longitude
+                        );
+                    }
+                )
+            );
+        } else {
+            console.log("Geolocation is not supported by this browser.");
+        }
+    }
+
+    currentDayData(lat, lon, currentLoc, event) {
+        const current = item => ({
+            city: item.name,
+            country: item.sys.country
+        });
+        const locationFiltered = e => ({
+            city: e.value.name,
+            country: `${e.codeCountry}`
+        });
+
+        //get data current Day
+        ApiServices.currentDayServiceCoordinates(lat, lon)
+            .then(data => {
+                this.setState({
+                    selectedLocation: currentLoc
+                        ? current(data)
+                        : locationFiltered(event),
+                    endpointCurrent: data,
+                    loaded: true,
+                    theme: this.changeBackground(
+                        data.dt,
+                        data.sys.sunrise,
+                        data.sys.sunset,
+                        data.weather[0].description
+                    ),
+                    animation: this.changeAnimation(
+                        data.dt,
+                        data.sys.sunrise,
+                        data.sys.sunset,
+                        data.weather[0].description
+                    ),
+                    animationDetail: this.changeAnimationDetail(
+                        data.dt,
+                        data.sys.sunrise,
+                        data.sys.sunset,
+                        data.weather[0].description
+                    )
+                });
+            })
+            .catch(error => this.setState({ error: error }));
+    }
+
+    forecastData(lat, lon) {
+        //get data current Day
+        ApiServices.forecastServiceCoordinates(lat, lon)
+            .then(data => {
+                console.log("data forecast", data);
+                this.setState({
+                    forecastInf: data
+                });
+                const myList = data.list.map(item => {
+                    item.formattedDate = item.dt_txt.slice(0, 10);
+                    return item;
+                });
+                this.defaultDetailInfo();
+
+                const grouped = this.groupDateBy(myList, "formattedDate");
+
+                const weekList = [];
+
+                grouped.forEach(single => {
+                    let minTmp = single[0].main.temp_min;
+                    let maxTmp = single[0].main.temp_max;
+                    single.forEach(item => {
+                        const min = item.main.temp_min;
+                        const max = item.main.temp_max;
+                        if (min < minTmp) {
+                            minTmp = min;
+                        }
+                        if (max > maxTmp) {
+                            maxTmp = max;
+                        }
+                    });
+
+                    single[0].minTmp = Math.round(minTmp);
+                    single[0].maxTmp = Math.round(maxTmp);
+                    weekList.push(single[0]);
+                });
+
+                this.setState({
+                    endpointForecast: myList,
+                    weekForecast: weekList,
+                    loaded: true,
+                    activeDay: weekList[0]
+                });
+            })
+            .catch(error => this.setState({ error: error }));
+    }
+
+    onChangeCity(e) {
+        if (e) {
+            const newCurrentLocation = {
+                city: e.value.name,
+                country: `${e.codeCountry}`
+            };
+            this.currentDayData(e.value.lat, e.value.lon, false, e);
+            this.forecastData(e.value.lat, e.value.lon);
+            this.setState({
+                selectedLocation: newCurrentLocation
+            });
+        } else {
+            return console.log("error");
+        }
+    }
+
+    getCurrentLocation() {
+        this.getLocationCoordinates();
+    }
+
+    //---------------------------background---------------------------------------------
     changeBackground(a, b, c, d) {
         if (a < b && a > c) {
             return themeWeather.night;
@@ -143,79 +258,7 @@ class App extends Component {
         }
     }
 
-    currentDayData(city, country) {
-        ApiServices.currentDayService(city, country)
-            .then(data =>
-                this.setState({
-                    endpointCurrent: data,
-                    loaded: true,
-                    theme: this.changeBackground(
-                        data.dt,
-                        data.sys.sunrise,
-                        data.sys.sunset,
-                        data.weather[0].description
-                    ),
-                    animation: this.changeAnimation(
-                        data.dt,
-                        data.sys.sunrise,
-                        data.sys.sunset,
-                        data.weather[0].description
-                    ),
-                    animationDetail: this.changeAnimationDetail(
-                        data.dt,
-                        data.sys.sunrise,
-                        data.sys.sunset,
-                        data.weather[0].description
-                    )
-                })
-            )
-            .catch(error => this.setState({ error: error }));
-    }
-
-    forecastData(city, country) {
-        ApiServices.forecastService(city, country)
-            .then(data => {
-                this.setState({
-                    forecastInf: data
-                });
-                const myList = data.list.map(item => {
-                    item.formattedDate = item.dt_txt.slice(0, 10);
-                    return item;
-                });
-                this.defaultDetailInfo();
-
-                const grouped = this.groupDateBy(myList, "formattedDate");
-
-                const weekList = [];
-
-                grouped.forEach(single => {
-                    let minTmp = single[0].main.temp_min;
-                    let maxTmp = single[0].main.temp_max;
-                    single.forEach(item => {
-                        const min = item.main.temp_min;
-                        const max = item.main.temp_max;
-                        if (min < minTmp) {
-                            minTmp = min;
-                        }
-                        if (max > maxTmp) {
-                            maxTmp = max;
-                        }
-                    });
-
-                    single[0].minTmp = Math.round(minTmp);
-                    single[0].maxTmp = Math.round(maxTmp);
-                    weekList.push(single[0]);
-                });
-
-                this.setState({
-                    endpointForecast: myList,
-                    weekForecast: weekList,
-                    loaded: true,
-                    activeDay: weekList[0]
-                });
-            })
-            .catch(error => this.setState({ error: error }));
-    }
+    //------------------------------------------------------------------
 
     groupDateBy(list, keyGetter) {
         const listFromDate = new Map();
@@ -256,32 +299,6 @@ class App extends Component {
         });
     }
 
-    focusTextInput() {
-        this.textInput.current.focus();
-    }
-
-    onChangeCity(e) {
-        if (e) {
-            const newCurrentLocation = {
-                city: e.value,
-                country: `,${e.codeCountry}`
-            };
-            this.currentDayData(e.value, `,${e.codeCountry}`);
-            this.forecastData(e.value, `,${e.codeCountry}`);
-            this.setState({
-                selectedLocation: newCurrentLocation
-            });
-        } else if (!e) {
-            this.currentDayData(
-                `${this.state.currentLocation.city},${
-                    this.state.currentLocation.country
-                }`
-            );
-        } else {
-            return console.log("error");
-        }
-    }
-
     onDayClick(day) {
         this.setState(
             {
@@ -313,11 +330,6 @@ class App extends Component {
         this.setState({
             todayInfo: todayInfo
         });
-    }
-
-    getCurrentLocation() {
-        this.fetchGetLocation();
-        this.onChangeCity();
     }
 
     render() {
