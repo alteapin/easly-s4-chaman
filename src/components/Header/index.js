@@ -6,7 +6,7 @@ import DayNameNumber from '../DayNameNumber';
 
 class Header extends Component {
     render() {
-    const {date, textInput, focusInput, onChangeCity, currentLocation, getCurrentLocation, selectedLocation} = this.props;
+    const {date, textInput, focusInput, onChangeCity, currentLocation, getCurrentLocation, selectedLocation, addFavorite, favorites} = this.props;
     //console.log('header', this.props);
         return (
 
@@ -16,6 +16,8 @@ class Header extends Component {
                 getCurrentLocation={getCurrentLocation}
                 currentLocation={currentLocation}
                 onChangeCity={onChangeCity}
+                addFavorite={addFavorite}
+                favorites={favorites}
                 textInput = {textInput}
                 focusInput = {focusInput}
                 />

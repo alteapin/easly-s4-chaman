@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./CityLocation.scss";
 import AsyncSelect from "react-select/lib/Async";
 import compass from "../../icons/compass.png";
+import add from "../../icons/plus.png";
 
 const customStyles = {
     dropdownIndicator: () => ({ display: "none" }),
@@ -9,7 +10,11 @@ const customStyles = {
     control: () => ({ border: "none" })
 };
 
+
 class CityLocation extends Component {
+
+
+
     getAsyncOptions(inputValue) {
         return new Promise((resolve, reject) => {
             fetch(
@@ -50,11 +55,16 @@ class CityLocation extends Component {
 
     render() {
         const {
+            favorites,
             onChangeCity,
             getCurrentLocation,
-            selectedLocation
+            selectedLocation,
+            addFavorite
         } = this.props;
-        //console.log("selected", selectedLocation);
+        console.log("favorites", favorites)
+
+
+
         return (
             <div className="citylocation">
                 <img
@@ -64,7 +74,7 @@ class CityLocation extends Component {
                     onClick={getCurrentLocation}
                 />
                 <AsyncSelect
-                    //defaultOptions={defaultO}
+                    defaultOptions={favorites}
                     cacheOptions
                     styles={customStyles}
                     arrowRenderer={() => null}
@@ -95,6 +105,12 @@ class CityLocation extends Component {
                             neutral50: "white" //text inside
                         }
                     })}
+                />
+                <img
+                    className="add-icon"
+                    src={add}
+                    alt="Add"
+                    onClick={addFavorite}
                 />
             </div>
         );

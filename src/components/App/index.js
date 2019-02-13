@@ -15,6 +15,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            favorites: JSON.parse(localStorage.getItem('favorites')),
             coordinates: {},
             endpointCurrent: {},
             endpointForecast: [],
@@ -42,6 +43,7 @@ class App extends Component {
         this.onDayClick = this.onDayClick.bind(this);
         this.paintDayDetail = this.paintDayDetail.bind(this);
         this.defaultDetailInfo = this.defaultDetailInfo.bind(this);
+        this.addFavorite = this.addFavorite.bind(this);
     }
 
     componentDidMount() {
@@ -76,12 +78,28 @@ class App extends Component {
         }
     }
 
+    //recoge valor evento seleccionado, lo añade a favoritos
+
+    addFavorite() {
+        const favorite = this.state.selectedLocation.event;
+        const favorites = this.state.favorites;
+
+
+        this.setState(
+            {
+                favorites: [ favorite, ...favorites]
+            },
+            () => {console.log(this.state.favorites);localStorage.setItem("favorites",JSON.stringify(this.state.favorites))}
+        );
+    }
+
     currentDayData(lat, lon, currentLoc, event) {
         const current = item => ({
             city: item.name,
             country: item.sys.country
         });
         const locationFiltered = e => ({
+            event: e,
             city: e.value.name,
             country: `${e.codeCountry}`
         });
@@ -122,7 +140,6 @@ class App extends Component {
         //get data current Day
         ApiServices.forecastServiceCoordinates(lat, lon)
             .then(data => {
-                console.log("data forecast", data);
                 this.setState({
                     forecastInf: data
                 });
@@ -167,15 +184,8 @@ class App extends Component {
 
     onChangeCity(e) {
         if (e) {
-            const newCurrentLocation = {
-                city: e.value.name,
-                country: `${e.codeCountry}`
-            };
             this.currentDayData(e.value.lat, e.value.lon, false, e);
             this.forecastData(e.value.lat, e.value.lon);
-            this.setState({
-                selectedLocation: newCurrentLocation
-            });
         } else {
             return console.log("error");
         }
@@ -334,6 +344,7 @@ class App extends Component {
 
     render() {
         const {
+            favorites,
             error,
             endpointCurrent,
             quoteTxt,
@@ -346,6 +357,7 @@ class App extends Component {
             animationDetail,
             theme
         } = this.state;
+
 
         const { textInput, focusTextInput } = this.props;
 
@@ -365,6 +377,8 @@ class App extends Component {
                             textInput={textInput}
                             focusInput={focusTextInput}
                             onChangeCity={this.onChangeCity}
+                            addFavorite={this.addFavorite}
+                            favorites={favorites}
                         />
                         <Daily dataWeather={endpointCurrent} quote={quoteTxt} />
                     </div>
