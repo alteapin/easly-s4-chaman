@@ -11,11 +11,12 @@ import Error from "../Error";
 import ApiServices from "../../services/apiServices";
 import GetLocation from "../../services/getIp";
 
+const saveFavorites = JSON.parse(localStorage.getItem('favorites'))
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            favorites: JSON.parse(localStorage.getItem('favorites')),
+            favorites: saveFavorites?saveFavorites.slice(0, 5):[],
             coordinates: {},
             endpointCurrent: {},
             endpointForecast: [],
