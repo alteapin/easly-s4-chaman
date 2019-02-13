@@ -13,7 +13,7 @@ class DailyDetail extends React.Component {
      //  let objDate = new Date(this.props.activeDay.dt_txt);
  // let d = Moment(objDate);
         // return d.format('ddd MMM DD YYYY');
-console.log(objDate);
+
 console.log(this.props.activeDay.dt_txt);
 
 
