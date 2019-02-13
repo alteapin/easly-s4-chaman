@@ -6,10 +6,9 @@ import compass from "../../icons/compass.png";
 const customStyles = {
     dropdownIndicator: () => ({ display: "none" }),
     indicatorSeparator: () => ({ display: "none" }),
-    control: () => ({ border: "none" }),
+    control: () => ({ border: "none" })
 };
 
-const defaultO = [{ value: 1, label: "One" }];
 class CityLocation extends Component {
     getAsyncOptions(inputValue) {
         return new Promise((resolve, reject) => {
@@ -65,7 +64,7 @@ class CityLocation extends Component {
                     onClick={getCurrentLocation}
                 />
                 <AsyncSelect
-                    defaultOptions={defaultO}
+                    //defaultOptions={defaultO}
                     cacheOptions
                     styles={customStyles}
                     arrowRenderer={() => null}
