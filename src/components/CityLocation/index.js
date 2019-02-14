@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import "./CityLocation.scss";
 import AsyncSelect from "react-select/lib/Async";
 import compass from "../../icons/compass.png";
-
+import add from "../../icons/plus.png";
 
 const customStyles = {
-    dropdownIndicator: ()=>({display:'none'}),
-    indicatorSeparator:()=>({display:'none'})
-  }
+    dropdownIndicator: () => ({ display: "none" }),
+    indicatorSeparator: () => ({ display: "none" }),
+    control: () => ({ border: "none" })
+};
 
 class CityLocation extends Component {
     getAsyncOptions(inputValue) {
@@ -20,30 +21,43 @@ class CityLocation extends Component {
                 .then(cities =>
                     cities.map(city => {
                         return {
-                            value: city.name ? city.name : false,
-                            label: `${city.name ? city.name : false}  ${
+                            value: {
+                                name: city.name,
+                                lat: city.lat,
+                                lon: city.lng
+                            },
+
+                            label: `${city.name ? city.name : false}
+                            ${
                                 city.adminCodes1.ISO3166_2
                                     ? city.adminCodes1.ISO3166_2
                                     : false
-                            } ${city.countryCode ? city.countryCode : false} `,
+                            }
+                            ${city.countryCode ? city.countryCode : false} `,
+
                             codeCountry: city.countryCode
                                 ? city.countryCode
                                 : false
                         };
                     })
                 )
-                .then(data => resolve(data))
+                .then(data => {
+                    resolve(data);
+                })
                 .catch(error => console.log(error));
         });
     }
 
     render() {
+
         const {
+            favorites,
             onChangeCity,
             getCurrentLocation,
-            selectedLocation
+            selectedLocation,
+            addFavorite
         } = this.props;
-        console.log("selected", selectedLocation);
+
         return (
             <div className="citylocation">
                 <img
@@ -53,8 +67,10 @@ class CityLocation extends Component {
                     onClick={getCurrentLocation}
                 />
                 <AsyncSelect
-                 styles={customStyles}
-                    arrowRenderer={()=>null}
+                    defaultOptions={favorites}
+                    cacheOptions
+                    styles={customStyles}
+                    arrowRenderer={() => null}
                     onChange={onChangeCity}
                     value={`${selectedLocation.city} ${
                         selectedLocation.country
@@ -82,6 +98,12 @@ class CityLocation extends Component {
                             neutral50: "white" //text inside
                         }
                     })}
+                />
+                <img
+                    className="add-icon"
+                    src={add}
+                    alt="Add"
+                    onClick={addFavorite}
                 />
             </div>
         );
