@@ -75,7 +75,7 @@ class App extends Component {
         if (width > 1400) {
             setInterval(() => {
                 this.autoSelect();
-            }, 5000);
+            }, 10000);
         }
     }
 
