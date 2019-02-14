@@ -75,6 +75,45 @@ class App extends Component {
         }
     }
 
+    checkViewport() {
+        const width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        if (width > 1400) {
+            setInterval(() => {
+                this.autoSelect();
+            }, 10000);
+        }
+    }
+
+    autoSelect() {
+        const { weekForecast, activeDay } = this.state;
+        const days = weekForecast;
+        const length = days.length;
+        const actual = activeDay;
+
+        const lastIndex = days.indexOf(actual);
+        let nextIndex = lastIndex < length - 1 ? lastIndex + 1 : 0;
+        const nextDay = days[nextIndex];
+        this.onDayClick(nextDay);
+
+    }
+
+    changeBackground(a, b, c, d) {
+        if (a < b && a > c) {
+            return themeWeather.night
+        } else {
+            if (d.includes('clear sky', 'few clouds', 'scattered clouds')) {
+                return themeWeather.sun
+            } else if (d.includes('broken clouds', 'shower rain', 'rain', 'thunderstorm', 'drizzle')) {
+                return themeWeather.rain
+            } else if (d.includes('snow')) {
+                return themeWeather.snow
+            } else {
+                return themeWeather.sun
+            }
+
+        }
+    }
+
 
     showPosition(position) {
         this.setState(
@@ -202,8 +241,9 @@ class App extends Component {
                     endpointForecast: myList,
                     weekForecast: weekList,
                     loaded: true,
-                    activeDay: weekList[0]
-                });
+                    activeDay: weekList[0],
+
+                }, () => this.checkViewport())
             })
             .catch(error => this.setState({ error: error }));
     }
