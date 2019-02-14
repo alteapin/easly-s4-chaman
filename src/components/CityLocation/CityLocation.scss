@@ -23,7 +23,12 @@
   .react-select__placeholder{
  height: 40px;
  width: 100%;
+ @media all and (max-width: 410px) {
+
+      font-size: 16px;
+
 }
+  }
 
 .react-select-container {
   width: 70%;
