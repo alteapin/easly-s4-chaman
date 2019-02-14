@@ -6,21 +6,21 @@ import Footer from "../Footer";
 import WeekDetail from "../WeekDetail";
 import arrayQuotes from "../arrayQuotes";
 import DailyDetail from "../DailyDetail";
-import { themeWeather } from "../data/bg";
-import {backgrounds} from "../../backgrounds/backgrounds"
+import { backgrounds } from "../../backgrounds/backgrounds";
 import Error from "../Error";
 import ApiServices from "../../services/apiServices";
-//import GetLocation from "../../services/getIp";
 
 const saveFavorites = JSON.parse(localStorage.getItem("favorites"));
-const uniqueFavorites =
-saveFavorites?(saveFavorites.filter((value, index, array) => {
-    return (
-        array.findIndex(
-            valueArray => JSON.stringify(valueArray) === JSON.stringify(value)
-        ) === index
-    );
-})):false;
+const uniqueFavorites = saveFavorites
+    ? saveFavorites.filter((value, index, array) => {
+          return (
+              array.findIndex(
+                  valueArray =>
+                      JSON.stringify(valueArray) === JSON.stringify(value)
+              ) === index
+          );
+      })
+    : false;
 
 class App extends Component {
     constructor(props) {
@@ -45,7 +45,8 @@ class App extends Component {
             animation: "",
             animationDetail: "",
             selectedDay: "",
-            CurrentHour: ""
+            CurrentHour: "",
+            loading:"true",
         };
 
         this.printDayNameNumber = this.printDayNameNumber.bind(this);
@@ -76,46 +77,6 @@ class App extends Component {
         }
     }
 
-    checkViewport() {
-        const width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-        if (width > 1400) {
-            setInterval(() => {
-                this.autoSelect();
-            }, 10000);
-        }
-    }
-
-    autoSelect() {
-        const { weekForecast, activeDay } = this.state;
-        const days = weekForecast;
-        const length = days.length;
-        const actual = activeDay;
-
-        const lastIndex = days.indexOf(actual);
-        let nextIndex = lastIndex < length - 1 ? lastIndex + 1 : 0;
-        const nextDay = days[nextIndex];
-        this.onDayClick(nextDay);
-
-    }
-
-    changeBackground(a, b, c, d) {
-        if (a < b && a > c) {
-            return themeWeather.night
-        } else {
-            if (d.includes('clear sky', 'few clouds', 'scattered clouds')) {
-                return themeWeather.sun
-            } else if (d.includes('broken clouds', 'shower rain', 'rain', 'thunderstorm', 'drizzle')) {
-                return themeWeather.rain
-            } else if (d.includes('snow')) {
-                return themeWeather.snow
-            } else {
-                return themeWeather.sun
-            }
-
-        }
-    }
-
-
     showPosition(position) {
         this.setState(
             { coordinates: position.coords },
@@ -139,24 +100,24 @@ class App extends Component {
         }
     }
 
-
     addFavorite() {
-        console.log("selected", this.state.selectedLocation)
+        console.log("selected", this.state.selectedLocation);
         const favorite = this.state.selectedLocation.event;
         const favorites = this.state.favorites;
 
-        if(favorite){
-        this.setState(
-            {
-                favorites: [favorite, ...favorites]
-            },
-            () => {
-                localStorage.setItem(
-                    "favorites",
-                    JSON.stringify(this.state.favorites)
-                );
-            }
-        )}
+        if (favorite) {
+            this.setState(
+                {
+                    favorites: [favorite, ...favorites]
+                },
+                () => {
+                    localStorage.setItem(
+                        "favorites",
+                        JSON.stringify(this.state.favorites)
+                    );
+                }
+            );
+        }
     }
 
     currentDayData(lat, lon, currentLoc, event) {
@@ -242,9 +203,8 @@ class App extends Component {
                     endpointForecast: myList,
                     weekForecast: weekList,
                     loaded: true,
-                    activeDay: weekList[0],
-
-                }, () => this.checkViewport())
+                    activeDay: weekList[0]
+                });
             })
             .catch(error => this.setState({ error: error }));
     }
@@ -261,7 +221,6 @@ class App extends Component {
     getCurrentLocation() {
         this.getLocationCoordinates();
     }
-
 
     groupDateBy(list, keyGetter) {
         const listFromDate = new Map();
@@ -336,8 +295,7 @@ class App extends Component {
     }
 
     render() {
-
-    console.log(this.state.selectedLocation)
+        console.log(this.state.selectedLocation);
 
         const {
             favorites,
@@ -361,7 +319,6 @@ class App extends Component {
         };
 
         return (
-
             <div className={`App ${animation}`}>
                 <div className="bg-image container-app">
                     <div className="container-screen" style={BgImage}>
