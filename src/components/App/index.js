@@ -80,18 +80,16 @@ class App extends Component {
     }
 
     autoSelect() {
-        const days = this.state.weekForecast;
+        const { weekForecast, activeDay } = this.state;
+        const days = weekForecast;
         const length = days.length;
-        const actual = this.state.activeDay;
-        console.log(actual);
+        const actual = activeDay;
+
         const lastIndex = days.indexOf(actual);
-        console.log(lastIndex);
         let nextIndex = lastIndex < length - 1 ? lastIndex + 1 : 0;
         const nextDay = days[nextIndex];
         this.onDayClick(nextDay);
-        console.log(lastIndex);
-        console.log(days);
-        console.log(actual);
+
     }
 
     changeBackground(a, b, c, d) {
