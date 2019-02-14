@@ -10,11 +10,7 @@ const customStyles = {
     control: () => ({ border: "none" })
 };
 
-
 class CityLocation extends Component {
-
-
-
     getAsyncOptions(inputValue) {
         return new Promise((resolve, reject) => {
             fetch(
@@ -46,7 +42,6 @@ class CityLocation extends Component {
                     })
                 )
                 .then(data => {
-                    //{console.log("data", data)
                     resolve(data);
                 })
                 .catch(error => console.log(error));
@@ -54,6 +49,7 @@ class CityLocation extends Component {
     }
 
     render() {
+
         const {
             favorites,
             onChangeCity,
@@ -61,9 +57,6 @@ class CityLocation extends Component {
             selectedLocation,
             addFavorite
         } = this.props;
-        console.log("favorites", favorites)
-
-
 
         return (
             <div className="citylocation">

@@ -9,14 +9,23 @@ import DailyDetail from "../DailyDetail";
 import { themeWeather } from "../data/bg";
 import Error from "../Error";
 import ApiServices from "../../services/apiServices";
-import GetLocation from "../../services/getIp";
+//import GetLocation from "../../services/getIp";
 
-const saveFavorites = JSON.parse(localStorage.getItem('favorites'))
+const saveFavorites = JSON.parse(localStorage.getItem("favorites"));
+const uniqueFavorites =
+saveFavorites?(saveFavorites.filter((value, index, array) => {
+    return (
+        array.findIndex(
+            valueArray => JSON.stringify(valueArray) === JSON.stringify(value)
+        ) === index
+    );
+})):false;
+
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            favorites: saveFavorites?saveFavorites.slice(0, 5):[],
+            favorites: uniqueFavorites ? uniqueFavorites.slice(0, 5) : [],
             coordinates: {},
             endpointCurrent: {},
             endpointForecast: [],
@@ -45,6 +54,9 @@ class App extends Component {
         this.paintDayDetail = this.paintDayDetail.bind(this);
         this.defaultDetailInfo = this.defaultDetailInfo.bind(this);
         this.addFavorite = this.addFavorite.bind(this);
+        this.showPosition = this.showPosition.bind(this);
+        this.showError = this.showError.bind(this);
+        this.getLocationCoordinates = this.getLocationCoordinates.bind(this);
     }
 
     componentDidMount() {
@@ -56,42 +68,55 @@ class App extends Component {
     getLocationCoordinates() {
         //get coordinates and then call weather endpoints
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(position =>
-                this.setState(
-                    { coordinates: position.coords },
-
-                    () => {
-                        const { coordinates } = this.state;
-                        this.currentDayData(
-                            coordinates.latitude,
-                            coordinates.longitude,
-                            true
-                        );
-                        this.forecastData(
-                            coordinates.latitude,
-                            coordinates.longitude
-                        );
-                    }
-                )
+            navigator.geolocation.getCurrentPosition(
+                this.showPosition,
+                this.showError
             );
-        } else {
-            console.log("Geolocation is not supported by this browser.");
         }
     }
 
-    //recoge valor evento seleccionado, lo añade a favoritos
+
+    showPosition(position) {
+        this.setState(
+            { coordinates: position.coords },
+
+            () => {
+                const { coordinates } = this.state;
+                this.currentDayData(
+                    coordinates.latitude,
+                    coordinates.longitude,
+                    true
+                );
+                this.forecastData(coordinates.latitude, coordinates.longitude);
+            }
+        );
+    }
+
+    showError(error) {
+        if (error.PERMISSION_DENIED) {
+            this.currentDayData(40.66191, -4.0189, true);
+            this.forecastData(40.66191, -4.0189);
+        }
+    }
+
 
     addFavorite() {
+        console.log("selected", this.state.selectedLocation)
         const favorite = this.state.selectedLocation.event;
         const favorites = this.state.favorites;
 
-
+        if(favorite){
         this.setState(
             {
-                favorites: [ favorite, ...favorites]
+                favorites: [favorite, ...favorites]
             },
-            () => {console.log(this.state.favorites);localStorage.setItem("favorites",JSON.stringify(this.state.favorites))}
-        );
+            () => {
+                localStorage.setItem(
+                    "favorites",
+                    JSON.stringify(this.state.favorites)
+                );
+            }
+        )}
     }
 
     currentDayData(lat, lon, currentLoc, event) {
@@ -344,6 +369,9 @@ class App extends Component {
     }
 
     render() {
+
+    console.log(this.state.selectedLocation)
+
         const {
             favorites,
             error,
@@ -359,7 +387,6 @@ class App extends Component {
             theme
         } = this.state;
 
-
         const { textInput, focusTextInput } = this.props;
 
         const BgImage = {
@@ -367,6 +394,7 @@ class App extends Component {
         };
 
         return (
+
             <div className={`App ${animation}`}>
                 <div className="bg-image container-app">
                     <div className="container-screen" style={BgImage}>
