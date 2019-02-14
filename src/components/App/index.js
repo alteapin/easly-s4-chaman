@@ -7,6 +7,7 @@ import WeekDetail from "../WeekDetail";
 import arrayQuotes from "../arrayQuotes";
 import DailyDetail from "../DailyDetail";
 import { themeWeather } from "../data/bg";
+import {backgrounds} from "../../backgrounds/backgrounds"
 import Error from "../Error";
 import ApiServices from "../../services/apiServices";
 //import GetLocation from "../../services/getIp";
@@ -139,19 +140,19 @@ class App extends Component {
                         : locationFiltered(event),
                     endpointCurrent: data,
                     loaded: true,
-                    theme: this.changeBackground(
+                    theme: backgrounds.changeBackground(
                         data.dt,
                         data.sys.sunrise,
                         data.sys.sunset,
                         data.weather[0].description
                     ),
-                    animation: this.changeAnimation(
+                    animation: backgrounds.changeAnimation(
                         data.dt,
                         data.sys.sunrise,
                         data.sys.sunset,
                         data.weather[0].description
                     ),
-                    animationDetail: this.changeAnimationDetail(
+                    animationDetail: backgrounds.changeAnimationDetail(
                         data.dt,
                         data.sys.sunrise,
                         data.sys.sunset,
@@ -221,80 +222,6 @@ class App extends Component {
         this.getLocationCoordinates();
     }
 
-    //---------------------------background---------------------------------------------
-    changeBackground(a, b, c, d) {
-        if (a < b && a > c) {
-            return themeWeather.night;
-        } else {
-            if (d.includes("clear sky", "few clouds", "scattered clouds")) {
-                return themeWeather.sun;
-            } else if (
-                d.includes(
-                    "broken clouds",
-                    "shower rain",
-                    "rain",
-                    "thunderstorm",
-                    "drizzle"
-                )
-            ) {
-                return themeWeather.rain;
-            } else if (d.includes("snow")) {
-                return themeWeather.snow;
-            } else {
-                return themeWeather.sun;
-            }
-        }
-    }
-
-    changeAnimation(a, b, c, d) {
-        if (a < b && a > c) {
-            return "night";
-        } else {
-            if (d.includes("clear sky", "few clouds", "scattered clouds")) {
-                return "sun";
-            } else if (
-                d.includes(
-                    "broken clouds",
-                    "shower rain",
-                    "rain",
-                    "thunderstorm",
-                    "drizzle"
-                )
-            ) {
-                return "rain";
-            } else if (d.includes("snow")) {
-                return "snow";
-            } else {
-                return "sun";
-            }
-        }
-    }
-
-    changeAnimationDetail(a, b, c, d) {
-        if (a < b && a > c) {
-            return "night-detail";
-        } else {
-            if (d.includes("clear sky", "few clouds", "scattered clouds")) {
-                return "sun-detail";
-            } else if (
-                d.includes(
-                    "broken clouds",
-                    "shower rain",
-                    "rain",
-                    "thunderstorm",
-                    "drizzle"
-                )
-            ) {
-                return "rain-detail";
-            } else if (d.includes("snow")) {
-                return "snow-detail";
-            } else {
-                return "sun-detail";
-            }
-        }
-    }
-
-    //------------------------------------------------------------------
 
     groupDateBy(list, keyGetter) {
         const listFromDate = new Map();
