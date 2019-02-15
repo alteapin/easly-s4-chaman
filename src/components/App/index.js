@@ -7,26 +7,18 @@ import WeekDetail from "../WeekDetail";
 import arrayQuotes from "../arrayQuotes";
 import DailyDetail from "../DailyDetail";
 import { backgrounds } from "../../backgrounds/backgrounds";
+import * as favorites from "../../services/localStorage";
 import Error from "../Error";
+import Fetching from "../Fetching";
 import ApiServices from "../../services/apiServices";
-
-const saveFavorites = JSON.parse(localStorage.getItem("favorites"));
-const uniqueFavorites = saveFavorites
-    ? saveFavorites.filter((value, index, array) => {
-          return (
-              array.findIndex(
-                  valueArray =>
-                      JSON.stringify(valueArray) === JSON.stringify(value)
-              ) === index
-          );
-      })
-    : false;
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            favorites: uniqueFavorites ? uniqueFavorites.slice(0, 5) : [],
+            favorites: favorites.uniqueFavorites
+                ? favorites.uniqueFavorites.slice(0, 5)
+                : [],
             coordinates: {},
             endpointCurrent: {},
             endpointForecast: [],
@@ -46,7 +38,7 @@ class App extends Component {
             animationDetail: "",
             selectedDay: "",
             CurrentHour: "",
-            loading:"true",
+            fetching: "true"
         };
 
         this.printDayNameNumber = this.printDayNameNumber.bind(this);
@@ -135,11 +127,11 @@ class App extends Component {
         ApiServices.currentDayServiceCoordinates(lat, lon)
             .then(data => {
                 this.setState({
+                    fetching: false,
                     selectedLocation: currentLoc
                         ? current(data)
                         : locationFiltered(event),
                     endpointCurrent: data,
-                    loaded: true,
                     theme: backgrounds.changeBackground(
                         data.dt,
                         data.sys.sunrise,
@@ -295,11 +287,9 @@ class App extends Component {
     }
 
     render() {
-        console.log(this.state.selectedLocation);
-
         const {
             favorites,
-            error,
+            fetching,
             endpointCurrent,
             quoteTxt,
             date,
@@ -318,39 +308,46 @@ class App extends Component {
             backgroundImage: `url(${theme})`
         };
 
-        return (
-            <div className={`App ${animation}`}>
-                <div className="bg-image container-app">
-                    <div className="container-screen" style={BgImage}>
-                        <Header
-                            getCurrentLocation={this.getCurrentLocation}
-                            currentLocation={currentLocation}
-                            selectedLocation={selectedLocation}
-                            date={date}
-                            textInput={textInput}
-                            focusInput={focusTextInput}
-                            onChangeCity={this.onChangeCity}
-                            addFavorite={this.addFavorite}
-                            favorites={favorites}
+        if (fetching) {
+            return <Fetching />;
+        } else {
+            return (
+                <div className={`App ${animation}`}>
+                    <div className="bg-image container-app">
+                        <div className="container-screen" style={BgImage}>
+                            <Header
+                                getCurrentLocation={this.getCurrentLocation}
+                                currentLocation={currentLocation}
+                                selectedLocation={selectedLocation}
+                                date={date}
+                                textInput={textInput}
+                                focusInput={focusTextInput}
+                                onChangeCity={this.onChangeCity}
+                                addFavorite={this.addFavorite}
+                                favorites={favorites}
+                            />
+                            <Daily
+                                dataWeather={endpointCurrent}
+                                quote={quoteTxt}
+                            />
+                        </div>
+                        <WeekDetail
+                            forecastData={weekForecast}
+                            onDayClick={this.onDayClick}
+                            activeDay={activeDay}
+                            animation={animationDetail}
                         />
-                        <Daily dataWeather={endpointCurrent} quote={quoteTxt} />
-                    </div>
-                    <WeekDetail
-                        forecastData={weekForecast}
-                        onDayClick={this.onDayClick}
-                        activeDay={activeDay}
-                        animation={animationDetail}
-                    />
-                    <DailyDetail
-                        todayInfo={this.state.todayInfo}
-                        activeDay={this.state.activeDay}
-                        animation={animationDetail}
-                    />
+                        <DailyDetail
+                            todayInfo={this.state.todayInfo}
+                            activeDay={this.state.activeDay}
+                            animation={animationDetail}
+                        />
 
-                    <Footer />
+                        <Footer />
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }
     }
 }
 
