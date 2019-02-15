@@ -188,7 +188,6 @@ class App extends Component {
     }
 
     forecastData(lat, lon) {
-        //get data current Day
         ApiServices.forecastServiceCoordinates(lat, lon)
             .then(data => {
                 this.setState({
@@ -228,7 +227,7 @@ class App extends Component {
                     weekForecast: weekList,
                     loaded: true,
                     activeDay: weekList[0]
-                });
+                }, () => this.checkViewport());
             })
             .catch(error => this.setState({ error: error }));
     }
@@ -316,6 +315,28 @@ class App extends Component {
         this.setState({
             todayInfo: todayInfo
         });
+    }
+
+    checkViewport() {
+        const width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        if (width > 1400) {
+            setInterval(() => {
+                this.autoSelect();
+            }, 10000);
+        }
+    }
+
+    autoSelect() {
+        const { weekForecast, activeDay } = this.state;
+        const days = weekForecast;
+        const length = days.length;
+        const actual = activeDay;
+
+        const lastIndex = days.indexOf(actual);
+        let nextIndex = lastIndex < length - 1 ? lastIndex + 1 : 0;
+        const nextDay = days[nextIndex];
+        this.onDayClick(nextDay);
+
     }
 
     render() {
