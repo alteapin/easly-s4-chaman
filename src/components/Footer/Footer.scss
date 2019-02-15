@@ -1,33 +1,46 @@
 .footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     background-color: black;
+}
+
+
+.footer-logo-container {
+    grid-column: 1/2;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    padding-left: 10px;
-    padding-right: 10px;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 10px;
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 4;
-    grid-row-end: 5;
+    margin-left: 20px;
+
 }
+
+.logo-chaman {
+    width:30px;
+    height: 40px;
+    margin-right: 12px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
 
 .logo-footer {
     width: 20px;
     height: 20px;
+
 }
 
 .copyright-footer {
     font-family: "Open Sans", sans-serif;
     color: white;
-    margin-bottom: 2px;
+    grid-column: 2/3;
+
 }
 
 .copy-link {
     text-decoration: none;
+    grid-column: 2/3;
+    margin-top: 10px;
+
 }
 
 @media all and (min-width: 1020px) {
