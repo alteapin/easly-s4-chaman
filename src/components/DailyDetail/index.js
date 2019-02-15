@@ -10,8 +10,9 @@ import './DailyDetail.scss';
 class DailyDetail extends React.Component {
 
     paintDate(){
-        let objDate = new Date(this.props.activeDay.dt_txt);
-        return Moment(objDate).format('MMM DD YYYY');
+        let objDate = this.props.activeDay.dt;
+        return Moment(objDate*1000).format('MMM DD YYYY');
+      //  (hh)
     }
 
     render() {
