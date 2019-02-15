@@ -2,9 +2,9 @@ import { themeWeather } from "../components/data/bg";
 
 const backgrounds = {
 
-    changeBackground(a, b, c, d, e) {
+    changeBackground(a, b, c, d, e, f) {
         console.log('ey', e)
-        if (a < b && a > c) {
+        if (f > 20) {
             return themeWeather.night;
         } else {
             if (
@@ -31,9 +31,9 @@ const backgrounds = {
     },
 
 
-    changeAnimation(a, b, c, d, e) {
-        console.log('ey', e)
-        if (a < b && a > c) {
+    changeAnimation(a, b, c, d, e,f) {
+
+        if (f > 20) {
             return "night";
         } else {
             if (
@@ -59,9 +59,8 @@ const backgrounds = {
         }
     },
 
-    changeAnimationDetail(a, b, c, d, e) {
-        console.log('ey', e)
-        if (a < b && a > c) {
+    changeAnimationDetail(a, b, c, d, e, f) {
+        if (f > 20) {
             return "night-detail";
         } else {
             if (

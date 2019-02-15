@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import './CurrentHour.scss';
-import Clock from 'react-live-clock';
+
 
 
 class CurrentHour extends Component {
     render() {
+        const {hour} = this.props;
         return (
             <div>
-                <Clock className="clock" format="HH:mm" ticking={true} interval={1000} />
+                <p className="clock">{hour}</p>
             </div>
         );
     }

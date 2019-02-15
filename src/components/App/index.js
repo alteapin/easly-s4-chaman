@@ -45,8 +45,10 @@ class App extends Component {
             animation: "",
             animationDetail: "",
             selectedDay: "",
-            CurrentHour: "",
+            currentHour: "",
+            hourMinuts: "",
             loading:"true",
+            hour: ""
         };
 
         this.printDayNameNumber = this.printDayNameNumber.bind(this);
@@ -65,6 +67,8 @@ class App extends Component {
         this.getLocationCoordinates();
         this.randomQuote();
         this.printDayNameNumber();
+        this.hourCurrent();
+
     }
 
     getLocationCoordinates() {
@@ -120,6 +124,19 @@ class App extends Component {
         }
     }
 
+    hourCurrent () {
+        let d = new Date();
+        let n = d.getHours();
+        let m = (d.getMinutes());
+        const hour = n;
+        const hourMinuts = n + ":" + m
+        this.setState ({
+            currentHour : parseInt(hour),
+            hourMinuts : hourMinuts
+        })
+    };
+
+
     currentDayData(lat, lon, currentLoc, event) {
         const current = item => ({
             city: item.name,
@@ -130,6 +147,7 @@ class App extends Component {
             city: e.value.name,
             country: `${e.codeCountry}`
         });
+
 
         //get data current Day
         ApiServices.currentDayServiceCoordinates(lat, lon)
@@ -145,21 +163,24 @@ class App extends Component {
                         data.sys.sunrise,
                         data.sys.sunset,
                         data.weather[0].description,
-                        data.main.temp
+                        data.main.temp,
+                        this.state.currentHour
                     ),
                     animation: backgrounds.changeAnimation(
                         data.dt,
                         data.sys.sunrise,
                         data.sys.sunset,
                         data.weather[0].description,
-                        data.main.temp
+                        data.main.temp,
+                        this.state.currentHour
                     ),
                     animationDetail: backgrounds.changeAnimationDetail(
                         data.dt,
                         data.sys.sunrise,
                         data.sys.sunset,
                         data.weather[0].description,
-                        data.main.temp
+                        data.main.temp,
+                        this.state.currentHour
                     )
                 });
             })
@@ -312,7 +333,8 @@ class App extends Component {
             activeDay,
             animation,
             animationDetail,
-            theme
+            theme,
+            hourMinuts
         } = this.state;
 
         const { textInput, focusTextInput } = this.props;
@@ -335,6 +357,7 @@ class App extends Component {
                             onChangeCity={this.onChangeCity}
                             addFavorite={this.addFavorite}
                             favorites={favorites}
+                            hour={hourMinuts}
                         />
                         <Daily dataWeather={endpointCurrent} quote={quoteTxt} />
                     </div>
