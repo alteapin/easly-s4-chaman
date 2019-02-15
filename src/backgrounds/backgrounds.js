@@ -60,9 +60,9 @@ changeAnimationDetail(a, b, c, d, e) {
     if (a < b && a > c) {
         return "night-detail";
     } else {
-        if (d.includes("clear sky", "few clouds", "scattered clouds") || e < 12) {
+        if ( e < 12) {
             return "cold-detail";
-        } else if ( (d.includes("clear sky", "few clouds", "scattered clouds") ) ) {
+        } else if ( (d.includes("clear sky", "few clouds", "scattered clouds") ) || e > 12) {
             return "sun-detail";
         } else if (
             d.includes(
@@ -82,6 +82,7 @@ changeAnimationDetail(a, b, c, d, e) {
     }
 }
 }
+
 
 
 export {backgrounds}
