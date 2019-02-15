@@ -1,5 +1,4 @@
 export default class geoLocationNavigator {
-
     static getLocationCoordinates() {
         //get coordinates and then call weather endpoints
         if (navigator.geolocation) {
@@ -7,6 +6,8 @@ export default class geoLocationNavigator {
                 this.showPosition,
                 this.showError
             );
+        } else {
+            console.log("Geolocation is not supported by this browser.");
         }
     }
 

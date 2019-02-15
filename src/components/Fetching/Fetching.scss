@@ -1,0 +1,19 @@
+.container-fetching{
+    height: 100vh;
+    width: 100%;
+    background-color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-logo{
+    width: 150px;
+    height: auto;
+}
+
+@media all and (min-width: 768px) {
+    .img-logo{
+        width: 250px;
+    }
+}
