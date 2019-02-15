@@ -17,7 +17,6 @@ class DailyDetail extends React.Component {
 
     render() {
         const {todayInfo, animation} = this.props;
-        console.log('props', todayInfo);
 
         if(todayInfo.length === 0) {
             return(

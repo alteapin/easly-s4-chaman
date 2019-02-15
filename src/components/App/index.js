@@ -74,7 +74,6 @@ class App extends Component {
     showPosition(position) {
         this.setState(
             { coordinates: position.coords },
-
             () => {
                 const { coordinates } = this.state;
                 this.currentDayData(
