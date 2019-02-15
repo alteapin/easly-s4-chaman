@@ -28,6 +28,12 @@
     animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite;
 }
 
+.cold {
+    background: linear-gradient(-75deg,  #35B0AB, #2f89d3, #FAFFB8);
+    background-size: 800%;
+    animation: gradred cubic-bezier(0.785, 0.135, 0.15, 0.86) 15s infinite;
+}
+
 @keyframes gradred {
     0% {
         background-position: 0% 50%;

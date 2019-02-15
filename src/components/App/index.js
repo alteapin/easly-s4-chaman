@@ -144,19 +144,22 @@ class App extends Component {
                         data.dt,
                         data.sys.sunrise,
                         data.sys.sunset,
-                        data.weather[0].description
+                        data.weather[0].description,
+                        data.main.temp
                     ),
                     animation: backgrounds.changeAnimation(
                         data.dt,
                         data.sys.sunrise,
                         data.sys.sunset,
-                        data.weather[0].description
+                        data.weather[0].description,
+                        data.main.temp
                     ),
                     animationDetail: backgrounds.changeAnimationDetail(
                         data.dt,
                         data.sys.sunrise,
                         data.sys.sunset,
-                        data.weather[0].description
+                        data.weather[0].description,
+                        data.main.temp
                     )
                 });
             })
