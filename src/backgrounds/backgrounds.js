@@ -3,12 +3,13 @@ import { themeWeather } from "../components/data/bg";
 const backgrounds = {
 
 changeBackground(a, b, c, d,e) {
+    console.log('ey', e)
     if (a < b && a > c) {
         return themeWeather.night;
     } else {
-        if (d.includes("clear sky", "few clouds", "scattered clouds") && e < 12) {
+        if (d.includes("clear sky", "few clouds", "scattered clouds") || e < 12) {
             return themeWeather.cold;
-        } else if ( (d.includes("clear sky", "few clouds", "scattered clouds") && e > 12) ) {
+        } else if ( (d.includes("clear sky", "few clouds", "scattered clouds")) ) {
             return themeWeather.sun;
         }
         else if (
@@ -33,9 +34,9 @@ changeAnimation(a, b, c, d,e) {
     if (a < b && a > c) {
         return "night";
     } else {
-        if (d.includes("clear sky", "few clouds", "scattered clouds") && e < 12) {
+        if (d.includes("clear sky", "few clouds", "scattered clouds") || e < 12) {
             return "cold";
-        } else if ( (d.includes("clear sky", "few clouds", "scattered clouds") && e > 12) ) {
+        } else if ( (d.includes("clear sky", "few clouds", "scattered clouds") ) ) {
             return "sun";
         } else if (
             d.includes(
@@ -59,9 +60,9 @@ changeAnimationDetail(a, b, c, d, e) {
     if (a < b && a > c) {
         return "night-detail";
     } else {
-        if (d.includes("clear sky", "few clouds", "scattered clouds") && e < 12) {
+        if (d.includes("clear sky", "few clouds", "scattered clouds") || e < 12) {
             return "cold-detail";
-        } else if ( (d.includes("clear sky", "few clouds", "scattered clouds") && e > 12) ) {
+        } else if ( (d.includes("clear sky", "few clouds", "scattered clouds") ) ) {
             return "sun-detail";
         } else if (
             d.includes(
