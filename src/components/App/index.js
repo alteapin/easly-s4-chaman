@@ -13,13 +13,13 @@ import ApiServices from "../../services/apiServices";
 const saveFavorites = JSON.parse(localStorage.getItem("favorites"));
 const uniqueFavorites = saveFavorites
     ? saveFavorites.filter((value, index, array) => {
-          return (
-              array.findIndex(
-                  valueArray =>
-                      JSON.stringify(valueArray) === JSON.stringify(value)
-              ) === index
-          );
-      })
+        return (
+            array.findIndex(
+                valueArray =>
+                    JSON.stringify(valueArray) === JSON.stringify(value)
+            ) === index
+        );
+    })
     : false;
 
 class App extends Component {
@@ -34,7 +34,7 @@ class App extends Component {
             loadedCurrent: true,
             loadedForecast: true,
             error: false,
-            quoteTxt: "",
+            quoteTxt: setInterval(() => this.randomQuote(), 7000),
             date: "",
             theme: "",
             activeDay: "",
@@ -46,7 +46,7 @@ class App extends Component {
             animationDetail: "",
             selectedDay: "",
             CurrentHour: "",
-            loading:"true",
+            loading: "true",
         };
 
         this.printDayNameNumber = this.printDayNameNumber.bind(this);
@@ -239,6 +239,7 @@ class App extends Component {
     randomQuote() {
         const random =
             arrayQuotes[Math.floor(Math.random() * arrayQuotes.length)];
+
         this.setState({
             quoteTxt: random
         });
