@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Footer.scss';
 import accenture from '../../icons/accenture.png';
-import logoColor from '../../images/logoColor.png';
+import logoColor from '../../images/whiteWithColor.png';
 
 
 class Footer extends Component {
