@@ -20,7 +20,6 @@ class Weekday extends Component {
         } else if (iconEl === 'Snow') {
             icon = Snow;
         }
-        console.log(icon);
         return icon;
     }
 
@@ -39,9 +38,7 @@ class Weekday extends Component {
         weekday[6] = "Sat";
         const weekName = weekday[dayNumb];
 
-        console.log(weekName)
         return weekName;
-
     }
 
     render() {
@@ -50,9 +47,6 @@ class Weekday extends Component {
         const iconTmp = {
             backgroundImage: `url(${this.showIcon()})`
         };
-
-        console.log(day);
-        console.log(activeDay);
 
         return (
 

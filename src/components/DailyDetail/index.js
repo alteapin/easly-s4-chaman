@@ -11,13 +11,12 @@ class DailyDetail extends React.Component {
 
     paintDate(){
         let objDate = new Date(this.props.activeDay.dt_txt);
-        let d = Moment(objDate);
-        d.month();
-        return d.format('ddd MMM DD YYYY')
+        return Moment(objDate).format('MMM DD YYYY');
     }
 
     render() {
         const {todayInfo, animation} = this.props;
+        console.log('props', todayInfo);
 
         if(todayInfo.length === 0) {
             return(
@@ -34,7 +33,8 @@ class DailyDetail extends React.Component {
 
                             return(
                                <HourData key={key} hour={result.dt_txt} wind={result.wind.speed}
-                               temp={result.main.temp} rain={result.weather[0].description}/>
+                               temp={result.main.temp} rain={result.weather[0].description}
+                               rainPercent={result.rain||0}/>
                             )
 
 
