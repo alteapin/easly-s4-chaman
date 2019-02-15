@@ -5,9 +5,11 @@ import Clock from '../CurrentHour/index';
 
 class HourHeader extends Component {
     render() {
+        const {hour} = this.props;
         return (
             <div className="hour-header-container">
-                <Clock />
+                <Clock
+                hour = {hour}/>
             </div>
         );
     }
