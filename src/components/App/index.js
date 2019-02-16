@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Daily from "../Daily";
 import "./App.scss";
 import Header from "../Header/index";
@@ -25,7 +25,7 @@ class App extends Component {
             weekForecast: [],
             loadedCurrent: true,
             loadedForecast: true,
-            error: false,
+            errors: false,
             quoteTxt: "",
             date: "",
             theme: "",
@@ -38,7 +38,7 @@ class App extends Component {
             animationDetail: "",
             selectedDay: "",
             CurrentHour: "",
-            fetching: "true"
+            fetching: true,
         };
 
         this.printDayNameNumber = this.printDayNameNumber.bind(this);
@@ -58,7 +58,6 @@ class App extends Component {
         this.randomQuote();
         this.printDayNameNumber();
         this.hourCurrent();
-
     }
 
     getLocationCoordinates() {
@@ -72,21 +71,19 @@ class App extends Component {
     }
 
     showPosition(position) {
-        this.setState(
-            { coordinates: position.coords },
-            () => {
-                const { coordinates } = this.state;
-                this.currentDayData(
-                    coordinates.latitude,
-                    coordinates.longitude,
-                    true
-                );
-                this.forecastData(coordinates.latitude, coordinates.longitude);
-            }
-        );
+        this.setState({ coordinates: position.coords }, () => {
+            const { coordinates } = this.state;
+            this.currentDayData(
+                coordinates.latitude,
+                coordinates.longitude,
+                true
+            );
+            this.forecastData(coordinates.latitude, coordinates.longitude);
+        });
     }
 
     showError(error) {
+        //coordinates from Alpedrete
         if (error.PERMISSION_DENIED) {
             this.currentDayData(40.66191, -4.0189, true);
             this.forecastData(40.66191, -4.0189);
@@ -113,17 +110,18 @@ class App extends Component {
         }
     }
 
-    hourCurrent () {
+    hourCurrent() {
         let d = new Date();
         let n = d.getHours();
-        let m = (d.getMinutes());
+        let m = d.getMinutes();
         const hour = n;
-        const hourMinuts = n + ":" + m
-        this.setState ({
-            currentHour : parseInt(hour),
-            hourMinuts : hourMinuts
-        })
-    };
+        const hourMinuts = n + ":" + m;
+        this.setState({
+            currentHour: parseInt(hour),
+            hourMinuts: hourMinuts
+        });
+    }
+
 
 
     currentDayData(lat, lon, currentLoc, event) {
@@ -137,12 +135,12 @@ class App extends Component {
             country: `${e.codeCountry}`
         });
 
-
         //get data current Day
         ApiServices.currentDayServiceCoordinates(lat, lon)
             .then(data => {
                 this.setState({
-                    fetching: false,
+                    errors: false,
+                    //fetching: false,
                     selectedLocation: currentLoc
                         ? current(data)
                         : locationFiltered(event),
@@ -173,7 +171,7 @@ class App extends Component {
                     )
                 });
             })
-            .catch(error => this.setState({ error: error }));
+            .catch(error => this.setState({ errors: true }));
     }
 
     forecastData(lat, lon) {
@@ -219,15 +217,13 @@ class App extends Component {
                     activeDay: weekList[0]
                 });
             })
-            .catch(error => this.setState({ error: error }));
+            .catch(error => console.log(error));
     }
 
     onChangeCity(e) {
         if (e) {
             this.currentDayData(e.value.lat, e.value.lon, false, e);
             this.forecastData(e.value.lat, e.value.lon);
-        } else {
-            return console.log("error");
         }
     }
 
@@ -309,6 +305,7 @@ class App extends Component {
 
     render() {
         const {
+            errors,
             favorites,
             fetching,
             endpointCurrent,
@@ -348,22 +345,33 @@ class App extends Component {
                                 addFavorite={this.addFavorite}
                                 favorites={favorites}
                             />
-                            <Daily
-                                dataWeather={endpointCurrent}
-                                quote={quoteTxt}
-                            />
+                            {!errors ? (
+                                <Daily
+                                    dataWeather={endpointCurrent}
+                                    quote={quoteTxt}
+                                />
+                            ) : (
+                                <Error />
+                            )}
                         </div>
-                        <WeekDetail
-                            forecastData={weekForecast}
-                            onDayClick={this.onDayClick}
-                            activeDay={activeDay}
-                            animation={animationDetail}
-                        />
-                        <DailyDetail
-                            todayInfo={this.state.todayInfo}
-                            activeDay={this.state.activeDay}
-                            animation={animationDetail}
-                        />
+
+                        {!errors ? (
+                            <Fragment>
+                                <WeekDetail
+                                    forecastData={weekForecast}
+                                    onDayClick={this.onDayClick}
+                                    activeDay={activeDay}
+                                    animation={animationDetail}
+                                />
+                                <DailyDetail
+                                    todayInfo={this.state.todayInfo}
+                                    activeDay={this.state.activeDay}
+                                    animation={animationDetail}
+                                />
+                            </Fragment>
+                        ) : (
+                            false
+                        )}
 
                         <Footer />
                     </div>
