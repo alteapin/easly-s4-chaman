@@ -4,6 +4,7 @@ import Cloud from '../../icons/cloud.svg';
 import Snow from '../../icons/snow.svg';
 import Sun from '../../icons/sun.svg';
 import Rain from '../../icons/rain.svg';
+import PropTypes from 'prop-types';
 
 
 
@@ -43,7 +44,6 @@ class Weekday extends Component {
 
     render() {
         const { day, onDayClick, activeDay } = this.props;
-
         const iconTmp = {
             backgroundImage: `url(${this.showIcon()})`
         };
@@ -59,6 +59,12 @@ class Weekday extends Component {
 
         );
     }
+}
+
+Weekday.propTypes = {
+    day: PropTypes.object.isRequired,
+    onDayClick: PropTypes.func.isRequired,
+    activeDay: PropTypes.object.isRequired,
 }
 
 export default Weekday;
