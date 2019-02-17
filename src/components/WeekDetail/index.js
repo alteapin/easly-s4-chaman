@@ -8,10 +8,6 @@ class WeekDetail extends Component {
 
     render() {
         const { forecastData, onDayClick, activeDay, animation } = this.props;
-        console.log('fore', forecastData);
-        console.log('oncli', onDayClick);
-        console.log('activ', activeDay);
-        console.log('ani', animation);
         return (
             <div className={`weekDetail-container ${animation}`}>
                 {
