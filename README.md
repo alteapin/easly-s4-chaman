@@ -1,7 +1,5 @@
 
-![Chaman Logo](src/images/logoChamanColor.png)
-
-**Weather app**
+![Chaman Logo](src/images/logoColor.png) **Weather app**
 
 App of weather that consists of an information panel with the weather forecast for the whole week.
 In it we can see the weather conditions of the day at (temperature, humidity, wind, etc). Additional the next 5 days will be shown and when you click on one of them you can see the time forecast for hours.
