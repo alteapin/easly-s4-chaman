@@ -61,7 +61,29 @@ class App extends Component {
 
     }
 
-    getLocationCoordinates() {
+    checkViewport() {
+        const width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        if (width > 1400) {
+            setInterval(() => {
+                this.autoSelect();
+            }, 8000);
+        }
+    }
+
+    autoSelect() {
+        const { weekForecast, activeDay } = this.state;
+        const days = weekForecast;
+        const length = days.length;
+        const actual = activeDay;
+
+        const lastIndex = days.indexOf(actual);
+        let nextIndex = lastIndex < length - 1 ? lastIndex + 1 : 0;
+        const nextDay = days[nextIndex];
+        this.onDayClick(nextDay);
+
+    }
+
+        getLocationCoordinates() {
         //get coordinates and then call weather endpoints
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
