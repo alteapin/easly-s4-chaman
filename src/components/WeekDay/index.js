@@ -1,24 +1,22 @@
-import React, { Component } from 'react';
-import './WeekDay.scss';
-import Cloud from '../../icons/cloud.svg';
-import Snow from '../../icons/snow.svg';
-import Sun from '../../icons/sun.svg';
-import Rain from '../../icons/rain.svg';
-import PropTypes from 'prop-types';
-
-
+import React, { Component } from "react";
+import "./WeekDay.scss";
+import Cloud from "../../icons/cloud.svg";
+import Snow from "../../icons/snow.svg";
+import Sun from "../../icons/sun.svg";
+import Rain from "../../icons/rain.svg";
+import PropTypes from "prop-types";
 
 class Weekday extends Component {
     showIcon() {
         const iconEl = this.props.day.weather[0].main;
         let icon;
-        if (iconEl === 'Clear') {
+        if (iconEl === "Clear") {
             icon = Sun;
-        } else if (iconEl === 'Clouds') {
+        } else if (iconEl === "Clouds") {
             icon = Cloud;
-        } else if (iconEl === 'Rain') {
+        } else if (iconEl === "Rain") {
             icon = Rain;
-        } else if (iconEl === 'Snow') {
+        } else if (iconEl === "Snow") {
             icon = Snow;
         }
         return icon;
@@ -49,14 +47,16 @@ class Weekday extends Component {
         };
 
         return (
-
-            <div className={`week-detail ${activeDay.dt === day.dt ? 'current_weekday' : ''}`} onClick={() => onDayClick(day)}>
-                <h3 className='weekday'>{this.getDateOfWeek()}</h3>
-                <div className='icon-temp' style={iconTmp}></div>
-                <p className='temp-high'>{day.maxTmp}ºC</p>
-                <p className='temp-low'>{day.minTmp}ºC</p>
+            <div
+                className={`week-detail ${
+                    activeDay.dt === day.dt ? "current_weekday" : ""
+                }`}
+                onClick={() => onDayClick(day)}>
+                <h3 className="weekday">{this.getDateOfWeek()}</h3>
+                <div className="icon-temp" style={iconTmp} />
+                <p className="temp-high">{day.maxTmp}ºC</p>
+                <p className="temp-low">{day.minTmp}ºC</p>
             </div>
-
         );
     }
 }
@@ -64,7 +64,7 @@ class Weekday extends Component {
 Weekday.propTypes = {
     day: PropTypes.object.isRequired,
     onDayClick: PropTypes.func.isRequired,
-    activeDay: PropTypes.object.isRequired,
-}
+    activeDay: PropTypes.object.isRequired
+};
 
 export default Weekday;

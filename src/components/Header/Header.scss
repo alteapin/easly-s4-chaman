@@ -1,16 +1,15 @@
 .header-main {
-height: 20%;
-display: grid;
-padding-top: 5%;
-grid-column-start: 1;
-grid-column-end: 3;
-grid-row-start: 1;
-grid-row-end: 2;
+  height: 20%;
+  display: grid;
+  padding-top: 5%;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
 
-@media screen and (orientation : landscape) {
-    .header-main {
-padding-top: 0%;
-    }
-
+@media screen and (orientation: landscape) {
+  .header-main {
+    padding-top: 0%;
+  }
 }

@@ -1,69 +1,67 @@
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 .icon-temp {
-    width: 45px;
-    height: 45px;
-    color: white;
-    background-size: 45px;
-    background-repeat: no-repeat;
-    background-position: center;
+  width: 45px;
+  height: 45px;
+  color: white;
+  background-size: 45px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .week-detail {
-    width: 45px;
-    height: 150px;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    padding-bottom: 10px;
-    cursor: pointer;
-    border: solid 1px rgba(128, 128, 128, 0.418);
-    border-radius: 10px;
-
+  width: 45px;
+  height: 150px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 10px;
+  cursor: pointer;
+  border: solid 1px rgba(128, 128, 128, 0.418);
+  border-radius: 10px;
 }
 
 .weekDetail-container {
-    display: flex;
-    justify-content: space-between;
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 2;
-    grid-row-end: 3;
-    padding: 15px 17px;
+  display: flex;
+  justify-content: space-between;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  padding: 15px 17px;
 }
 
-
-@media all and (min-width: 768px) and (max-width: 1020px){
-    .weekDetail-container{
-        padding: 15px 29px;
-    }
-    .week-detail {
-        padding: 10px;
-        width: 80px;
-        height: 160px;
-    }
+@media all and (min-width: 768px) and (max-width: 1020px) {
+  .weekDetail-container {
+    padding: 15px 29px;
+  }
+  .week-detail {
+    padding: 10px;
+    width: 80px;
+    height: 160px;
+  }
 }
 
 @media all and (min-width: 1020px) {
-    .weekDetail-container {
-        align-items: center;
-        height: 40vh;
-        width: 60vw;
-        grid-column-start: 2;
-        grid-column-end: 3;
-        grid-row-start: 1;
-        grid-row-end: 2;
-        padding: 15px 29px;
-    }
-    .week-detail {
-        padding: 10px;
-        width: 100px;
-        height: 200px;
-    }
+  .weekDetail-container {
+    align-items: center;
+    height: 40vh;
+    width: 60vw;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    padding: 15px 29px;
+  }
+  .week-detail {
+    padding: 10px;
+    width: 100px;
+    height: 200px;
+  }
 }

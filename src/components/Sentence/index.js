@@ -1,15 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 //import icon from'../../icons/iconfinder-icon.svg'
-import './Sentence.scss'
+import "./Sentence.scss";
 
 class Sentence extends Component {
     render() {
         const { quote } = this.props;
 
-        return (
-            <div className='container__sentence'>
-                {quote}</div>
-        );
+        return <div className="container__sentence">{quote}</div>;
     }
 }
 
