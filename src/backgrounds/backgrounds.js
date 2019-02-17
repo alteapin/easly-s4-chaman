@@ -3,7 +3,6 @@ import { themeWeather } from "../components/data/bg";
 const backgrounds = {
 
     changeBackground(a, b, c, d, e, f) {
-        console.log('ey', e)
         if (f > 20) {
             return themeWeather.night;
         } else {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './WeekDetail.scss';
 import WeekDay from '../WeekDay';
 import '../DailyDetail/DailyDetail.scss';
+import PropTypes from 'prop-types';
 
 class WeekDetail extends Component {
 
@@ -17,6 +18,13 @@ class WeekDetail extends Component {
             </div>
         );
     }
+}
+
+WeekDetail.proptypes = {
+    forecastData: PropTypes.array.isRequired,
+    onDayClick: PropTypes.func.isRequired,
+    activeDay: PropTypes.object,
+    animation: PropTypes.string.isRequired
 }
 
 export default WeekDetail;
