@@ -1,5 +1,6 @@
 
-![Chaman Logo](src/images/logoChamanColor.png)  **Weather app**
+![Chaman Logo](src/images/logoChamanColor.png) 
+**Weather app**
 
 
 App of weather that consists of an information panel with the weather forecast for the whole week.
