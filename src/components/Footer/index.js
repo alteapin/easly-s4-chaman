@@ -5,12 +5,14 @@ import logoColor from '../../images/whiteWithColor.png';
 
 
 class Footer extends Component {
-    render() {
+    render()     {
         return (
             <div className="footer">
             <div className="footer-logo-container">
+                <a target="blank" href="https://github.com/Adalab/easly-s4-chaman">
                 <img className="logo-chaman" src={logoColor}
                         alt="logo chaman" />
+                        </a>
                 <a target="blank" href="https://www.accenture.com/es-es/service-liquid-squad-accenture-digital">
                     <img className="logo-footer" src={accenture}
                         alt="logo-accenture" />
