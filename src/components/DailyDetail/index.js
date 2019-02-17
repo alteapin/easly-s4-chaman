@@ -49,9 +49,9 @@ class DailyDetail extends React.Component {
 }
 
 DailyDetail.propTypes = {
-    todayInfo: PropTypes.arrayOf(PropTypes.object),
-    animation: PropTypes.string,
-    activeDay: PropTypes.object
+    todayInfo: PropTypes.arrayOf(PropTypes.object).isRequired,
+    animation: PropTypes.string.isRequired,
+    activeDay: PropTypes.object.isRequired
 };
 
 export default DailyDetail;
