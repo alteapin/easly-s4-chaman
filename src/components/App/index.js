@@ -100,7 +100,8 @@ class App extends Component {
             this.currentDayData(
                 coordinates.latitude,
                 coordinates.longitude,
-                true
+                true,
+                false
             );
             this.forecastData(coordinates.latitude, coordinates.longitude);
         });
@@ -158,10 +159,18 @@ class App extends Component {
         //get data current Day
         ApiServices.currentDayServiceCoordinates(lat, lon)
             .then(data => {
+                const curr={
+                    city:data.name,
+                    country:data.sys.country,
+                    event:{codeCountry:data.sys.country,
+                        label:data.name,
+                        value:{lat:data.coord.latitude, lon:data.coord.longitude, name:data.name}},
+
+                }
                 this.setState({
                     fetching: false,
                     selectedLocation: currentLoc
-                        ? current(data)
+                        ? curr
                         : locationFiltered(event),
                     endpointCurrent: data,
                     theme: backgrounds.changeBackground(
