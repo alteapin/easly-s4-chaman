@@ -11,3 +11,18 @@
 .dailyDetail_units {
     font-size: 10px;
 }
+
+@media all and (min-width: 1020px) {
+    .dailyDetail_units {
+        font-size: 14px;
+    }
+    .HourData__hour {
+        font-size: 14px;
+    }
+    .temp{
+        font-size: 14px;
+    }
+    .dailyDetail_units {
+        font-size: 14px;
+    }
+}

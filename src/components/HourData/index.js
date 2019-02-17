@@ -8,11 +8,6 @@ class HourData extends React.Component {
     render() {
         const {rainPercent} = this.props;
         const rainNumber = parseInt(rainPercent['3h']);
-        console.log('lluvia', rainNumber);
-
-
-
-
 
         const {temp} = this.props;
         const roundTemp = Math.round(temp);
@@ -24,7 +19,7 @@ class HourData extends React.Component {
         return (
             <tr className="table__row">
                 <th className='HourData__hour'>{onlyTimewithoutseconds[0] + ':' + onlyTimewithoutseconds[1]}</th>
-                <th>{roundTemp}º</th>
+                <th className='temp'>{roundTemp}º</th>
                 <th> {rainNumber||0} <span className='dailyDetail_units'>mm</span> </th>
                 <th>{roundWind} <span className='dailyDetail_units'>km/h</span></th>
             </tr>
