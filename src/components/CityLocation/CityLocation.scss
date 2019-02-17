@@ -46,10 +46,14 @@
     transform: scale(1.2);
 }
 
-  .add-icon:active{
+.add-icon:active {
     transform: translateY(2px);
-    box-shadow: 0px 1px 5px rgba(0,0,0,0.5);
-  }
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.popup {
+    opacity: .6;
+}
 
   .react-select__placeholder{
  width: 100%;
