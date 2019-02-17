@@ -1,3 +1,11 @@
+# CHAMAN WEATHER APP
+
+#App of weather that consists of an information panel with the weather forecast for the whole week.
+In it we can see the weather conditions of the day at (temperature, humidity, wind, etc). Additional the next 5 days will be shown and when you click on one of them you can see the time forecast for hours.
+In addition, it can be displayed on a digital signage screen. In this case, when not being able to interact, the behavior is different. The general view is displayed and every 20 seconds the view changes to the detail of the day in which we are by hours.
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
