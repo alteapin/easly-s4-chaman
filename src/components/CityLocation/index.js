@@ -135,7 +135,7 @@ class CityLocation extends Component {
             onOpen={this.handleOpen}
             position='top right'
             className='popup'
-            size='mini'
+            size='tiny'
             inverted
           />
             </div>
