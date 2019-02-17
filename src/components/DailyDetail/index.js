@@ -25,7 +25,7 @@ class DailyDetail extends React.Component {
         } else {
         return (
             <div className={`infoDaily-Detail ${animation}`}>
-                <h3 className='title-detail'>Detailed information:<span className='table_title-day'> {this.paintDate()}</span></h3>
+                <h3 className='title-detail'> {this.paintDate()}</h3>
                 <table className="dailyDetail__table">
                     <HeadBoard />
                     <tbody>
