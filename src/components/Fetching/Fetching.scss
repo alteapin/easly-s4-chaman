@@ -1,19 +1,29 @@
-.container-fetching{
-    height: 100vh;
-    width: 100%;
-    background-color:white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.container-fetching {
+  height: 100vh;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.img-logo{
-    width: 150px;
-    height: auto;
+.img-logo {
+  width: 150px;
+  height: auto;
+}
+
+.img-loading {
+  border-top: 10%;
+  width: 100px;
 }
 
 @media all and (min-width: 768px) {
-    .img-logo{
-        width: 250px;
-    }
+  .img-logo {
+    width: 200px;
+  }
+  .img-loading {
+    width: 150px;
+    border-top: 5%;
+  }
 }

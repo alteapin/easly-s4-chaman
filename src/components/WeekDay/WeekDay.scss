@@ -1,30 +1,29 @@
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 .temp-high,
 .temp-low {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 .weekday {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .current_weekday {
-    background-color: rgba(128, 128, 128, 0.336);
-    border-radius: 5px;
+  background-color: rgba(128, 128, 128, 0.336);
+  border-radius: 5px;
 }
 
-
 @media all and (min-width: 1020px) {
-    .temp-high,
-    .temp-low {
-        font-size: 18px;
-    }
-    .weekday {
-        font-size: 20px;
-    }
+  .temp-high,
+  .temp-low {
+    font-size: 18px;
+  }
+  .weekday {
+    font-size: 20px;
+  }
 }

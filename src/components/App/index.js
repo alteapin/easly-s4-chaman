@@ -58,11 +58,13 @@ class App extends Component {
         this.randomQuote();
         this.printDayNameNumber();
         this.hourCurrent();
-
     }
 
     checkViewport() {
-        const width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        const width = Math.max(
+            document.documentElement.clientWidth,
+            window.innerWidth || 0
+        );
         if (width > 1400) {
             setInterval(() => {
                 this.autoSelect();
@@ -80,10 +82,9 @@ class App extends Component {
         let nextIndex = lastIndex < length - 1 ? lastIndex + 1 : 0;
         const nextDay = days[nextIndex];
         this.onDayClick(nextDay);
-
     }
 
-        getLocationCoordinates() {
+    getLocationCoordinates() {
         //get coordinates and then call weather endpoints
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
@@ -94,18 +95,16 @@ class App extends Component {
     }
 
     showPosition(position) {
-        this.setState(
-            { coordinates: position.coords },
-            () => {
-                const { coordinates } = this.state;
-                this.currentDayData(
-                    coordinates.latitude,
-                    coordinates.longitude,
-                    true
-                );
-                this.forecastData(coordinates.latitude, coordinates.longitude);
-            }
-        );
+        this.setState({ coordinates: position.coords }, () => {
+            const { coordinates } = this.state;
+            this.currentDayData(
+                coordinates.latitude,
+                coordinates.longitude,
+                true,
+                false
+            );
+            this.forecastData(coordinates.latitude, coordinates.longitude);
+        });
     }
 
     showError(error) {
@@ -116,7 +115,6 @@ class App extends Component {
     }
 
     addFavorite() {
-        console.log("selected", this.state.selectedLocation);
         const favorite = this.state.selectedLocation.event;
         const favorites = this.state.favorites;
 
@@ -135,38 +133,40 @@ class App extends Component {
         }
     }
 
-    hourCurrent () {
+    hourCurrent() {
         let d = new Date();
         let n = d.getHours();
-        let m = (d.getMinutes());
+        let m = d.getMinutes();
         const hour = n;
-        const hourMinuts = n + ":" + m
-        this.setState ({
-            currentHour : parseInt(hour),
-            hourMinuts : hourMinuts
-        })
-    };
-
+        const hourMinuts = n + ":" + m;
+        this.setState({
+            currentHour: parseInt(hour),
+            hourMinuts: hourMinuts
+        });
+    }
 
     currentDayData(lat, lon, currentLoc, event) {
-        const current = item => ({
-            city: item.name,
-            country: item.sys.country
-        });
         const locationFiltered = e => ({
             event: e,
             city: e.value.name,
             country: `${e.codeCountry}`
         });
 
-
         //get data current Day
         ApiServices.currentDayServiceCoordinates(lat, lon)
             .then(data => {
+                const curr={
+                    city:data.name,
+                    country:data.sys.country,
+                    event:{codeCountry:data.sys.country,
+                        label:data.name,
+                        value:{lat:data.coord.latitude, lon:data.coord.longitude, name:data.name}},
+
+                }
                 this.setState({
                     fetching: false,
                     selectedLocation: currentLoc
-                        ? current(data)
+                        ? curr
                         : locationFiltered(event),
                     endpointCurrent: data,
                     theme: backgrounds.changeBackground(
@@ -233,12 +233,15 @@ class App extends Component {
                     weekList.push(single[0]);
                 });
 
-                this.setState({
-                    endpointForecast: myList,
-                    weekForecast: weekList,
-                    loaded: true,
-                    activeDay: weekList[0]
-                }, () => this.checkViewport());
+                this.setState(
+                    {
+                        endpointForecast: myList,
+                        weekForecast: weekList,
+                        loaded: true,
+                        activeDay: weekList[0]
+                    },
+                    () => this.checkViewport()
+                );
             })
             .catch(error => this.setState({ error: error }));
     }
@@ -328,27 +331,6 @@ class App extends Component {
         });
     }
 
-    checkViewport() {
-        const width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-        if (width > 1400) {
-            setInterval(() => {
-                this.autoSelect();
-            }, 10000);
-        }
-    }
-
-    autoSelect() {
-        const { weekForecast, activeDay } = this.state;
-        const days = weekForecast;
-        const length = days.length;
-        const actual = activeDay;
-
-        const lastIndex = days.indexOf(actual);
-        let nextIndex = lastIndex < length - 1 ? lastIndex + 1 : 0;
-        const nextDay = days[nextIndex];
-        this.onDayClick(nextDay);
-
-    }
 
     render() {
         const {
@@ -364,7 +346,6 @@ class App extends Component {
             animation,
             animationDetail,
             theme,
-            hourMinuts
         } = this.state;
 
         const { textInput, focusTextInput } = this.props;

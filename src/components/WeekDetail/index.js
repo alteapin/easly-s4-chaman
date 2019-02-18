@@ -1,20 +1,22 @@
-import React, { Component } from 'react';
-import './WeekDetail.scss';
-import WeekDay from '../WeekDay';
-import '../DailyDetail/DailyDetail.scss';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import "./WeekDetail.scss";
+import WeekDay from "../WeekDay";
+import "../DailyDetail/DailyDetail.scss";
+import PropTypes from "prop-types";
 
 class WeekDetail extends Component {
-
     render() {
         const { forecastData, onDayClick, activeDay, animation } = this.props;
         return (
             <div className={`weekDetail-container ${animation}`}>
-                {
-                    forecastData.map(day => (
-                        <WeekDay day={day} key={day.dt} activeDay={activeDay} onDayClick={onDayClick} />
-                    ))
-                }
+                {forecastData.map(day => (
+                    <WeekDay
+                        day={day}
+                        key={day.dt}
+                        activeDay={activeDay}
+                        onDayClick={onDayClick}
+                    />
+                ))}
             </div>
         );
     }
@@ -25,6 +27,6 @@ WeekDetail.proptypes = {
     onDayClick: PropTypes.func.isRequired,
     activeDay: PropTypes.object,
     animation: PropTypes.string.isRequired
-}
+};
 
 export default WeekDetail;
