@@ -8,6 +8,12 @@ In addition, it can be displayed on a digital signage screen. In this case, when
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+##Working mode
+The web gets the information from some diferents APIs.
+The main weather API is https://openweathermap.org/api (5 days/ 3 hours forecast), that provides the data when a specific geographic coordinates are given. The web send two calls, one for current day information and other for the next 5 days detailed information.
+
+
+
 
 ## Available Scripts
 

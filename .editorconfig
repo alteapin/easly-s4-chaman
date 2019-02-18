@@ -10,11 +10,7 @@ insert_final_newline = true
 # 2 space indentation
 [*]
 indent_style = space
-<<<<<<< HEAD
-indent_size = 2
-=======
 indent_size = 4
->>>>>>> a6094650672541e84df4bb50d94f67a844dc9eea
 
 # urf-8 character set
 [*]
