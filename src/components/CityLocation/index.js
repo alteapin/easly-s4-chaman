@@ -22,19 +22,20 @@ class CityLocation extends Component {
     }
 
     handleOpen = () => {
-      this.setState({ isOpen: true })
-      this.timeout = setTimeout(() => {
+        this.setState({ isOpen: true })
+        this.timeout = setTimeout(() => {
         this.setState({ isOpen: false })
-      }, 1000)
-    }
+        }, 1000)
+        }
 
-    handleClose = () => {
-      this.setState({ isOpen: false })
-      clearTimeout(this.timeout)
-    }
+        handleClose = () => {
+        this.setState({ isOpen: false })
+        clearTimeout(this.timeout)
+        }
+
 
     getAsyncOptions(inputValue) {
-        return new Promise((resolve) => {
+        return new Promise(resolve => {
             fetch(
                 `http://api.geonames.org/searchJSON?q=${inputValue}&maxRows=10&fuzzy=0.8&username=chaman`
             )
@@ -120,7 +121,7 @@ class CityLocation extends Component {
                         }
                     })}
                 />
-                <Popup
+               <Popup
             trigger={<img
                 className="add-icon"
                 src={add}
@@ -134,7 +135,7 @@ class CityLocation extends Component {
             onOpen={this.handleOpen}
             position='top right'
             className='popup'
-            size='tiny'
+            size='mini'
             inverted
           />
             </div>
@@ -144,11 +145,11 @@ class CityLocation extends Component {
 }
 
 CityLocation.propTypes = {
-    addFavorite:PropTypes.func,
-    onChangeCity:PropTypes.func,
+    addFavorite: PropTypes.func,
+    onChangeCity: PropTypes.func,
     getCurrentLocation: PropTypes.func,
     favorites: PropTypes.array,
-    selectedLocation:PropTypes.object,
-  };
+    selectedLocation: PropTypes.object
+};
 
 export default CityLocation;

@@ -9,7 +9,6 @@ class DailyDetail extends React.Component {
     paintDate() {
         let objDate = this.props.activeDay.dt;
         return Moment(objDate * 1000).format("DD MMM YYYY");
-        //  (hh)
     }
 
     render() {
@@ -46,7 +45,7 @@ class DailyDetail extends React.Component {
 }
 
 DailyDetail.propTypes = {
-    animation: PropTypes.string.isRequired,
+    animation: PropTypes.string
 };
 
 export default DailyDetail;
