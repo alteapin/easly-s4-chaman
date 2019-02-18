@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
-import './HourHeader.scss';
-import Clock from '../CurrentHour/index';
-
+import React, { Component } from "react";
+import "./HourHeader.scss";
+import Clock from "../CurrentHour/index";
 
 class HourHeader extends Component {
     render() {
-        const {hour} = this.props;
+        const { hour } = this.props;
         return (
             <div className="hour-header-container">
-                <Clock
-                hour = {hour}/>
+                <Clock hour={hour} />
             </div>
         );
     }
