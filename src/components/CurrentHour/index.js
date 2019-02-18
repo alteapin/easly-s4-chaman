@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./CurrentHour.scss";
+import PropTypes from "prop-types";
 
 class CurrentHour extends Component {
     render() {
@@ -12,6 +13,10 @@ class CurrentHour extends Component {
     }
 }
 
+
+CurrentHour.propTypes = {
+    hour: PropTypes.number,
+};
 
 
 export default CurrentHour;

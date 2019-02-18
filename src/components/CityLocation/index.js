@@ -34,7 +34,7 @@ class CityLocation extends Component {
     }
 
     getAsyncOptions(inputValue) {
-        return new Promise((resolve) => {
+        return new Promise(resolve => {
             fetch(
                 `http://api.geonames.org/searchJSON?q=${inputValue}&maxRows=10&fuzzy=0.8&username=chaman`
             )
@@ -144,11 +144,11 @@ class CityLocation extends Component {
 }
 
 CityLocation.propTypes = {
-    addFavorite:PropTypes.func,
-    onChangeCity:PropTypes.func,
+    addFavorite: PropTypes.func,
+    onChangeCity: PropTypes.func,
     getCurrentLocation: PropTypes.func,
     favorites: PropTypes.array,
-    selectedLocation:PropTypes.object,
-  };
+    selectedLocation: PropTypes.object
+};
 
 export default CityLocation;

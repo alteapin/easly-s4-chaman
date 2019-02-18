@@ -8,7 +8,6 @@ import arrayQuotes from "../arrayQuotes";
 import DailyDetail from "../DailyDetail";
 import { backgrounds } from "../../backgrounds/backgrounds";
 import * as favorites from "../../services/localStorage";
-import Error from "../Error";
 import Fetching from "../Fetching";
 import ApiServices from "../../services/apiServices";
 
@@ -156,14 +155,19 @@ class App extends Component {
         //get data current Day
         ApiServices.currentDayServiceCoordinates(lat, lon)
             .then(data => {
-                const curr={
-                    city:data.name,
-                    country:data.sys.country,
-                    event:{codeCountry:data.sys.country,
-                        label:data.name,
-                        value:{lat:data.coord.latitude, lon:data.coord.longitude, name:data.name}},
-
-                }
+                const curr = {
+                    city: data.name,
+                    country: data.sys.country,
+                    event: {
+                        codeCountry: data.sys.country,
+                        label: data.name,
+                        value: {
+                            lat: data.coord.latitude,
+                            lon: data.coord.longitude,
+                            name: data.name
+                        }
+                    }
+                };
                 this.setState({
                     fetching: false,
                     selectedLocation: currentLoc
