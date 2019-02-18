@@ -4,6 +4,7 @@ import AsyncSelect from "react-select/lib/Async";
 import compass from "../../icons/compass.png";
 import add from "../../icons/plus.png";
 import PropTypes from "prop-types";
+import { Popup } from 'semantic-ui-react';
 
 const customStyles = {
     dropdownIndicator: () => ({ display: "none" }),
@@ -12,6 +13,20 @@ const customStyles = {
 };
 
 class CityLocation extends Component {
+
+    handleOpen = () => {
+        this.setState({ isOpen: true })
+        this.timeout = setTimeout(() => {
+        this.setState({ isOpen: false })
+        }, 1000)
+        }
+
+        handleClose = () => {
+        this.setState({ isOpen: false })
+        clearTimeout(this.timeout)
+        }
+
+
     getAsyncOptions(inputValue) {
         return new Promise((resolve) => {
             fetch(
@@ -99,12 +114,23 @@ class CityLocation extends Component {
                         }
                     })}
                 />
-                <img
-                    className="add-icon"
-                    src={add}
-                    alt="Add"
-                    onClick={addFavorite}
-                />
+               <Popup
+            trigger={<img
+                className="add-icon"
+                src={add}
+                alt="Add"
+                onClick={addFavorite}
+            />}
+            content={`Saved in favorites`}
+            on='click'
+            open={this.state.isOpen}
+            onClose={this.handleClose}
+            onOpen={this.handleOpen}
+            position='top right'
+            className='popup'
+            size='tiny'
+            inverted
+          />
             </div>
         );
     }
