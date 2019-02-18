@@ -9,35 +9,33 @@
 }
 
 .location-icon {
-  width: 25px;
-  height: 25px;
-  margin: 0 15px;
-  cursor: pointer;
-  border-radius: 50%;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  position: relative;
-  transition: all 0.4s ease-in;
+    width: 25px;
+    height: 25px;
+    margin: 0 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s ease;
 }
 
 .location-icon:hover {
-  transform: rotate(360deg) scale(1.2);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transform: rotate(360deg);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .location-icon:active {
-  transform: translateY(2px);
-  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.5);
+    transform: rotate(360deg) scale(1.1);
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.5);
 }
 
 .add-icon {
-  width: 25px;
-  height: 25px;
-  margin: 0 15px;
-  cursor: pointer;
-  border-radius: 50%;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  position: relative;
-  overflow: hidden;
+    width: 25px;
+    height: 25px;
+    margin: 0 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .add-icon:hover {
@@ -45,8 +43,16 @@
 }
 
 .add-icon:active {
-  transform: translateY(2px);
-  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.5);
+    transform: translateY(2px);
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.popup {
+    background-color: #3235389f;
+    padding: 4px;
+    margin-bottom: 3px;
+    font-size: 12px;
+    border-radius: 5px;
 }
 
 .react-select__placeholder {

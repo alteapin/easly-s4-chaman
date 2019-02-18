@@ -3,6 +3,7 @@ import "./Fetching.scss";
 import logo from "../../images/logoChamanColor.png";
 import loading from "../../images/loading.gif";
 
+
 class Fetching extends React.Component {
     render() {
         return (

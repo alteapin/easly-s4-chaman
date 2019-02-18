@@ -3,6 +3,7 @@ import "./CityLocation.scss";
 import AsyncSelect from "react-select/lib/Async";
 import compass from "../../icons/compass.png";
 import add from "../../icons/plus.png";
+import { Popup } from 'semantic-ui-react';
 import PropTypes from "prop-types";
 
 const customStyles = {
@@ -11,9 +12,30 @@ const customStyles = {
     control: () => ({ border: "none" })
 };
 
+
 class CityLocation extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isOpen: false
+        }
+    }
+
+    handleOpen = () => {
+        this.setState({ isOpen: true })
+        this.timeout = setTimeout(() => {
+        this.setState({ isOpen: false })
+        }, 1000)
+        }
+
+        handleClose = () => {
+        this.setState({ isOpen: false })
+        clearTimeout(this.timeout)
+        }
+
+
     getAsyncOptions(inputValue) {
-        return new Promise((resolve) => {
+        return new Promise(resolve => {
             fetch(
                 `http://api.geonames.org/searchJSON?q=${inputValue}&maxRows=10&fuzzy=0.8&username=chaman`
             )
@@ -33,7 +55,7 @@ class CityLocation extends Component {
                                 city.adminCodes1.ISO3166_2
                                     ? city.adminCodes1.ISO3166_2
                                     : false
-                            }
+                                }
                             ${city.countryCode ? city.countryCode : false} `,
 
                             codeCountry: city.countryCode
@@ -74,10 +96,10 @@ class CityLocation extends Component {
                     onChange={onChangeCity}
                     value={`${selectedLocation.city} ${
                         selectedLocation.country
-                    } `}
+                        } `}
                     placeholder={`${selectedLocation.city} ${
                         selectedLocation.country
-                    } `}
+                        } `}
                     escapeClearsValue={true}
                     captureMenuScroll={true}
                     autoFocus
@@ -99,23 +121,35 @@ class CityLocation extends Component {
                         }
                     })}
                 />
-                <img
-                    className="add-icon"
-                    src={add}
-                    alt="Add"
-                    onClick={addFavorite}
-                />
+               <Popup
+            trigger={<img
+                className="add-icon"
+                src={add}
+                alt="Add"
+                onClick={addFavorite}
+            />}
+            content={`Saved in favorites`}
+            on='click'
+            open={this.state.isOpen}
+            onClose={this.handleClose}
+            onOpen={this.handleOpen}
+            position='top right'
+            className='popup'
+            size='mini'
+            inverted
+          />
             </div>
+
         );
     }
 }
 
 CityLocation.propTypes = {
-    addFavorite:PropTypes.func,
-    onChangeCity:PropTypes.func,
+    addFavorite: PropTypes.func,
+    onChangeCity: PropTypes.func,
     getCurrentLocation: PropTypes.func,
     favorites: PropTypes.array,
-    selectedLocation:PropTypes.object,
-  };
+    selectedLocation: PropTypes.object
+};
 
 export default CityLocation;

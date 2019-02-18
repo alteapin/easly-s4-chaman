@@ -1,5 +1,6 @@
 import React from "react";
 import "./Error.scss";
+import PropTypes from "prop-types";
 
 class Error extends React.Component {
     render() {
@@ -15,5 +16,9 @@ class Error extends React.Component {
         );
     }
 }
+
+Error.propTypes = {
+    message: PropTypes.string,
+};
 
 export default Error;

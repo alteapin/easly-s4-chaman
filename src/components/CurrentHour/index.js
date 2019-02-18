@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./CurrentHour.scss";
 
+
 class CurrentHour extends Component {
     render() {
         const { hour } = this.props;
@@ -11,7 +12,6 @@ class CurrentHour extends Component {
         );
     }
 }
-
 
 
 export default CurrentHour;
