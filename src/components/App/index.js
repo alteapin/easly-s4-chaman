@@ -91,7 +91,7 @@ class App extends Component {
                 this.showPosition,
                 this.showError
             );
-        }
+        }else {console.log ("Geolocation is not supported by this browser")}
     }
 
     showPosition(position) {
