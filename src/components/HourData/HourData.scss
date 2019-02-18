@@ -1,28 +1,31 @@
 .HourData__hour {
-    font-weight: 500;
+  font-weight: 500;
 }
 .table__row {
-    font-size: 12px;
-    height: 25px;
+  font-size: 12px;
+  height: 25px;
 }
 .table__row:nth-child(odd) {
-    background-color: rgba(128, 128, 128, 0.09);
+  background-color: rgba(128, 128, 128, 0.09);
 }
 .dailyDetail_units {
-    font-size: 10px;
+  font-size: 10px;
 }
-
+.wind__arrow {
+  height: 14px;
+  margin-right: 13px;
+}
 @media all and (min-width: 1020px) {
-    .dailyDetail_units {
-        font-size: 14px;
-    }
-    .HourData__hour {
-        font-size: 14px;
-    }
-    .temp{
-        font-size: 14px;
-    }
-    .dailyDetail_units {
-        font-size: 14px;
-    }
+  .dailyDetail_units {
+    font-size: 14px;
+  }
+  .HourData__hour {
+    font-size: 14px;
+  }
+  .temp {
+    font-size: 14px;
+  }
+  .dailyDetail_units {
+    font-size: 14px;
+  }
 }

@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import './LocationFinder.scss';
-import compass from '../../icons/compass.png';
+import React, { Component } from "react";
+import "./LocationFinder.scss";
+import compass from "../../icons/compass.png";
 
 class LocationFinder extends Component {
-
     render() {
         const { onClickAction, visibility } = this.props;
         return (
@@ -12,15 +11,18 @@ class LocationFinder extends Component {
                     className="location-icon"
                     src={compass}
                     alt="compass"
-                    onClick={onClickAction} />
+                    onClick={onClickAction}
+                />
                 <form>
                     <label htmlFor="location">
-                        <input className={`location-finder_input ${visibility}`}
+                        <input
+                            className={`location-finder_input ${visibility}`}
                             // style={{visibility : {visibility}}}
-                            type="text" name="location" />
+                            type="text"
+                            name="location"
+                        />
                     </label>
                 </form>
-
             </div>
         );
     }

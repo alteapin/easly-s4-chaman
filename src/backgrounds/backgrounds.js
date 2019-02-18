@@ -1,9 +1,7 @@
 import { themeWeather } from "../components/data/bg";
 
 const backgrounds = {
-
     changeBackground(a, b, c, d, e, f) {
-        console.log('ey', e)
         if (f > 20) {
             return themeWeather.night;
         } else {
@@ -19,20 +17,17 @@ const backgrounds = {
                 return themeWeather.rain;
             } else if (d.includes("snow")) {
                 return themeWeather.snow;
-            } else if ( e < 12) {
+            } else if (e < 12) {
                 return themeWeather.cold;
             } else if (e > 12) {
                 return themeWeather.sun;
-            }
-            else {
+            } else {
                 return themeWeather.sun;
             }
         }
     },
 
-
-    changeAnimation(a, b, c, d, e,f) {
-
+    changeAnimation(a, b, c, d, e, f) {
         if (f > 20) {
             return "night";
         } else {
@@ -47,14 +42,13 @@ const backgrounds = {
             ) {
                 return "rain";
             } else if (d.includes("snow")) {
-            return "snow";
-            } else if ( e < 12) {
+                return "snow";
+            } else if (e < 12) {
                 return "cold";
             } else if (e > 12) {
                 return "sun";
-            }
-            else {
-                return  "sun";
+            } else {
+                return "sun";
             }
         }
     },
@@ -74,21 +68,16 @@ const backgrounds = {
             ) {
                 return "rain-detail";
             } else if (d.includes("snow")) {
-            return "snow-detail";
-            } else if ( e < 12) {
+                return "snow-detail";
+            } else if (e < 12) {
                 return "cold-detail";
             } else if (e > 12) {
                 return "sun-detail";
-            }
-            else {
-                return  "sun-detail";
+            } else {
+                return "sun-detail";
             }
         }
-    },
+    }
+};
 
-
-}
-
-
-
-export { backgrounds }
+export { backgrounds };

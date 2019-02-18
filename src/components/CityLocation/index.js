@@ -3,8 +3,8 @@ import "./CityLocation.scss";
 import AsyncSelect from "react-select/lib/Async";
 import compass from "../../icons/compass.png";
 import add from "../../icons/plus.png";
-import { Button, Popup } from 'semantic-ui-react';
-
+import { Popup } from 'semantic-ui-react';
+import PropTypes from "prop-types";
 
 const customStyles = {
     dropdownIndicator: () => ({ display: "none" }),
@@ -34,7 +34,7 @@ class CityLocation extends Component {
     }
 
     getAsyncOptions(inputValue) {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             fetch(
                 `http://api.geonames.org/searchJSON?q=${inputValue}&maxRows=10&fuzzy=0.8&username=chaman`
             )
@@ -71,7 +71,6 @@ class CityLocation extends Component {
     }
 
     render() {
-
         const {
             favorites,
             onChangeCity,
@@ -143,5 +142,13 @@ class CityLocation extends Component {
         );
     }
 }
+
+CityLocation.propTypes = {
+    addFavorite:PropTypes.func,
+    onChangeCity:PropTypes.func,
+    getCurrentLocation: PropTypes.func,
+    favorites: PropTypes.array,
+    selectedLocation:PropTypes.object,
+  };
 
 export default CityLocation;
