@@ -31,12 +31,12 @@ By default, the weather starts with Alpedrete weather info (it is a joke because
 ## Install repository
 For development, you will only need Node.js installed on your environment.
 Node is really easy to install & now include NPM. You should be able to run the following command after the installation procedure below.
-$ node --version v0.10.24
-$ npm --version 1.3.21
-$ node install
-$ Clone or download the repository (https://github.com/Adalab/easly-s4-chaman)
-$ npm install
-$ npm start
+- $ node --version v0.10.24
+- $ npm --version 1.3.21
+- $ node install
+- $ Clone or download the repository (https://github.com/Adalab/easly-s4-chaman)
+- $ npm install
+- $ npm start
 
 
 
