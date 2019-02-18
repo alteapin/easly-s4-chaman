@@ -37,7 +37,8 @@ class App extends Component {
             animation: "",
             animationDetail: "",
             selectedDay: "",
-            CurrentHour: "",
+            currentHour: "",
+            hourMinuts: "",
             fetching: "true"
         };
 
@@ -174,25 +175,16 @@ class App extends Component {
                         : locationFiltered(event),
                     endpointCurrent: data,
                     theme: backgrounds.changeBackground(
-                        data.dt,
-                        data.sys.sunrise,
-                        data.sys.sunset,
                         data.weather[0].description,
                         data.main.temp,
                         this.state.currentHour
                     ),
                     animation: backgrounds.changeAnimation(
-                        data.dt,
-                        data.sys.sunrise,
-                        data.sys.sunset,
                         data.weather[0].description,
                         data.main.temp,
                         this.state.currentHour
                     ),
                     animationDetail: backgrounds.changeAnimationDetail(
-                        data.dt,
-                        data.sys.sunrise,
-                        data.sys.sunset,
                         data.weather[0].description,
                         data.main.temp,
                         this.state.currentHour
@@ -373,6 +365,7 @@ class App extends Component {
             animation,
             animationDetail,
             theme,
+            hourMinuts,
         } = this.state;
 
         const { textInput, focusTextInput } = this.props;
@@ -398,6 +391,7 @@ class App extends Component {
                                 onChangeCity={this.onChangeCity}
                                 addFavorite={this.addFavorite}
                                 favorites={favorites}
+                                hour={hourMinuts}
                             />
                             <Daily
                                 dataWeather={endpointCurrent}

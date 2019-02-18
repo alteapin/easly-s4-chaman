@@ -1,12 +1,12 @@
 import { themeWeather } from "../components/data/bg";
 
 const backgrounds = {
-    changeBackground(a, b, c, d, e, f) {
-        if (f > 20) {
+    changeBackground(a, b, c) {
+        if (c > 20 || c < 7) {
             return themeWeather.night;
         } else {
             if (
-                d.includes(
+                a.includes(
                     "broken clouds",
                     "shower rain",
                     "rain",
@@ -15,11 +15,11 @@ const backgrounds = {
                 )
             ) {
                 return themeWeather.rain;
-            } else if (d.includes("snow")) {
+            } else if (a.includes("snow")) {
                 return themeWeather.snow;
-            } else if (e < 12) {
+            } else if (b < 12) {
                 return themeWeather.cold;
-            } else if (e > 12) {
+            } else if (b > 12) {
                 return themeWeather.sun;
             } else {
                 return themeWeather.sun;
@@ -27,12 +27,12 @@ const backgrounds = {
         }
     },
 
-    changeAnimation(a, b, c, d, e, f) {
-        if (f > 20) {
+    changeAnimation(a, b, c) {
+        if (c > 17 || c < 7) {
             return "night";
         } else {
             if (
-                d.includes(
+                a.includes(
                     "broken clouds",
                     "shower rain",
                     "rain",
@@ -41,11 +41,11 @@ const backgrounds = {
                 )
             ) {
                 return "rain";
-            } else if (d.includes("snow")) {
+            } else if (b.includes("snow")) {
                 return "snow";
-            } else if (e < 12) {
+            } else if (b < 12) {
                 return "cold";
-            } else if (e > 12) {
+            } else if (b > 12) {
                 return "sun";
             } else {
                 return "sun";
@@ -53,12 +53,12 @@ const backgrounds = {
         }
     },
 
-    changeAnimationDetail(a, b, c, d, e, f) {
-        if (f > 20) {
+    changeAnimationDetail(a, b, c) {
+        if (c > 20 || c < 7) {
             return "night-detail";
         } else {
             if (
-                d.includes(
+                a.includes(
                     "broken clouds",
                     "shower rain",
                     "rain",
@@ -67,11 +67,11 @@ const backgrounds = {
                 )
             ) {
                 return "rain-detail";
-            } else if (d.includes("snow")) {
+            } else if (a.includes("snow")) {
                 return "snow-detail";
-            } else if (e < 12) {
+            } else if (b < 12) {
                 return "cold-detail";
-            } else if (e > 12) {
+            } else if (b > 12) {
                 return "sun-detail";
             } else {
                 return "sun-detail";
