@@ -43,7 +43,6 @@
 }
 
 .add-icon:active {
-<<<<<<< HEAD
     transform: translateY(2px);
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.5);
 }
@@ -52,16 +51,11 @@
     opacity: .6;
 }
 
-  .react-select__placeholder{
- width: 100%;
-
- @media all and (max-width: 410px) {
-      font-size: 16px;
-
-=======
-  transform: translateY(2px);
-  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.5);
->>>>>>> 6f26396429771f1062ae5e0a46908fc86789077a
+.react-select__placeholder {
+    width: 100%;
+    @media all and (max-width: 410px) {
+        font-size: 16px;
+    }
 }
 
 .react-select__placeholder {
