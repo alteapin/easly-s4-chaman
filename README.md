@@ -1,5 +1,5 @@
 
-**Weather app**
+## Chaman weather app
 
 App of weather that consists of an information panel with the weather forecast for the whole week.
 In it, we can see the weather conditions of the day at (temperature, humidity, wind, etc).
@@ -7,7 +7,8 @@ In it, we can see the weather conditions of the day at (temperature, humidity, w
 Additional the next 5 days will be shown and when you click on one of them you can see the time forecast for hours.
 
 In addition, it can be displayed on a digital signage screen.
-In this case, when not being able to interact, the behavior is different. The general view is displayed and every 20 seconds the view changes to the detail of the day in which we are by hours.
+In this case, when not being able to interact, the behavior is different. The general view is displayed and every 20 seconds the view changes to the detail of the day in which we are by hours.  
+
 ![Chaman Logo](src/images/logoChamanColor.png)
 
 ## Chaman team in Sprint 4 in Adalab Easley Promotion
@@ -15,7 +16,7 @@ In this case, when not being able to interact, the behavior is different. The ge
 The Chaman weather app was created by a team formed by Beatriz García (https://github.com/beatrizAdalab), Altea Piñeiro (https://github.com/alteapin), Stephanie Guevara (https://github.com/stephanieggullo) and Joana Jiménez (https://github.com/joanajimfer).
 
 
-##Working mode
+## Working mode
 The web gets information from some APIs.
 
 The main weather API is https://openweathermap.org/api (5 days/ 3 hours forecast), that provides the data when specific geographic coordinates are given. The web sends two calls, one for current day information and another for the next 5 days detailed information.
@@ -27,7 +28,7 @@ For easier usability, the first step is trying to get the IP location of the use
 
 By default, the weather starts with Alpedrete weather info (it is a joke because Alpedrete is a real place near Madrid but is the town name for various expressions).
 
-##Install repository
+## Install repository
 For development, you will only need Node.js installed on your environment.
 Node is really easy to install & now include NPM. You should be able to run the following command after the installation procedure below.
 $ node --version v0.10.24
