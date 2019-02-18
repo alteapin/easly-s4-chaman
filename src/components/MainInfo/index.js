@@ -4,6 +4,7 @@ import Degrees from "../Degrees";
 import MaxMinTemperature from "../MaxMinTemperature";
 import "./MainInfo.scss";
 
+
 class MainInfo extends Component {
     render() {
         const { quote } = this.props;
@@ -26,3 +27,5 @@ class MainInfo extends Component {
 }
 
 export default MainInfo;
+
+

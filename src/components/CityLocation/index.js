@@ -3,14 +3,15 @@ import "./CityLocation.scss";
 import AsyncSelect from "react-select/lib/Async";
 import compass from "../../icons/compass.png";
 import add from "../../icons/plus.png";
-import PropTypes from "prop-types";
 import { Popup } from 'semantic-ui-react';
+import PropTypes from "prop-types";
 
 const customStyles = {
     dropdownIndicator: () => ({ display: "none" }),
     indicatorSeparator: () => ({ display: "none" }),
     control: () => ({ border: "none" })
 };
+
 
 class CityLocation extends Component {
     constructor(props) {
@@ -34,7 +35,7 @@ class CityLocation extends Component {
 
 
     getAsyncOptions(inputValue) {
-        return new Promise((resolve) => {
+        return new Promise(resolve => {
             fetch(
                 `http://api.geonames.org/searchJSON?q=${inputValue}&maxRows=10&fuzzy=0.8&username=chaman`
             )
@@ -54,7 +55,7 @@ class CityLocation extends Component {
                                 city.adminCodes1.ISO3166_2
                                     ? city.adminCodes1.ISO3166_2
                                     : false
-                            }
+                                }
                             ${city.countryCode ? city.countryCode : false} `,
 
                             codeCountry: city.countryCode
@@ -95,10 +96,10 @@ class CityLocation extends Component {
                     onChange={onChangeCity}
                     value={`${selectedLocation.city} ${
                         selectedLocation.country
-                    } `}
+                        } `}
                     placeholder={`${selectedLocation.city} ${
                         selectedLocation.country
-                    } `}
+                        } `}
                     escapeClearsValue={true}
                     captureMenuScroll={true}
                     autoFocus
@@ -138,16 +139,17 @@ class CityLocation extends Component {
             inverted
           />
             </div>
+
         );
     }
 }
 
 CityLocation.propTypes = {
-    addFavorite:PropTypes.func,
-    onChangeCity:PropTypes.func,
+    addFavorite: PropTypes.func,
+    onChangeCity: PropTypes.func,
     getCurrentLocation: PropTypes.func,
     favorites: PropTypes.array,
-    selectedLocation:PropTypes.object,
-  };
+    selectedLocation: PropTypes.object
+};
 
 export default CityLocation;

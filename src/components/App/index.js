@@ -8,7 +8,6 @@ import arrayQuotes from "../arrayQuotes";
 import DailyDetail from "../DailyDetail";
 import { backgrounds } from "../../backgrounds/backgrounds";
 import * as favorites from "../../services/localStorage";
-import Error from "../Error";
 import Fetching from "../Fetching";
 import ApiServices from "../../services/apiServices";
 
@@ -37,7 +36,8 @@ class App extends Component {
             animation: "",
             animationDetail: "",
             selectedDay: "",
-            CurrentHour: "",
+            currentHour: "",
+            hourMinuts:"",
             fetching: "true"
         };
 
@@ -155,14 +155,19 @@ class App extends Component {
         //get data current Day
         ApiServices.currentDayServiceCoordinates(lat, lon)
             .then(data => {
-                const curr={
-                    city:data.name,
-                    country:data.sys.country,
-                    event:{codeCountry:data.sys.country,
-                        label:data.name,
-                        value:{lat:data.coord.latitude, lon:data.coord.longitude, name:data.name}},
-
-                }
+                const curr = {
+                    city: data.name,
+                    country: data.sys.country,
+                    event: {
+                        codeCountry: data.sys.country,
+                        label: data.name,
+                        value: {
+                            lat: data.coord.latitude,
+                            lon: data.coord.longitude,
+                            name: data.name
+                        }
+                    }
+                };
                 this.setState({
                     fetching: false,
                     selectedLocation: currentLoc
@@ -170,25 +175,16 @@ class App extends Component {
                         : locationFiltered(event),
                     endpointCurrent: data,
                     theme: backgrounds.changeBackground(
-                        data.dt,
-                        data.sys.sunrise,
-                        data.sys.sunset,
                         data.weather[0].description,
                         data.main.temp,
                         this.state.currentHour
                     ),
                     animation: backgrounds.changeAnimation(
-                        data.dt,
-                        data.sys.sunrise,
-                        data.sys.sunset,
                         data.weather[0].description,
                         data.main.temp,
                         this.state.currentHour
                     ),
                     animationDetail: backgrounds.changeAnimationDetail(
-                        data.dt,
-                        data.sys.sunrise,
-                        data.sys.sunset,
                         data.weather[0].description,
                         data.main.temp,
                         this.state.currentHour
@@ -346,6 +342,7 @@ class App extends Component {
             animation,
             animationDetail,
             theme,
+            hourMinuts,
         } = this.state;
 
         const { textInput, focusTextInput } = this.props;
@@ -371,6 +368,7 @@ class App extends Component {
                                 onChangeCity={this.onChangeCity}
                                 addFavorite={this.addFavorite}
                                 favorites={favorites}
+                                hour={hourMinuts}
                             />
                             <Daily
                                 dataWeather={endpointCurrent}
