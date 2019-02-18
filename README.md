@@ -1,5 +1,5 @@
 
-## Chaman weather app
+**Weather app**
 
 App of weather that consists of an information panel with the weather forecast for the whole week.
 In it, we can see the weather conditions of the day at (temperature, humidity, wind, etc).
