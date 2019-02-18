@@ -328,27 +328,7 @@ class App extends Component {
         });
     }
 
-    checkViewport() {
-        const width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-        if (width > 1400) {
-            setInterval(() => {
-                this.autoSelect();
-            }, 10000);
-        }
-    }
 
-    autoSelect() {
-        const { weekForecast, activeDay } = this.state;
-        const days = weekForecast;
-        const length = days.length;
-        const actual = activeDay;
-
-        const lastIndex = days.indexOf(actual);
-        let nextIndex = lastIndex < length - 1 ? lastIndex + 1 : 0;
-        const nextDay = days[nextIndex];
-        this.onDayClick(nextDay);
-
-    }
 
     render() {
         const {
