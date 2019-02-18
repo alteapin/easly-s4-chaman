@@ -88,7 +88,7 @@ self.__precacheManifest = [
     "url": "./static/media/loading.a4f2cb80.gif"
   },
   {
-    "revision": "b43e32d91ba352212812d87ca4c72abe",
+    "revision": "c0dd063f1944b9a135e092fb7dc66237",
     "url": "./index.html"
   }
 ];
