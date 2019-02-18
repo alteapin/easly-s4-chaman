@@ -13,6 +13,12 @@ const customStyles = {
 };
 
 class CityLocation extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isOpen: false
+        }
+    }
 
     handleOpen = () => {
         this.setState({ isOpen: true })
