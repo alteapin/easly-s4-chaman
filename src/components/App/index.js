@@ -8,7 +8,6 @@ import arrayQuotes from "../arrayQuotes";
 import DailyDetail from "../DailyDetail";
 import { backgrounds } from "../../backgrounds/backgrounds";
 import * as favorites from "../../services/localStorage";
-import Error from "../Error";
 import Fetching from "../Fetching";
 import ApiServices from "../../services/apiServices";
 
@@ -146,10 +145,6 @@ class App extends Component {
     }
 
     currentDayData(lat, lon, currentLoc, event) {
-        const current = item => ({
-            city: item.name,
-            country: item.sys.country
-        });
         const locationFiltered = e => ({
             event: e,
             city: e.value.name,
@@ -159,14 +154,19 @@ class App extends Component {
         //get data current Day
         ApiServices.currentDayServiceCoordinates(lat, lon)
             .then(data => {
-                const curr={
-                    city:data.name,
-                    country:data.sys.country,
-                    event:{codeCountry:data.sys.country,
-                        label:data.name,
-                        value:{lat:data.coord.latitude, lon:data.coord.longitude, name:data.name}},
-
-                }
+                const curr = {
+                    city: data.name,
+                    country: data.sys.country,
+                    event: {
+                        codeCountry: data.sys.country,
+                        label: data.name,
+                        value: {
+                            lat: data.coord.latitude,
+                            lon: data.coord.longitude,
+                            name: data.name
+                        }
+                    }
+                };
                 this.setState({
                     fetching: false,
                     selectedLocation: currentLoc
@@ -335,29 +335,6 @@ class App extends Component {
         });
     }
 
-    checkViewport() {
-        const width = Math.max(
-            document.documentElement.clientWidth,
-            window.innerWidth || 0
-        );
-        if (width > 1400) {
-            setInterval(() => {
-                this.autoSelect();
-            }, 10000);
-        }
-    }
-
-    autoSelect() {
-        const { weekForecast, activeDay } = this.state;
-        const days = weekForecast;
-        const length = days.length;
-        const actual = activeDay;
-
-        const lastIndex = days.indexOf(actual);
-        let nextIndex = lastIndex < length - 1 ? lastIndex + 1 : 0;
-        const nextDay = days[nextIndex];
-        this.onDayClick(nextDay);
-    }
 
     render() {
         const {
@@ -372,7 +349,7 @@ class App extends Component {
             activeDay,
             animation,
             animationDetail,
-            theme,
+            theme
         } = this.state;
 
         const { textInput, focusTextInput } = this.props;

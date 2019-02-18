@@ -4,6 +4,7 @@ import HourHeader from "../HourHeader/index";
 import CityLocation from "../CityLocation/index";
 import DayNameNumber from "../DayNameNumber";
 
+
 class Header extends Component {
     render() {
         const {
@@ -18,7 +19,6 @@ class Header extends Component {
             favorites,
             hour
         } = this.props;
-        //console.log('header', this.props);
         return (
             <div className="header-main">
                 <CityLocation
